@@ -1,5 +1,6 @@
 package com.joechrisellis.f454.gui.panels;
 
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -72,6 +73,9 @@ public class GraphingPanel extends JPanel implements Runnable {
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g.clearRect(0, 0, getWidth(), getHeight());
+		
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, getWidth(), getHeight());
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		graphingEngine.render(g2d);
 		g.dispose();

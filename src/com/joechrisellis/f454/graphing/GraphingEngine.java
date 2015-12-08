@@ -1,5 +1,6 @@
 package com.joechrisellis.f454.graphing;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -28,7 +29,7 @@ public class GraphingEngine {
 		Axes axes = new Axes(this);
 		mathObjects.add(axes);
 		
-		mathObjects.add(new SimpleFunctionYEquals("test", this));
+		mathObjects.add(new SimpleFunctionYEquals("test", Color.RED, this));
 	}
 	
 	public void render(Graphics2D g) {

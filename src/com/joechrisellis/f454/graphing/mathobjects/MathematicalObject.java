@@ -1,8 +1,7 @@
 package com.joechrisellis.f454.graphing.mathobjects;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
-
-import javax.swing.JCheckBox;
 
 import com.joechrisellis.f454.graphing.GraphingEngine;
 
@@ -10,11 +9,13 @@ public abstract class MathematicalObject {
 		
 	protected GraphingEngine graphingEngine;
 	protected String name;
+	protected Color color;
 	protected boolean visible;
 	
-	public MathematicalObject(String name, GraphingEngine graphingEngine) {
+	public MathematicalObject(String name, Color color, GraphingEngine graphingEngine) {
 		this.graphingEngine = graphingEngine;
 		this.name = name;
+		this.color = color;
 		visible = true;
 	}
 	

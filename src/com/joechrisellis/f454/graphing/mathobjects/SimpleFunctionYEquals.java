@@ -7,7 +7,6 @@ import java.awt.geom.Line2D;
 
 import com.joechrisellis.f454.graphing.GraphingEngine;
 import com.joechrisellis.f454.graphing.ScalingManager;
-import com.joechrisellis.f454.gui.windows.MainWindow;
 
 public class SimpleFunctionYEquals extends MathematicalObject {
 	
@@ -15,14 +14,14 @@ public class SimpleFunctionYEquals extends MathematicalObject {
 	private double domainLBound, domainUBound;
 	private double rangeLBound, rangeUBound;
 	
-	public SimpleFunctionYEquals(String name, GraphingEngine graphingEngine) {
-		super(name, graphingEngine);
+	public SimpleFunctionYEquals(String name, Color color, GraphingEngine graphingEngine) {
+		super(name, color, graphingEngine);
 	}
 
 	public void render(Graphics2D g) {
 		if(!visible) return;
 		
-		g.setColor(Color.RED);
+		g.setColor(color);
 		g.setStroke(new BasicStroke(2));
 		
 		ScalingManager sm = graphingEngine.getScalingManager();
