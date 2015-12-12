@@ -37,7 +37,9 @@ public class GraphingEngine {
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
 		while(itr.hasNext()) {
 			MathematicalObject o = itr.next();
-			o.render(g);
+			if(o.isVisible()) {
+				o.render(g);
+			}
 		}
 	}
 	

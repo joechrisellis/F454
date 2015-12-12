@@ -13,8 +13,6 @@ public class Axes extends MathematicalObject {
 	}
 
 	public void render(Graphics2D g) {
-		if(!visible) return;
-		
 		g.setColor(color);
 		
 		ScalingManager sm = graphingEngine.getScalingManager();

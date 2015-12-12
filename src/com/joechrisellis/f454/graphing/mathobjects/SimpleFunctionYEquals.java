@@ -19,8 +19,6 @@ public class SimpleFunctionYEquals extends MathematicalObject {
 	}
 
 	public void render(Graphics2D g) {
-		if(!visible) return;
-		
 		g.setColor(color);
 		g.setStroke(new BasicStroke(2));
 		
