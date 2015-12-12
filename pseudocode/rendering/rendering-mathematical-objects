@@ -1,0 +1,3 @@
+Method Render(Graphics2D g)
+	For MathematicalObject in MathematicalObjectList:
+		MathematicalObject.Render(g) # passing g as an argument

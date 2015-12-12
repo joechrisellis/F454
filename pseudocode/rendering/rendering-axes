@@ -1,0 +1,12 @@
+Method Render(Graphics2D g)
+	g.SetColor(Color.Black)
+	ScalingManager SM = GraphingEngine.GetScalingManager()
+
+	Integer Width = GraphingEngine.GetGraphingPanel().GetWidth();
+	Integer Height = GraphingEngine.GetGraphingPanel().GetHeight();
+
+	Double[] xy = SM.GetTranslatedXandY(width / 2, height / 2);
+	g.drawLine((Integer) (xy[0]), 0, (Integer) (xy[0]), height);
+	g.drawLine(0, (Integer) (xy[1]), width, (Integer) (xy[1]));
+
+	DrawNumbers(g)

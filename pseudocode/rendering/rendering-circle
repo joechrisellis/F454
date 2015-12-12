@@ -1,0 +1,7 @@
+Method Render(Graphics2D g)
+	g.SetColor(Color)
+	ScalingManager SM = GraphingEngine.GetScalingManager()
+
+	BoundingRect[] = ScalingManager.GetTransformed(CentreX - radius, CentreY - radius)
+	Width = ScalingManager.GetScaled(2 * r)
+	g.DrawEllipse(BoundingRect[0], BoundingRect[1], Width, Width)
