@@ -1,16 +1,15 @@
-package com.joechrisellis.f454.gui.panels;
+package com.joechrisellis.f454.gui.components.panels;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import com.joechrisellis.f454.gui.buttons.AddCircleButton;
-import com.joechrisellis.f454.gui.buttons.AddPointButton;
-import com.joechrisellis.f454.gui.buttons.AddSimpleFunctionXEqualsButton;
-import com.joechrisellis.f454.gui.buttons.AddSimpleFunctionYEqualsButton;
+import com.joechrisellis.f454.gui.components.buttons.AddCircleButton;
+import com.joechrisellis.f454.gui.components.buttons.AddPointButton;
+import com.joechrisellis.f454.gui.components.buttons.AddSimpleFunctionXEqualsButton;
+import com.joechrisellis.f454.gui.components.buttons.AddSimpleFunctionYEqualsButton;
+import com.joechrisellis.f454.gui.components.buttons.RaiseSettingsButton;
 
 public class MainWindowBottomPanel extends JPanel {
 	
@@ -18,6 +17,7 @@ public class MainWindowBottomPanel extends JPanel {
 	private AddSimpleFunctionYEqualsButton addSimpleFunction1;
 	private AddSimpleFunctionXEqualsButton addSimpleFunction2;
 	private AddCircleButton addCircle;
+	private RaiseSettingsButton raiseSettings;
 	
 	public MainWindowBottomPanel() {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -26,6 +26,7 @@ public class MainWindowBottomPanel extends JPanel {
 		addSimpleFunction1 = new AddSimpleFunctionYEqualsButton();
 		addSimpleFunction2 = new AddSimpleFunctionXEqualsButton();
 		addCircle = new AddCircleButton();
+		raiseSettings = new RaiseSettingsButton();
 		
 		add(addPoint);
 		add(addSimpleFunction1);
@@ -33,7 +34,7 @@ public class MainWindowBottomPanel extends JPanel {
 		add(addCircle);
 		
 		add(new JSeparator(JSeparator.VERTICAL));
-		add(new JButton("test"));
+		add(raiseSettings);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.joechrisellis.f454.gui.buttons;
+package com.joechrisellis.f454.gui.components.buttons;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

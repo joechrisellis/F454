@@ -6,10 +6,10 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
+import com.joechrisellis.f454.gui.components.panels.GraphingPanel;
+import com.joechrisellis.f454.gui.components.panels.MainWindowBottomPanel;
+import com.joechrisellis.f454.gui.components.panels.MainWindowMathObjectsPanel;
 import com.joechrisellis.f454.gui.menus.MainWindowMenuBar;
-import com.joechrisellis.f454.gui.panels.GraphingPanel;
-import com.joechrisellis.f454.gui.panels.MainWindowBottomPanel;
-import com.joechrisellis.f454.gui.panels.MainWindowMathObjectsPanel;
 
 public class MainWindow extends JFrame {
 	

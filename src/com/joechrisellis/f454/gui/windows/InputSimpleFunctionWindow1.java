@@ -1,6 +1,7 @@
 package com.joechrisellis.f454.gui.windows;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class InputSimpleFunctionWindow1 extends JFrame {
 	
@@ -12,7 +13,8 @@ public class InputSimpleFunctionWindow1 extends JFrame {
 		super(title);
 		setSize(width, height);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+				
+		setResizable(false);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}

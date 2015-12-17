@@ -1,27 +1,29 @@
-package com.joechrisellis.f454.gui.panels;
+package com.joechrisellis.f454.gui.components.panels;
 
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import com.joechrisellis.f454.graphing.GraphingEngine;
 import com.joechrisellis.f454.graphing.ScalingManager;
 import com.joechrisellis.f454.gui.misc.Mouse;
 
-public class GraphingPanel extends JPanel implements Runnable {
+public class GraphingPanel extends JPanel {
 	
 	private GraphingEngine graphingEngine;
 	
 	private Mouse mouse;
 	private int mousePrevX, mousePrevY;
 	
-	private volatile boolean running;
-	private Thread thread;
-	private final double UPDATES_PER_SECOND = 60D;
+	private Timer timer;
+	private final double FPS = 60D;
 	
 	public GraphingPanel() {
 		setFocusable(true);
@@ -31,62 +33,58 @@ public class GraphingPanel extends JPanel implements Runnable {
 		mouse = new Mouse();
 		addMouseListener(mouse);
 		addMouseMotionListener(mouse);
+		addMouseWheelListener(mouse);
 		
 		graphingEngine = new GraphingEngine(this);
 	}
 
 	public void start() {
-		running = true;
-		thread = new Thread(this);
-		thread.start();
+		int delay = (int) (1000 / FPS);
+		timer = new Timer(delay, new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				repaint();
+				update();
+			}
+			
+		});
+		timer.start();
 	}
 	
 	public void stop() {
-		running = false;
-		try {
-			thread.join();
-		} catch(InterruptedException e) {
-			e.printStackTrace();
-		}
+		timer.stop();
 	}
 
-	public void run() {
-		// manages timekeeping and rendering for the program
-		long lastTime = System.nanoTime();
-		double delta = 0D;
-		double ns = 1000000000D / UPDATES_PER_SECOND;
-		
-		while(running) {
-			long now = System.nanoTime();
-			delta += (now - lastTime) / ns;
-			lastTime = now;
-			
-			while(delta >= 1) {
-				update();
-				delta -= 1;
-			}
-			
-			repaint();
-		}
-	}
-	
 	protected void paintComponent(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		g.clearRect(0, 0, getWidth(), getHeight());
+		super.paintComponent(g);
 		
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		graphingEngine.render(g2d);
+		
 		g.dispose();
 	}
 	
 	private void update() {
+		ScalingManager sm = graphingEngine.getScalingManager();
 		if(mouse.isLeftHeld()) {
-			ScalingManager sm = graphingEngine.getScalingManager();
 			sm.setxTranslation((mouse.getX() + sm.getxTranslation()) - mousePrevX);
 			sm.setyTranslation((mouse.getY() + sm.getyTranslation()) - mousePrevY);
 		}
+		
+		int scroll = -mouse.getScroll();
+		if(sm.getxScale() + scroll > 0) {
+			sm.setxScale(sm.getxScale() + scroll);
+
+		}
+		
+		if(sm.getyScale() + scroll > 0) {
+			sm.setyScale(sm.getyScale() + scroll);
+		}
+		
 		mousePrevX = mouse.getX();
 		mousePrevY = mouse.getY();
 	}
@@ -95,12 +93,8 @@ public class GraphingPanel extends JPanel implements Runnable {
 		return graphingEngine;
 	}
 
-	public boolean isRunning() {
-		return running;
-	}
-
-	public double getUPDATES_PER_SECOND() {
-		return UPDATES_PER_SECOND;
+	public double getFPS() {
+		return FPS;
 	}
 
 }

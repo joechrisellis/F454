@@ -1,4 +1,4 @@
-package com.joechrisellis.f454.gui.panels;
+package com.joechrisellis.f454.gui.components.panels;
 
 import java.awt.Dimension;
 import java.util.ListIterator;
