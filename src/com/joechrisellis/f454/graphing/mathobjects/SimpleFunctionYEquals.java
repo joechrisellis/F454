@@ -10,12 +10,15 @@ import com.joechrisellis.f454.graphing.ScalingManager;
 
 public class SimpleFunctionYEquals extends MathematicalObject {
 	
-	private boolean hasDomain, hasRange;
-	private double domainLBound, domainUBound;
-	private double rangeLBound, rangeUBound;
+	protected String expression;
 	
-	public SimpleFunctionYEquals(String name, Color color, GraphingEngine graphingEngine) {
+	protected boolean hasDomain, hasRange;
+	protected double domainLBound, domainUBound;
+	protected double rangeLBound, rangeUBound;
+	
+	public SimpleFunctionYEquals(String name, String expression, Color color, GraphingEngine graphingEngine) {
 		super(name, color, graphingEngine);
+		this.expression = expression;
 	}
 
 	public void render(Graphics2D g) {
@@ -23,17 +26,17 @@ public class SimpleFunctionYEquals extends MathematicalObject {
 		g.setStroke(new BasicStroke(2));
 		
 		ScalingManager sm = graphingEngine.getScalingManager();
-		int w = graphingEngine.getGraphingPanel().getWidth();
 		
-		double lower = hasDomain ? domainLBound : -w / 2;
-		double upper = hasDomain ? domainUBound : w / 2;
+		int w = sm.getCentre()[0];
+		double lower = hasDomain ? domainLBound : -w;
+		double upper = hasDomain ? domainUBound : w;
 		
 		double prevY = 0;
 		for(double x = lower; x < upper; x += graphingEngine.getResolution()) {
-			double newY = 3 * x;
+			double newY = Math.tan(x);
 			
-			double[] p1 = sm.getScaledXandY(x - graphingEngine.getResolution(), prevY);
-			double[] p2 = sm.getScaledXandY(x, newY);
+			double[] p1 = sm.getCentredXandY(x - graphingEngine.getResolution(), prevY);
+			double[] p2 = sm.getCentredXandY(x, newY);
 			
 			g.draw(new Line2D.Float((int) (p1[0]), (int) (p1[1]), (int) (p2[0]), (int) (p2[1])));
 			prevY = newY;

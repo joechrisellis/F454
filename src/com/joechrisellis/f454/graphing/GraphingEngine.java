@@ -7,8 +7,9 @@ import java.util.ListIterator;
 
 import com.joechrisellis.f454.graphing.mathobjects.Axes;
 import com.joechrisellis.f454.graphing.mathobjects.MathematicalObject;
+import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionXEquals;
 import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionYEquals;
-import com.joechrisellis.f454.gui.panels.GraphingPanel;
+import com.joechrisellis.f454.gui.components.panels.GraphingPanel;
 
 public class GraphingEngine {
 	
@@ -23,13 +24,14 @@ public class GraphingEngine {
 	public GraphingEngine(GraphingPanel graphingPanel) {
 		this.graphingPanel = graphingPanel;
 		scalingManager = new ScalingManager(this);
-		resolution = 0.1D;
+		resolution = 0.5D;
 		
 		mathObjects = new ArrayList<MathematicalObject>();
 		Axes axes = new Axes(this);
 		mathObjects.add(axes);
 		
-		mathObjects.add(new SimpleFunctionYEquals("test", Color.RED, this));
+		mathObjects.add(new SimpleFunctionYEquals("test", "x^2", Color.RED, this));
+		mathObjects.add(new SimpleFunctionXEquals("test 2", "cos(x)", Color.BLUE, this));
 	}
 	
 	public void render(Graphics2D g) {
