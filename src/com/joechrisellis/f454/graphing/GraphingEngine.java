@@ -2,10 +2,12 @@ package com.joechrisellis.f454.graphing;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.joechrisellis.f454.graphing.mathobjects.Axes;
+import com.joechrisellis.f454.graphing.mathobjects.DataSet;
 import com.joechrisellis.f454.graphing.mathobjects.MathematicalObject;
 import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionXEquals;
 import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionYEquals;
@@ -32,6 +34,15 @@ public class GraphingEngine {
 		
 		mathObjects.add(new SimpleFunctionYEquals("test", "x^2", Color.RED, this));
 		mathObjects.add(new SimpleFunctionXEquals("test 2", "cos(x)", Color.BLUE, this));
+		
+		ArrayList<Point> p = new ArrayList<Point>();
+		p.add(new Point(10, 20));
+		p.add(new Point(3, 6));
+		p.add(new Point(5, 2));
+		p.add(new Point(7, 7));
+		
+		DataSet ds = new DataSet("Data Set", p, Color.GREEN, this);
+		mathObjects.add(ds);
 	}
 	
 	public void render(Graphics2D g) {
