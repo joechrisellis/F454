@@ -14,6 +14,23 @@ public class ScalingManager {
 		yTranslation = graphingEngine.getGraphingPanel().getHeight() / 2;
 	}
 	
+	public double[] getCentredXandY(double x, double y) {
+		double[] xy = getTransformedXandY(x, y);
+		int w = graphingEngine.getGraphingPanel().getWidth() / 2;
+		int h = graphingEngine.getGraphingPanel().getHeight() / 2;
+		return new double[]{xy[0] + w, xy[1] + h};
+	}
+	
+	public int[] getCentre() {
+		int w = graphingEngine.getGraphingPanel().getWidth();
+		int h = graphingEngine.getGraphingPanel().getHeight();
+		return new int[]{w / 2, h / 2};
+	}
+	
+	public double[] getTransformedXandY(double x, double y) {
+		return new double[]{getTranslatedX(getScaledX(x)), getTranslatedY(getScaledY(y))};
+	}
+	
 	public double[] getScaledXandY(double x, double y) {
 		return new double[]{getScaledX(x), getScaledY(y)};
 	}
@@ -23,11 +40,11 @@ public class ScalingManager {
 	}
 	
 	public double getScaledX(double x) {
-		return (x + xTranslation) * xScale;
+		return x * xScale;
 	}
 	
 	public double getScaledY(double y) {
-		return (y + yTranslation) * yScale;
+		return -y * yScale;
 	}
 	
 	public double getTranslatedX(double x) {
