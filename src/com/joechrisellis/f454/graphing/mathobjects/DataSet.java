@@ -27,7 +27,7 @@ public class DataSet extends MathematicalObject {
 		while(itr.hasNext()) {
 			Point p = itr.next();
 			double[] xy = sm.getCentredXandY(p.getX(), p.getY());
-			g.fillOval((int) (xy[0]), (int) (xy[1]), RADIUS, RADIUS);
+			g.fillOval((int) (xy[0] - RADIUS / 2), (int) (xy[1] - RADIUS / 2), RADIUS, RADIUS);
 			g.drawString(String.format("(%.2f, %.2f)", p.getX(), p.getY()), (int) (xy[0]), (int) (xy[1]));
 		}
 	}
