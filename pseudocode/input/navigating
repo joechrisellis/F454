@@ -1,0 +1,9 @@
+# In the update method of the Graphing Panel object…
+Method Update()
+	If mouse.IsLeftHeld()
+		ScalingManager SM = GraphingEngine.GetScalingManager()
+		SM.SetXTranslation((mouse.GetX() + SM.GetXTranslation()) - MousePrevX)
+		SM.SetYTranslation((mouse.GetY() + SM.GetYTranslation()) - MousePrevY)
+	
+	MousePrevX = mouse.getX()
+	MousePrevY = mouse.getY()
