@@ -8,7 +8,7 @@ public class ScalingManager {
 	
 	public ScalingManager(GraphingEngine graphingEngine) {
 		this.graphingEngine = graphingEngine;
-		xScale = -1;
+		xScale = 1;
 		yScale = 1;
 		xTranslation = graphingEngine.getGraphingPanel().getWidth() / 2;
 		yTranslation = graphingEngine.getGraphingPanel().getHeight() / 2;

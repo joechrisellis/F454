@@ -17,8 +17,7 @@ public class RaiseSettingsButton extends JButton implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		new SetResolutionDialogue(SetResolutionDialogue.TITLE,
-				SetResolutionDialogue.WIDTH, SetResolutionDialogue.HEIGHT);
+		new SetResolutionDialogue(SetResolutionDialogue.TITLE);
 	}
 
 	

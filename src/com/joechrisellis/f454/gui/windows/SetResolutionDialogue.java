@@ -13,8 +13,6 @@ import com.joechrisellis.f454.gui.components.ResolutionSpinner;
 public class SetResolutionDialogue extends JFrame {
 	
 	public static final String TITLE = "Settings";
-	public static final int HEIGHT = 500;
-	public static final int WIDTH = (int) (MainWindow.GOLDEN_RATIO * HEIGHT);
 	
 	private ResolutionSpinner resolutionSpinner;
 	private JButton ok;
@@ -22,7 +20,7 @@ public class SetResolutionDialogue extends JFrame {
 	private JButton setHighQualResolution;
 	private JButton setPerformanceResolution;
 	
-	public SetResolutionDialogue(String title, int width, int height) {
+	public SetResolutionDialogue(String title) {
 		super(title);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new FlowLayout());
@@ -30,6 +28,7 @@ public class SetResolutionDialogue extends JFrame {
 		add(new JLabel("Resolution Settings"));
 		
 		resolutionSpinner = new ResolutionSpinner();
+		resolutionSpinner.setValue(MainWindow.main.getGraphingPanel().getGraphingEngine().getResolution());
 		setupButtons();
 		
 		add(resolutionSpinner);
@@ -96,7 +95,6 @@ public class SetResolutionDialogue extends JFrame {
 	}
 	
 	public static double getProcessingPower() {
-//		int
 		double startTime = System.currentTimeMillis();
 		int sum = 0;
 		for(int i = 0; i < 1000000; i++) {

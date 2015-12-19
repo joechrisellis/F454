@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.joechrisellis.f454.graphing.mathobjects.Axes;
+import com.joechrisellis.f454.graphing.mathobjects.Circle;
 import com.joechrisellis.f454.graphing.mathobjects.DataSet;
 import com.joechrisellis.f454.graphing.mathobjects.MathematicalObject;
 import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionXEquals;
@@ -43,6 +44,8 @@ public class GraphingEngine {
 		
 		DataSet ds = new DataSet("Data Set", p, Color.GREEN, this);
 		mathObjects.add(ds);
+		
+		mathObjects.add(new Circle("Circle", 10, 20, 5, Color.PINK, this));
 	}
 	
 	public void render(Graphics2D g) {

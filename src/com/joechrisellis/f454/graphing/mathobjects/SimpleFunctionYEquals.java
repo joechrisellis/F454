@@ -33,7 +33,7 @@ public class SimpleFunctionYEquals extends MathematicalObject {
 		
 		double prevY = 0;
 		for(double x = lower; x < upper; x += graphingEngine.getResolution()) {
-			double newY = Math.tan(x);
+			double newY = Math.sin(x);
 			
 			double[] p1 = sm.getCentredXandY(x - graphingEngine.getResolution(), prevY);
 			double[] p2 = sm.getCentredXandY(x, newY);

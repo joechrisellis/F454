@@ -65,6 +65,8 @@ public class GraphingPanel extends JPanel {
 		g.fillRect(0, 0, getWidth(), getHeight());
 		graphingEngine.render(g2d);
 		
+		ScalingManager sm = graphingEngine.getScalingManager();
+		
 		g.dispose();
 	}
 	
