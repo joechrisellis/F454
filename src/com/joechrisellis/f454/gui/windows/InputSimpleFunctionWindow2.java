@@ -8,9 +8,9 @@ public class InputSimpleFunctionWindow2 extends JFrame {
 	public static final int HEIGHT = 500;
 	public static final int WIDTH = (int) (MainWindow.GOLDEN_RATIO * HEIGHT);
 	
-	public InputSimpleFunctionWindow2(String title, int width, int height) {
-		super(title);
-		setSize(width, height);
+	public InputSimpleFunctionWindow2() {
+		super(TITLE);
+		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		setLocationRelativeTo(null);

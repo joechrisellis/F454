@@ -1,32 +1,71 @@
 package com.joechrisellis.f454.gui.components.panels;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import com.joechrisellis.f454.gui.components.buttons.AddCircleButton;
-import com.joechrisellis.f454.gui.components.buttons.AddPointButton;
-import com.joechrisellis.f454.gui.components.buttons.AddSimpleFunctionXEqualsButton;
-import com.joechrisellis.f454.gui.components.buttons.AddSimpleFunctionYEqualsButton;
-import com.joechrisellis.f454.gui.components.buttons.RaiseSettingsButton;
+import com.joechrisellis.f454.gui.windows.InputSimpleFunctionWindow1;
+import com.joechrisellis.f454.gui.windows.InputSimpleFunctionWindow2;
+import com.joechrisellis.f454.gui.windows.SetResolutionDialogue;
 
 public class MainWindowBottomPanel extends JPanel {
 	
-	private AddPointButton addPoint;
-	private AddSimpleFunctionYEqualsButton addSimpleFunction1;
-	private AddSimpleFunctionXEqualsButton addSimpleFunction2;
-	private AddCircleButton addCircle;
-	private RaiseSettingsButton raiseSettings;
+	private JButton addPoint;
+	private JButton addSimpleFunction1;
+	private JButton addSimpleFunction2;
+	private JButton addCircle;
+	private JButton raiseSettings;
 	
 	public MainWindowBottomPanel() {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		addPoint = new AddPointButton();
-		addSimpleFunction1 = new AddSimpleFunctionYEqualsButton();
-		addSimpleFunction2 = new AddSimpleFunctionXEqualsButton();
-		addCircle = new AddCircleButton();
-		raiseSettings = new RaiseSettingsButton();
+		addPoint = new JButton("(x, y)");
+		addPoint.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO: raise input points dialogue.
+			}
+			
+		});
+		
+		addSimpleFunction1 = new JButton("y = f(x)");
+		addSimpleFunction1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				new InputSimpleFunctionWindow1();
+			}
+			
+		});
+		
+		addSimpleFunction2 = new JButton("x = f(y)");
+		addSimpleFunction2.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				new InputSimpleFunctionWindow2();
+			}
+		});
+		
+		addCircle = new JButton("Circle");
+		addCircle.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				// TODO: raise circle dialogue.
+			}
+			
+		});
+		
+		raiseSettings = new JButton("Settings");
+		raiseSettings.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				new SetResolutionDialogue();
+			}
+			
+		});
 		
 		add(addPoint);
 		add(addSimpleFunction1);

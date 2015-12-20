@@ -20,8 +20,8 @@ public class SetResolutionDialogue extends JFrame {
 	private JButton setHighQualResolution;
 	private JButton setPerformanceResolution;
 	
-	public SetResolutionDialogue(String title) {
-		super(title);
+	public SetResolutionDialogue() {
+		super(TITLE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new FlowLayout());
 		
