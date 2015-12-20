@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
-import com.joechrisellis.f454.graphing.GraphingEngine;
 import com.joechrisellis.f454.graphing.ScalingManager;
 
 public class SimpleFunctionYEquals extends MathematicalObject {
@@ -16,28 +15,37 @@ public class SimpleFunctionYEquals extends MathematicalObject {
 	protected double domainLBound, domainUBound;
 	protected double rangeLBound, rangeUBound;
 	
-	public SimpleFunctionYEquals(String name, String expression, Color color, GraphingEngine graphingEngine) {
-		super(name, color, graphingEngine);
+	public SimpleFunctionYEquals(String name, String expression, Color color,
+									ScalingManager sm) {
+		super(name, color, sm);
 		this.expression = expression;
 	}
 
 	public void render(Graphics2D g) {
 		g.setColor(color);
-		g.setStroke(new BasicStroke(2));
 		
-		ScalingManager sm = graphingEngine.getScalingManager();
+		// Set the line width to 2 pixels wide; looks prettier.
+		g.setStroke(new BasicStroke(2));
 		
 		int w = sm.getCentre()[0];
 		double lower = hasDomain ? domainLBound : -w;
 		double upper = hasDomain ? domainUBound : w;
 		
 		double prevY = 0;
-		for(double x = lower; x < upper; x += graphingEngine.getResolution()) {
+		
+		// Iterate through all of the values of x.
+		for(double x = lower; x < upper; x += sm.getResolution()) {
+			
+			// TODO: Replace sin(x) with the actual user inputted expression.
 			double newY = Math.sin(x);
 			
-			double[] p1 = sm.getCentredXandY(x - graphingEngine.getResolution(), prevY);
+			// Create two arrays:
+			// * p1 representing the previous point.
+			// * p2 representing the current point.
+			double[] p1 = sm.getCentredXandY(x - sm.getResolution(), prevY);
 			double[] p2 = sm.getCentredXandY(x, newY);
 			
+			// Draw a line between p1 and p2.
 			g.draw(new Line2D.Float((int) (p1[0]), (int) (p1[1]), (int) (p2[0]), (int) (p2[1])));
 			prevY = newY;
 		}

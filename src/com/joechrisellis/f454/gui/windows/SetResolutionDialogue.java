@@ -28,7 +28,8 @@ public class SetResolutionDialogue extends JFrame {
 		add(new JLabel("Resolution Settings"));
 		
 		resolutionSpinner = new ResolutionSpinner();
-		resolutionSpinner.setValue(MainWindow.main.getGraphingPanel().getGraphingEngine().getResolution());
+		double res = MainWindow.main.getGraphingPanel().getGraphingEngine().getScalingManager().getResolution();
+		resolutionSpinner.setValue(res);
 		setupButtons();
 		
 		add(resolutionSpinner);
@@ -87,7 +88,7 @@ public class SetResolutionDialogue extends JFrame {
 			
 			public void actionPerformed(ActionEvent e) {
 				double resolution = (double) (resolutionSpinner.getValue());
-				MainWindow.main.getGraphingPanel().getGraphingEngine().setResolution(resolution);
+				MainWindow.main.getGraphingPanel().getGraphingEngine().getScalingManager().setResolution(resolution);
 				dispose();
 			}
 			

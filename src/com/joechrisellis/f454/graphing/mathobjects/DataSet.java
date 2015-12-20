@@ -6,22 +6,20 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import com.joechrisellis.f454.graphing.GraphingEngine;
 import com.joechrisellis.f454.graphing.ScalingManager;
 
 public class DataSet extends MathematicalObject {
-	
+
 	private ArrayList<Point> points;
 	private static final int RADIUS = 7;
 	
-	public DataSet(String name, ArrayList<Point> points, Color color, GraphingEngine graphingEngine) {
-		super(name, color, graphingEngine);
+	public DataSet(String name, ArrayList<Point> points, Color color, ScalingManager sm) {
+		super(name, color, sm);
 		this.points = points;
 	}
 	
 	public void render(Graphics2D g) {
 		g.setColor(color);
-		ScalingManager sm = graphingEngine.getScalingManager();
 		
 		ListIterator<Point> itr = points.listIterator();
 		while(itr.hasNext()) {

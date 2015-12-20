@@ -14,27 +14,32 @@ import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionXEquals;
 import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionYEquals;
 import com.joechrisellis.f454.gui.components.panels.GraphingPanel;
 
+/**
+ * The engine powering the rendering of mathematical objects.
+ * @author Joe Ellis
+ *
+ */
 public class GraphingEngine {
 	
 	// The graphingPanel object is a reference to the container so we can do
 	// things like get the width and height of it, etc.
 	private final GraphingPanel graphingPanel;
-	private ScalingManager scalingManager;
-	private double resolution;
+	private ScalingManager sm;
 	
+	// A resizing array of all of the mathematical objects, visible or invisible.
 	private ArrayList<MathematicalObject> mathObjects;
 	
 	public GraphingEngine(GraphingPanel graphingPanel) {
 		this.graphingPanel = graphingPanel;
-		scalingManager = new ScalingManager(this);
-		resolution = 0.5D;
+		sm = new ScalingManager(this);
 		
 		mathObjects = new ArrayList<MathematicalObject>();
-		Axes axes = new Axes(this);
+		Axes axes = new Axes(sm);
 		mathObjects.add(axes);
 		
-		mathObjects.add(new SimpleFunctionYEquals("test", "x^2", Color.RED, this));
-		mathObjects.add(new SimpleFunctionXEquals("test 2", "cos(x)", Color.BLUE, this));
+		// Create a few test objects.
+		mathObjects.add(new SimpleFunctionYEquals("test", "x^2", Color.RED, sm));
+		mathObjects.add(new SimpleFunctionXEquals("test 2", "cos(x)", Color.BLUE, sm));
 		
 		ArrayList<Point> p = new ArrayList<Point>();
 		p.add(new Point(10, 20));
@@ -42,20 +47,26 @@ public class GraphingEngine {
 		p.add(new Point(5, 2));
 		p.add(new Point(7, 7));
 		
-		DataSet ds = new DataSet("Data Set", p, Color.GREEN, this);
+		DataSet ds = new DataSet("Data Set", p, Color.GREEN, sm);
 		mathObjects.add(ds);
 		
-		mathObjects.add(new Circle("Circle", 10, 20, 5, Color.PINK, this));
+		mathObjects.add(new Circle("Circle", 10, 20, 5, Color.PINK, sm));
 	}
 	
+
+	/**
+	 * Renders all of the visible mathematical objects using the parameter g.
+	 * @param g The Graphics2D object used for rendering.
+	 */
 	public void render(Graphics2D g) {
-		// render all of the mathematical objects in the arraylist.
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
 		while(itr.hasNext()) {
+			
 			MathematicalObject o = itr.next();
 			if(o.isVisible()) {
 				o.render(g);
 			}
+			
 		}
 	}
 	
@@ -64,7 +75,7 @@ public class GraphingEngine {
 	}
 	
 	public ScalingManager getScalingManager() {
-		return scalingManager;
+		return sm;
 	}
 
 	public ArrayList<MathematicalObject> getMathObjects() {
@@ -75,12 +86,4 @@ public class GraphingEngine {
 		this.mathObjects = mathObjects;
 	}
 	
-	public double getResolution() {
-		return resolution;
-	}
-
-	public void setResolution(double resolution) {
-		this.resolution = resolution;
-	}
-
 }
