@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import com.joechrisellis.f454.gui.components.ResolutionSpinner;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class SetResolutionDialogue extends JFrame {
 	
 	public static final String TITLE = "Settings";
 	
-	private ResolutionSpinner resolutionSpinner;
+	private JSpinner resolutionSpinner;
 	private JButton ok;
 	private JButton autoSetResolution;
 	private JButton setHighQualResolution;
@@ -27,9 +27,12 @@ public class SetResolutionDialogue extends JFrame {
 		
 		add(new JLabel("Resolution Settings"));
 		
-		resolutionSpinner = new ResolutionSpinner();
+		resolutionSpinner = new JSpinner(
+			new SpinnerNumberModel(0.01, 0.01, 5, 0.01)
+		);
 		double res = MainWindow.main.getGraphingPanel().getGraphingEngine().getScalingManager().getResolution();
 		resolutionSpinner.setValue(res);
+		
 		setupButtons();
 		
 		add(resolutionSpinner);
