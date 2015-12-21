@@ -70,6 +70,10 @@ public class GraphingEngine {
 		}
 	}
 	
+	public void add(MathematicalObject o) {
+		mathObjects.add(o);
+	}
+	
 	public GraphingPanel getGraphingPanel() {
 		return graphingPanel;
 	}

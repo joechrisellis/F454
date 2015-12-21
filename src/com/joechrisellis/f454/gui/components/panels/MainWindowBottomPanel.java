@@ -8,8 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
+import com.joechrisellis.f454.graphing.mathobjects.Circle;
+import com.joechrisellis.f454.gui.windows.InputCircleWindow;
 import com.joechrisellis.f454.gui.windows.InputSimpleFunctionWindow1;
 import com.joechrisellis.f454.gui.windows.InputSimpleFunctionWindow2;
+import com.joechrisellis.f454.gui.windows.MainWindow;
 import com.joechrisellis.f454.gui.windows.SetResolutionDialogue;
 
 public class MainWindowBottomPanel extends JPanel {
@@ -53,7 +56,8 @@ public class MainWindowBottomPanel extends JPanel {
 		addCircle.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				// TODO: raise circle dialogue.
+				Circle circle = InputCircleWindow.getCircle();
+				MainWindow.main.getGraphingPanel().getGraphingEngine().add(circle);
 			}
 			
 		});
