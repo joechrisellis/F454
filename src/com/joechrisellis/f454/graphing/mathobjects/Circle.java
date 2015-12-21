@@ -23,10 +23,14 @@ public class Circle extends MathematicalObject {
 		// we do y + r / 2 here because as far as java's painting is concerned,
 		// y = 0 is the top of the screen and y increases as we go down.
 		// we have to do the opposite to account for this.
-		double[] xy = sm.getCentredXandY(x - r / 2, y + r / 2);
-		double scaledRadius = (int) (sm.getScaledX(r));
+		double[] xy = sm.getCentredXandY(x - r, y + r);
 		
-		g.drawOval((int) (xy[0]), (int) (xy[1]), (int) (scaledRadius), (int) (scaledRadius));
+		// we have to use -r in sm.getScaledY(-r) for the same reason as above;
+		// the getScaledY() method automatically takes into account java's painting
+		// coordinate system for us, so we have to 'trick' it using the negative of 'r'.
+		double[] sr = {sm.getScaledX(2 * r), sm.getScaledY(2 * -r)};
+		
+		g.drawOval((int) (xy[0]), (int) (xy[1]), (int) (sr[0]), (int) (sr[1]));
 	}
 
 }
