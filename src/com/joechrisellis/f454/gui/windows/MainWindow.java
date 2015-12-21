@@ -20,26 +20,34 @@ public class MainWindow extends JFrame {
 	public static final int HEIGHT = 920;
 	public static final int WIDTH = (int) (GOLDEN_RATIO * HEIGHT);
 	
-	public static MainWindow main;
-	private MainWindowMenuBar menuBar;
+	public static MainWindow instance = null;
 	
+	private MainWindowMenuBar menuBar;
 	private JSplitPane splitPane;
 	private MainWindowMathObjectsPanel mathPanel;
 	private GraphingPanel graphingPanel;
 	
 	private MainWindowBottomPanel bottomPanel;
 	
-	public MainWindow(String title, int width, int height) {
-		super(title);
-		setPreferredSize(new Dimension(width, height));
+	// private so that you can't instantiate outside of this class.
+	private MainWindow() {
+		super(TITLE);
+		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());				
 		setLocationRelativeTo(null);
 	}
 	
 	public static void main(String[] args) {
-		main = new MainWindow(MainWindow.TITLE, MainWindow.WIDTH, MainWindow.HEIGHT);
-		main.start();
+		MainWindow.getInstance().start();
+	}
+	
+	public static MainWindow getInstance() {
+		if(instance == null) {
+			instance = new MainWindow();
+		}
+		
+		return instance;
 	}
 	
 	public void updateUI() {

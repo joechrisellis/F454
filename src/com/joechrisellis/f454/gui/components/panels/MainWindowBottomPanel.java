@@ -57,7 +57,8 @@ public class MainWindowBottomPanel extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				Circle circle = InputCircleWindow.getCircle();
-				MainWindow.main.getGraphingPanel().getGraphingEngine().add(circle);
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().getGraphingEngine().add(circle);
 			}
 			
 		});

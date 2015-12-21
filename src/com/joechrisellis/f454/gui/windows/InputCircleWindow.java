@@ -87,8 +87,9 @@ public class InputCircleWindow extends JDialog {
 		int b = (int) (window.b.getValue());
 		int r = (int) (window.r.getValue());
 		
+		MainWindow m = MainWindow.getInstance();
 		Circle circle = new Circle("test", a, b, r,
-				Color.RED, MainWindow.main.getGraphingPanel().getGraphingEngine().getScalingManager());
+				Color.RED, m.getGraphingPanel().getGraphingEngine().getScalingManager());
 		
 		return circle;
 	}

@@ -34,7 +34,9 @@ public class SetResolutionDialogue extends JDialog {
 		resolutionSpinner = new JSpinner(
 			new SpinnerNumberModel(0.01, 0.01, 5, 0.01)
 		);
-		double res = MainWindow.main.getGraphingPanel().getGraphingEngine().getScalingManager().getResolution();
+		
+		MainWindow m = MainWindow.getInstance();
+		double res = m.getGraphingPanel().getGraphingEngine().getScalingManager().getResolution();
 		resolutionSpinner.setValue(res);
 		
 		setupButtons();
@@ -95,7 +97,8 @@ public class SetResolutionDialogue extends JDialog {
 			
 			public void actionPerformed(ActionEvent e) {
 				double resolution = (double) (resolutionSpinner.getValue());
-				MainWindow.main.getGraphingPanel().getGraphingEngine().getScalingManager().setResolution(resolution);
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().getGraphingEngine().getScalingManager().setResolution(resolution);
 				dispose();
 			}
 			

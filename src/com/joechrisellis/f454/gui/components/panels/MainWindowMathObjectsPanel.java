@@ -29,8 +29,9 @@ public class MainWindowMathObjectsPanel extends JScrollPane {
 	}
 	
 	public void initListItems() {
+		MainWindow m = MainWindow.getInstance();
 		ListIterator<MathematicalObject> itr =
-			MainWindow.main.getGraphingPanel().getGraphingEngine().getMathObjects().listIterator();
+			m.getGraphingPanel().getGraphingEngine().getMathObjects().listIterator();
 		while(itr.hasNext()) {
 			MathematicalObject o = itr.next();
 			MathematicalObjectCheckbox c = new MathematicalObjectCheckbox(o.getName(), o);

@@ -73,7 +73,7 @@ public class GraphingEngine {
 	
 	public void add(MathematicalObject o) {
 		mathObjects.add(o);
-		MainWindow.main.updateUI();
+		MainWindow.getInstance().updateUI();
 	}
 	
 	public GraphingPanel getGraphingPanel() {
