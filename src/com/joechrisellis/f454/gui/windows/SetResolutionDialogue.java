@@ -5,12 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-public class SetResolutionDialogue extends JFrame {
+public class SetResolutionDialogue extends JDialog {
 	
 	public static final String TITLE = "Settings";
 	
@@ -21,7 +22,10 @@ public class SetResolutionDialogue extends JFrame {
 	private JButton setPerformanceResolution;
 	
 	public SetResolutionDialogue() {
-		super(TITLE);
+		super();
+		
+		setTitle(TITLE);
+		setModal(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new FlowLayout());
 		

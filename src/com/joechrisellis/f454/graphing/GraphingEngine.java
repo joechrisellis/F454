@@ -13,6 +13,7 @@ import com.joechrisellis.f454.graphing.mathobjects.MathematicalObject;
 import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionXEquals;
 import com.joechrisellis.f454.graphing.mathobjects.SimpleFunctionYEquals;
 import com.joechrisellis.f454.gui.components.panels.GraphingPanel;
+import com.joechrisellis.f454.gui.windows.MainWindow;
 
 /**
  * The engine powering the rendering of mathematical objects.
@@ -38,11 +39,11 @@ public class GraphingEngine {
 		mathObjects.add(axes);
 		
 		// Create a few test objects.
-		mathObjects.add(new SimpleFunctionYEquals("test", "x^2", Color.RED, sm));
-		mathObjects.add(new SimpleFunctionXEquals("test 2", "cos(x)", Color.BLUE, sm));
+		mathObjects.add(new SimpleFunctionYEquals("test", "y=cos(x)", Color.RED, sm));
+		mathObjects.add(new SimpleFunctionXEquals("test 2", "x=cos(y)", Color.BLUE, sm));
 		
 		ArrayList<Point> p = new ArrayList<Point>();
-		p.add(new Point(10, 20));
+		p.add(new Point(0, 20));
 		p.add(new Point(3, 6));
 		p.add(new Point(5, 2));
 		p.add(new Point(7, 7));
@@ -72,6 +73,7 @@ public class GraphingEngine {
 	
 	public void add(MathematicalObject o) {
 		mathObjects.add(o);
+		MainWindow.main.updateUI();
 	}
 	
 	public GraphingPanel getGraphingPanel() {

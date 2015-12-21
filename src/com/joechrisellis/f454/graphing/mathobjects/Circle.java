@@ -7,11 +7,13 @@ import com.joechrisellis.f454.graphing.ScalingManager;
 
 public class Circle extends MathematicalObject {
 	
+	private static final String TOOLTIP = "(x - %.1f)^2 + (y - %.1f)^2 = %.1f^2";
+	
 	private double x, y, r;
 	
 	public Circle(String name, double x, double y, double r, Color color,
 					ScalingManager sm) {
-		super(name, color, sm);
+		super(name, String.format(TOOLTIP, x, y, r), color, sm);
 		this.x = x;
 		this.y = y;
 		this.r = r;

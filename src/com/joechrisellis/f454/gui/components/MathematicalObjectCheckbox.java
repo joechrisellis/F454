@@ -14,6 +14,9 @@ public class MathematicalObjectCheckbox extends JCheckBox implements ItemListene
 	public MathematicalObjectCheckbox(String text, MathematicalObject mathObject) {
 		super(text, mathObject.isVisible());
 		this.mathObject = mathObject;
+		
+		setToolTipText(mathObject.getExpression());
+		System.out.println(mathObject.getExpression());
 		addItemListener(this);
 	}
 	

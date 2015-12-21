@@ -10,14 +10,13 @@ import com.joechrisellis.f454.graphing.ScalingManager;
 public class SimpleFunctionYEquals extends MathematicalObject {
 	
 	protected String expression;
-	
 	protected boolean hasDomain, hasRange;
 	protected double domainLBound, domainUBound;
 	protected double rangeLBound, rangeUBound;
 	
 	public SimpleFunctionYEquals(String name, String expression, Color color,
 									ScalingManager sm) {
-		super(name, color, sm);
+		super(name, expression, color, sm);
 		this.expression = expression;
 	}
 

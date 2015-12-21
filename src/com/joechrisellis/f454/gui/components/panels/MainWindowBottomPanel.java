@@ -10,8 +10,8 @@ import javax.swing.JSeparator;
 
 import com.joechrisellis.f454.graphing.mathobjects.Circle;
 import com.joechrisellis.f454.gui.windows.InputCircleWindow;
-import com.joechrisellis.f454.gui.windows.InputSimpleFunctionWindow1;
-import com.joechrisellis.f454.gui.windows.InputSimpleFunctionWindow2;
+import com.joechrisellis.f454.gui.windows.InputSimpleFunctionDialogue1;
+import com.joechrisellis.f454.gui.windows.InputSimpleFunctionDialogue2;
 import com.joechrisellis.f454.gui.windows.MainWindow;
 import com.joechrisellis.f454.gui.windows.SetResolutionDialogue;
 
@@ -39,7 +39,7 @@ public class MainWindowBottomPanel extends JPanel {
 		addSimpleFunction1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				new InputSimpleFunctionWindow1();
+				new InputSimpleFunctionDialogue1();
 			}
 			
 		});
@@ -48,7 +48,7 @@ public class MainWindowBottomPanel extends JPanel {
 		addSimpleFunction2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				new InputSimpleFunctionWindow2();
+				new InputSimpleFunctionDialogue2();
 			}
 		});
 		

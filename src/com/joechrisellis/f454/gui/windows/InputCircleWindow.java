@@ -29,6 +29,9 @@ public class InputCircleWindow extends JDialog {
 	private SpinnerChange change;
 	
 	public InputCircleWindow() {
+		super();
+		
+		setTitle(TITLE);
 		setSize(600, 300);
 		setModal(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -73,26 +76,29 @@ public class InputCircleWindow extends JDialog {
 		setVisible(true);
 	}
 	
-	private class SpinnerChange implements ChangeListener {
-
-		public void stateChanged(ChangeEvent e) {
-			label.setText(String.format(CARTESIAN_EQUATION, a.getValue(), b.getValue(), r.getValue()));
-		}
-		
-	}
-	
+	/**
+	 * Raises a dialogue allowing the user to input the circle and creates
+	 * a circle object from the information that they have inputed. 
+	 * @return Circle A circle object created using the inputed information.
+	 */
 	public static Circle getCircle() {
 		InputCircleWindow window = new InputCircleWindow();
 		int a = (int) (window.a.getValue());
 		int b = (int) (window.b.getValue());
 		int r = (int) (window.r.getValue());
 		
-		System.out.println(a + " " + b + " " + r);
-		
 		Circle circle = new Circle("test", a, b, r,
 				Color.RED, MainWindow.main.getGraphingPanel().getGraphingEngine().getScalingManager());
 		
 		return circle;
+	}
+	
+	private class SpinnerChange implements ChangeListener {
+
+		public void stateChanged(ChangeEvent e) {
+			label.setText(String.format(CARTESIAN_EQUATION, a.getValue(), b.getValue(), r.getValue()));
+		}
+		
 	}
 	
 }

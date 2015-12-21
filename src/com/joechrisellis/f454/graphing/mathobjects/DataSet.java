@@ -9,12 +9,14 @@ import java.util.ListIterator;
 import com.joechrisellis.f454.graphing.ScalingManager;
 
 public class DataSet extends MathematicalObject {
-
+	
+	private static final String TOOLTIP = "%d points";
+	
 	private ArrayList<Point> points;
 	private static final int RADIUS = 7;
 	
 	public DataSet(String name, ArrayList<Point> points, Color color, ScalingManager sm) {
-		super(name, color, sm);
+		super(name, String.format(TOOLTIP, points.size()), color, sm);
 		this.points = points;
 	}
 	

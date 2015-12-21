@@ -15,13 +15,16 @@ public abstract class MathematicalObject {
 	// A reference to the scaling manager so that we can see
 	// how scaling will affect rendering.
 	protected ScalingManager sm;
+	
 	protected String name;
+	protected String tooltip;
 	protected Color color;
 	protected boolean visible;
 	
-	public MathematicalObject(String name, Color color, ScalingManager sm) {
+	public MathematicalObject(String name, String expression, Color color, ScalingManager sm) {
 		this.sm = sm;
 		this.name = name;
+		this.tooltip = expression;
 		this.color = color;
 		visible = true;
 	}
@@ -38,6 +41,14 @@ public abstract class MathematicalObject {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getExpression() {
+		return tooltip;
+	}
+
+	public void setExpression(String expression) {
+		this.tooltip = expression;
 	}
 	
 	public boolean isVisible() {

@@ -8,7 +8,7 @@ import com.joechrisellis.f454.graphing.ScalingManager;
 public class Axes extends MathematicalObject {
 	
 	public Axes(ScalingManager sm) {
-		super("Axes", Color.BLACK, sm);
+		super("Axes", null, Color.BLACK, sm);
 	}
 
 	public void render(Graphics2D g) {

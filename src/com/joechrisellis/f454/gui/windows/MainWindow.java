@@ -42,6 +42,10 @@ public class MainWindow extends JFrame {
 		main.start();
 	}
 	
+	public void updateUI() {
+		mathPanel.initListItems();
+	}
+	
 	private void start() {
 		// this function is necessary due to the fact that we have a static instance
 		// of the main window. we want the static instance to FULLY INITIALISE (through
