@@ -9,9 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 import com.f454.graph.mathobject.Circle;
-import com.f454.gui.circle.InputCircleDialogue;
-import com.f454.gui.function.InputSimpleFunctionDialogue1;
-import com.f454.gui.function.InputSimpleFunctionDialogue2;
+import com.f454.gui.input.circle.InputCircleDialogue;
+import com.f454.gui.input.function.InputSimpleFunctionDialogue1;
+import com.f454.gui.input.function.InputSimpleFunctionDialogue2;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.setting.SetResolutionDialogue;
 

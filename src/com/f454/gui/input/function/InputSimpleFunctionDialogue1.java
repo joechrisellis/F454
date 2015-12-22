@@ -1,4 +1,4 @@
-package com.f454.gui.function;
+package com.f454.gui.input.function;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;

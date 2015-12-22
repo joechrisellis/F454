@@ -1,4 +1,4 @@
-package com.f454.gui.circle;
+package com.f454.gui.input.circle;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -35,7 +35,7 @@ public class InputCircleBasicPanel extends JPanel {
 		r.addChangeListener(change);
 		
 		JPanel panel = new JPanel();
-		panel .add(new JLabel("a: "));
+		panel.add(new JLabel("a: "));
 		panel.add(a);
 		panel.add(new JLabel("b: "));
 		panel.add(b);
@@ -54,16 +54,16 @@ public class InputCircleBasicPanel extends JPanel {
 		
 	}
 	
-	public double getA() {
-		return (double) (a.getValue());
+	public int getA() {
+		return (int) a.getValue();
 	}
 
-	public double getB() {
-		return (double) (b.getValue());
+	public int getB() {
+		return (int) b.getValue();
 	}
 
-	public double getR() {
-		return (double) (r.getValue());
+	public int getR() {
+		return (int) r.getValue();
 	}
 	
 }
