@@ -74,7 +74,7 @@ public class SetResolutionDialogue extends JDialog {
 			
 			public void actionPerformed(ActionEvent e) {
 				double n = getProcessingPower();
-				resolutionSpinner.setValue(0.02 * n);
+				resolutionSpinner.setValue(BENCHMARK_RESOLUTION_COEFFICIENT * n);
 			}
 			
 		});
@@ -107,17 +107,43 @@ public class SetResolutionDialogue extends JDialog {
 		});
 	}
 	
+	private static final double BENCHMARK_RESOLUTION_COEFFICIENT = 0.02;
+	private static double processingPower = 0;
+	
+	/**
+	 * A quick benchmark that determines the speed of the computer that the
+	 * program is running on. The method used to do this is quite simple: find
+	 * how long it takes to get the sum of the first 1000000 integers.
+	 * @return double The time, in milliseconds, taken to compute the first 1000000 integers.
+	 */
 	public static double getProcessingPower() {
+		
+		// Guard clause: if this method has been run, just return the last value
+		// that it found. HotSpot will optimise this method if it detects that it
+		// is being run more than once, so it is important to benchmark only once.
+		// There probably is a better way to do this, but it works, so eh.
+		if(processingPower > 0) {
+			return processingPower;
+		}
+		
 		double startTime = System.currentTimeMillis();
 		
+		// Find the sum of the first 1000000 integers. 
 		int sum = 0;
-		for(int i = 0; i < 1000000; i++) {
+		for(int i = 1; i < 1000000; i++) {
 			sum += i;
 		}
 		
 		double endTime = System.currentTimeMillis();
 		
-		return endTime - startTime;
+		// If endTime == startTime (i.e. the subject computer was capable of performing
+		// the computation in under a millisecond) then set the value of processingPower
+		// to 1. If not, just set the value of processingPower to endTime - startTime.
+		// We CANNOT return zero, since this method is used to automatically determine
+		// the resolution -- and that can't be zero otherwise we will have an unlimited loop.
+		processingPower = endTime == startTime ? 1 : (endTime - startTime);
+		
+		return processingPower;
 	}
 	
 }
