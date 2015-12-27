@@ -38,10 +38,6 @@ public class GraphingEngine {
 		Axes axes = new Axes(sm);
 		mathObjects.add(axes);
 		
-		// Create a few test objects.
-		mathObjects.add(new SimpleFunctionYEquals("test", "9*tan(x)", Color.RED, sm));
-		mathObjects.add(new SimpleFunctionXEquals("test 2", "cos(y)", Color.BLUE, sm));
-		
 		ArrayList<Point> p = new ArrayList<Point>();
 		p.add(new Point(0, 20));
 		p.add(new Point(3, 6));
@@ -50,8 +46,6 @@ public class GraphingEngine {
 		
 		DataSet ds = new DataSet("Data Set", p, Color.GREEN, sm);
 		mathObjects.add(ds);
-		
-		mathObjects.add(new Circle("Circle", 10, 20, 5, Color.PINK, sm));
 	}
 	
 

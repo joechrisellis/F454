@@ -3,16 +3,17 @@ package com.f454.gui.input.circle;
 import java.awt.Color;
 
 import com.f454.graph.mathobject.Circle;
+import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 
-public class InputCircleDialogue extends InputDialog {
+public class InputCircleDialog extends InputDialog {
 	
 	public static final String TITLE = "Input Circle";
 	
 	private InputCircleBasicPanel basicPanel;
 	private InputCircleAdvancedPanel advancedPanel;
 		
-	public InputCircleDialogue() {
+	public InputCircleDialog() {
 		super(TITLE, 600);
 		
 		basicPanel = new InputCircleBasicPanel();
@@ -32,7 +33,7 @@ public class InputCircleDialogue extends InputDialog {
 	 * @return Circle A circle object created using the inputed information.
 	 */
 	public static Circle getCircle() {
-		InputCircleDialogue window = new InputCircleDialogue();
+		InputCircleDialog window = new InputCircleDialog();
 		
 		double a = window.basicPanel.getA();
 		double b = window.basicPanel.getB();

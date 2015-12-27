@@ -1,4 +1,4 @@
-package com.f454.gui.input.circle;
+package com.f454.gui.input;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

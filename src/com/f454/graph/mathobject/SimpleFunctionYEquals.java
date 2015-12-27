@@ -37,7 +37,9 @@ public class SimpleFunctionYEquals extends MathematicalObject {
 		DoubleEvaluator evaluator = new DoubleEvaluator();
 		StaticVariableSet<Double> variables = new StaticVariableSet<Double>();
 		
-		double prevY = 0;
+		// find the value at the lower bound of the domain
+		variables.set("x", lower);
+		double prevY = evaluator.evaluate(expression, variables);
 		
 		// Iterate through all of the values of x.
 		for(double x = lower; x < upper; x += sm.getResolution()) {
