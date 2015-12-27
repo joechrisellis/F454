@@ -39,8 +39,8 @@ public class GraphingEngine {
 		mathObjects.add(axes);
 		
 		// Create a few test objects.
-		mathObjects.add(new SimpleFunctionYEquals("test", "y=cos(x)", Color.RED, sm));
-		mathObjects.add(new SimpleFunctionXEquals("test 2", "x=cos(y)", Color.BLUE, sm));
+		mathObjects.add(new SimpleFunctionYEquals("test", "9*tan(x)", Color.RED, sm));
+		mathObjects.add(new SimpleFunctionXEquals("test 2", "cos(y)", Color.BLUE, sm));
 		
 		ArrayList<Point> p = new ArrayList<Point>();
 		p.add(new Point(0, 20));

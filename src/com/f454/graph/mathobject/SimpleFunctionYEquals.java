@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
 import com.f454.graph.ScalingManager;
+import com.fathzer.soft.javaluator.DoubleEvaluator;
+import com.fathzer.soft.javaluator.StaticVariableSet;
 
 public class SimpleFunctionYEquals extends MathematicalObject {
 	
@@ -30,13 +32,18 @@ public class SimpleFunctionYEquals extends MathematicalObject {
 		double lower = hasDomain ? domainLBound : -w;
 		double upper = hasDomain ? domainUBound : w;
 		
+		// Evaluator object and variable set for evaluating the user
+		// inputed expression.
+		DoubleEvaluator evaluator = new DoubleEvaluator();
+		StaticVariableSet<Double> variables = new StaticVariableSet<Double>();
+		
 		double prevY = 0;
 		
 		// Iterate through all of the values of x.
 		for(double x = lower; x < upper; x += sm.getResolution()) {
 			
-			// TODO: Replace sin(x) with the actual user inputted expression.
-			double newY = Math.sin(x);
+			variables.set("x", x);
+			double newY = evaluator.evaluate(expression, variables);
 			
 			// Create two arrays:
 			// * p1 representing the previous point.
