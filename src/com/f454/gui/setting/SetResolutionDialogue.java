@@ -100,7 +100,7 @@ public class SetResolutionDialogue extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				double resolution = (double) (resolutionSpinner.getValue());
 				MainWindow m = MainWindow.getInstance();
-				m.getGraphingPanel().getGraphingEngine().getScalingManager().setResolution(resolution);
+				m.getGraphingPanel().getGraphingEngine().setResolution(resolution);
 				dispose();
 			}
 			

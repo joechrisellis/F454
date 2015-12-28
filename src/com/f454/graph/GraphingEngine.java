@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.f454.graph.mathobject.Axes;
-import com.f454.graph.mathobject.Circle;
 import com.f454.graph.mathobject.DataSet;
 import com.f454.graph.mathobject.MathematicalObject;
-import com.f454.graph.mathobject.SimpleFunctionXEquals;
-import com.f454.graph.mathobject.SimpleFunctionYEquals;
+import com.f454.graph.mathobject.ParametricEquation;
 import com.f454.gui.mainwindow.GraphingPanel;
 import com.f454.gui.mainwindow.MainWindow;
 
@@ -26,6 +24,8 @@ public class GraphingEngine {
 	// things like get the width and height of it, etc.
 	private final GraphingPanel graphingPanel;
 	private ScalingManager sm;
+	
+	private double resolution = 0.5;
 	
 	// A resizing array of all of the mathematical objects, visible or invisible.
 	private ArrayList<MathematicalObject> mathObjects;
@@ -85,6 +85,20 @@ public class GraphingEngine {
 
 	public void setMathObjects(ArrayList<MathematicalObject> mathObjects) {
 		this.mathObjects = mathObjects;
+	}
+	
+	public double getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(double resolution) {
+		this.resolution = resolution;
+		
+		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
+		while(itr.hasNext()) {
+			MathematicalObject m = itr.next();
+			m.reinit();
+		}
 	}
 	
 }

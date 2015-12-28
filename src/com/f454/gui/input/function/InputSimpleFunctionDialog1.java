@@ -9,14 +9,12 @@ import com.f454.gui.mainwindow.MainWindow;
 public class InputSimpleFunctionDialog1 extends InputDialog {
 	
 	public static final String TITLE = "Input Simple Function of the Form y = f(x)";
-	public static final int HEIGHT = 500;
-	public static final int WIDTH = (int) (MainWindow.GOLDEN_RATIO * HEIGHT);
 	
 	private InputSimpleFunctionBasicPanel basicPanel;
 	private InputSimpleFunctionAdvancedPanel advancedPanel;
 	
 	public InputSimpleFunctionDialog1() {
-		super(TITLE, WIDTH);
+		super(TITLE, 500);
 				
 		basicPanel = new InputSimpleFunctionBasicPanel();
 		advancedPanel = new InputSimpleFunctionAdvancedPanel();

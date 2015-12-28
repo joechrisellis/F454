@@ -5,7 +5,6 @@ public class ScalingManager {
 	private GraphingEngine graphingEngine;
 	private double xScale, yScale;
 	private double xTranslation, yTranslation;
-	private double resolution = 0.5;
 	
 	public ScalingManager(GraphingEngine graphingEngine) {
 		this.graphingEngine = graphingEngine;
@@ -89,11 +88,7 @@ public class ScalingManager {
 	}
 	
 	public double getResolution() {
-		return resolution;
-	}
-	
-	public void setResolution(double resolution) {
-		this.resolution = resolution;
+		return graphingEngine.getResolution();
 	}
 	
 	public int getWidth() {

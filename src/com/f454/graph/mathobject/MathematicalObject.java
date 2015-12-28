@@ -21,10 +21,10 @@ public abstract class MathematicalObject {
 	protected Color color;
 	protected boolean visible;
 	
-	public MathematicalObject(String name, String expression, Color color, ScalingManager sm) {
+	public MathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {
 		this.sm = sm;
 		this.name = name;
-		this.tooltip = expression;
+		this.tooltip = tooltip;
 		this.color = color;
 		visible = true;
 	}
@@ -34,6 +34,13 @@ public abstract class MathematicalObject {
 	 * @param g The Graphics2D object used for rendering.
 	 */
 	public abstract void render(Graphics2D g);
+	
+	/**
+	 * Reinitialises the mathematical object. For example, for simple
+	 * functions, this will involve creating all of the points for future
+	 * rendering.
+	 */
+	public void reinit() {}
 	
 	public String getName() {
 		return name;
