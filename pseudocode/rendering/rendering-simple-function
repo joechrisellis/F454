@@ -1,17 +1,13 @@
 Method Render(Graphics2D g)
 	g.SetColor(Color)
-	ScalingManager SM = GraphingEngine.GetScalingManager()
-
-	Double PrevX = 0;
-	Double PrevY = 0;
-	For(Double x = LBound; x <= UBound; x += GraphingEngine.GetResolution())
-
-		Double NewY = f(x) # where f(x) is user inputted function
-
-		Double[] Point1 = SM.GetTransformed(PrevX, PrevY)
-		Double[] Point1 = SM.GetTransformed(x, NewY)
-
+	
+	Point Prev = Points[0]
+	For(Point New in Points)
+		Double[] Point1 = SM.GetTransformed(Prev.x, Prev.y)
+		Double[] Point2 = SM.GetTransformed(New.x, New.y)
 		g.DrawLineBetween(Point1, Point2)
+		Prev = New
 
-		PrevX = x
-		PrevY = NewY
+Method Initialise()
+	For(Double x = LBound; x < UBound; x += ScalingManager.GetResolution())
+		Points.add(new Point(x, f(x))) # where f(x) is the user inputted function
