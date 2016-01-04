@@ -1,4 +1,4 @@
-package com.f454.graph.mathobject;
+package com.f454.graph.mathobject.basic;
 
 public class Point {
 	

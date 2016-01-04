@@ -1,9 +1,10 @@
-package com.f454.graph.mathobject;
+package com.f454.graph.mathobject.basic;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.f454.graph.ScalingManager;
+import com.f454.graph.mathobject.MathematicalObject;
 
 public class Axes extends MathematicalObject {
 	

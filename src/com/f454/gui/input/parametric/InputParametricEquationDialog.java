@@ -2,7 +2,7 @@ package com.f454.gui.input.parametric;
 
 import java.awt.Color;
 
-import com.f454.graph.mathobject.ParametricEquation;
+import com.f454.graph.mathobject.advanced.constructed.ParametricEquation;
 import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 

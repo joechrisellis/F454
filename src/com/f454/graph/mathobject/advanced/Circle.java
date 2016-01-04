@@ -1,9 +1,11 @@
-package com.f454.graph.mathobject;
+package com.f454.graph.mathobject.advanced;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.f454.graph.ScalingManager;
+import com.f454.graph.mathobject.MathematicalObject;
 
 public class Circle extends MathematicalObject {
 	
@@ -21,6 +23,7 @@ public class Circle extends MathematicalObject {
 
 	public void render(Graphics2D g) {
 		g.setColor(color);
+		g.setStroke(new BasicStroke(hovered ? MathematicalObject.BOLD_WIDTH : MathematicalObject.NORMAL_WIDTH));
 		
 		// we do y + r / 2 here because as far as java's painting is concerned,
 		// y = 0 is the top of the screen and y increases as we go down.

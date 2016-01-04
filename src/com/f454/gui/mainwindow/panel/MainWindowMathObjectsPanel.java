@@ -27,25 +27,42 @@ public class MainWindowMathObjectsPanel extends JScrollPane {
 		setPreferredSize(new Dimension(MainWindow.WIDTH / 5, 0));
 	}
 	
-	public void initListItems() {
+	private void initListItems() {		
 		MainWindow m = MainWindow.getInstance();
 		ListIterator<MathematicalObject> itr =
 			m.getGraphingPanel().getGraphingEngine().getMathObjects().listIterator();
+		
 		while(itr.hasNext()) {
 			MathematicalObject o = itr.next();
+			
+			// if the object has been removed, don't re-add it to the list.
+			// we have to include this guard clause since the rendering and
+			// gui are not on the same thread; if we .
+			// the GraphingEngine will take care of removing the object from
+			// the list in the future.
+			if(o.isRemoved()) continue;
+			
 			MathematicalObjectCheckbox c = new MathematicalObjectCheckbox(o.getName(), o);
 			panel.add(c);
 		}
+		
 	}
 	
 	public void addMathObject(MathematicalObject o) {
 		MathematicalObjectCheckbox c = new MathematicalObjectCheckbox(o.getName(), o);
 		panel.add(c);
-		revalidate();
-		
-		// not entirely sure if repaint() is necessary here but I suppose
-		// it can't hurt.
-		repaint();
+		refresh();
+	}
+	
+	public void refresh() {
+		panel.revalidate();
+		panel.repaint();
+	}
+	
+	public void refreshAll() {
+		panel.removeAll();
+		initListItems();
+		refresh();
 	}
 	
 }

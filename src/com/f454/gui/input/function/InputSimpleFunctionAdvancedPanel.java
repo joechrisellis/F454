@@ -15,7 +15,7 @@ public class InputSimpleFunctionAdvancedPanel extends JPanel {
 	
 	private JTextField label;
 	private JButton changeColor;
-	private Color color;
+	private Color color = Color.RED;
 	
 	public InputSimpleFunctionAdvancedPanel() {
 		super();

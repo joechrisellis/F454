@@ -18,15 +18,19 @@ public abstract class MathematicalObject {
 	
 	protected String name;
 	protected String tooltip;
-	protected Color color;
-	protected boolean visible;
+	protected Color color = Color.RED;
+	
+	protected boolean removed = false;
+	protected boolean visible = true;
+	
+	protected static final int NORMAL_WIDTH = 2, BOLD_WIDTH = NORMAL_WIDTH * 2;
+	protected boolean hovered = false;
 	
 	public MathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {
 		this.sm = sm;
 		this.name = name;
 		this.tooltip = tooltip;
 		this.color = color;
-		visible = true;
 	}
 	
 	/**
@@ -64,6 +68,23 @@ public abstract class MathematicalObject {
 	
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+	}
+	
+	
+	public boolean isRemoved() {
+		return removed;
+	}
+	
+	public void remove() {
+		removed = true;
+	}
+	
+	public boolean isHovered() {
+		return hovered;
+	}
+
+	public void setHovered(boolean hovered) {
+		this.hovered = hovered;
 	}
 	
 }

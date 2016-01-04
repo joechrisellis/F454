@@ -1,8 +1,9 @@
-package com.f454.graph.mathobject;
+package com.f454.graph.mathobject.advanced.constructed;
 
 import java.awt.Color;
 
 import com.f454.graph.ScalingManager;
+import com.f454.graph.mathobject.basic.Point;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
@@ -23,7 +24,7 @@ public class ParametricEquation extends ConstructedMathematicalObject {
 		super.reinit();
 		
 		double lower = 0;
-		double upper = 100;
+		double upper = 1000;
 		
 		// Evaluator object and variable set for evaluating the user
 		// inputed expression.

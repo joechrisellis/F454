@@ -1,8 +1,9 @@
-package com.f454.graph.mathobject;
+package com.f454.graph.mathobject.advanced.constructed;
 
 import java.awt.Color;
 
 import com.f454.graph.ScalingManager;
+import com.f454.graph.mathobject.basic.Point;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 

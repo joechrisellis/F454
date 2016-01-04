@@ -6,10 +6,9 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
-import com.f454.graph.mathobject.Axes;
-import com.f454.graph.mathobject.DataSet;
 import com.f454.graph.mathobject.MathematicalObject;
-import com.f454.graph.mathobject.ParametricEquation;
+import com.f454.graph.mathobject.basic.Axes;
+import com.f454.graph.mathobject.basic.DataSet;
 import com.f454.gui.mainwindow.GraphingPanel;
 import com.f454.gui.mainwindow.MainWindow;
 
@@ -58,6 +57,12 @@ public class GraphingEngine {
 		while(itr.hasNext()) {
 			
 			MathematicalObject o = itr.next();
+			
+			if(o.isRemoved()) {
+				itr.remove();
+				continue;
+			}
+			
 			if(o.isVisible()) {
 				o.render(g);
 			}
