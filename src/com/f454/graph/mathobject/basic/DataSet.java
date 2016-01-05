@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.f454.graph.ScalingManager;
-import com.f454.graph.mathobject.MathematicalObject;
 
-public class DataSet extends MathematicalObject {
+public class DataSet extends BasicMathematicalObject {
 	
 	private static final String TOOLTIP = "%d points";
 	
@@ -19,6 +18,8 @@ public class DataSet extends MathematicalObject {
 	public DataSet(String name, ArrayList<Point> points, Color color, ScalingManager sm) {
 		super(name, String.format(TOOLTIP, points.size()), color, sm);
 		this.points = points;
+		
+		menu.add(removeMenu);
 	}
 	
 	public void render(Graphics2D g) {

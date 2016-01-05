@@ -1,13 +1,12 @@
-package com.f454.graph.mathobject.advanced;
+package com.f454.graph.mathobject.basic;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.f454.graph.ScalingManager;
-import com.f454.graph.mathobject.MathematicalObject;
 
-public class Circle extends MathematicalObject {
+public class Circle extends BasicMathematicalObject {
 	
 	private static final String TOOLTIP = "(x - %.1f)^2 + (y - %.1f)^2 = %.1f^2";
 	
@@ -19,11 +18,13 @@ public class Circle extends MathematicalObject {
 		this.x = x;
 		this.y = y;
 		this.r = r;
+		
+		menu.add(removeMenu);
 	}
 
 	public void render(Graphics2D g) {
 		g.setColor(color);
-		g.setStroke(new BasicStroke(hovered ? MathematicalObject.BOLD_WIDTH : MathematicalObject.NORMAL_WIDTH));
+		g.setStroke(new BasicStroke(hovered ? BasicMathematicalObject.BOLD_WIDTH : BasicMathematicalObject.NORMAL_WIDTH));
 		
 		// we do y + r / 2 here because as far as java's painting is concerned,
 		// y = 0 is the top of the screen and y increases as we go down.

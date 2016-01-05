@@ -1,4 +1,4 @@
-package com.f454.graph.mathobject.advanced.constructed;
+package com.f454.graph.mathobject.basic.constructed;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

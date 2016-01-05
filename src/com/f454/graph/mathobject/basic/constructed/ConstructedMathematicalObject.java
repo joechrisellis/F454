@@ -1,4 +1,4 @@
-package com.f454.graph.mathobject.advanced.constructed;
+package com.f454.graph.mathobject.basic.constructed;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.f454.graph.ScalingManager;
-import com.f454.graph.mathobject.MathematicalObject;
+import com.f454.graph.mathobject.basic.BasicMathematicalObject;
 import com.f454.graph.mathobject.basic.Point;
 
 /**
  * A mathematical object that has to be constructed through creating points.
  * @author Joe Ellis
  */
-public abstract class ConstructedMathematicalObject extends MathematicalObject {
+public abstract class ConstructedMathematicalObject extends BasicMathematicalObject {
 	
 	protected ArrayList<Point> points;
 	
@@ -28,7 +28,7 @@ public abstract class ConstructedMathematicalObject extends MathematicalObject {
 		g.setColor(color);
 		
 		// Set the line width to 2 pixels wide; looks prettier.
-		g.setStroke(new BasicStroke(hovered ? MathematicalObject.BOLD_WIDTH : MathematicalObject.NORMAL_WIDTH));
+		g.setStroke(new BasicStroke(hovered ? BasicMathematicalObject.BOLD_WIDTH : BasicMathematicalObject.NORMAL_WIDTH));
 		
 		ListIterator<Point> itr = points.listIterator();
 		Point prev = itr.next();

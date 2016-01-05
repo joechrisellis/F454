@@ -2,7 +2,7 @@ package com.f454.gui.input.function;
 
 import java.awt.Color;
 
-import com.f454.graph.mathobject.advanced.constructed.SimpleFunctionYEquals;
+import com.f454.graph.mathobject.basic.constructed.SimpleFunctionYEquals;
 import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
 import com.f454.gui.mainwindow.menu.MainWindowMenuBar;
+import com.f454.gui.mainwindow.panel.GraphingPanel;
 import com.f454.gui.mainwindow.panel.MainWindowBottomPanel;
 import com.f454.gui.mainwindow.panel.MainWindowMathObjectsPanel;
 

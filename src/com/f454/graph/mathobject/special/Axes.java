@@ -1,4 +1,4 @@
-package com.f454.graph.mathobject.basic;
+package com.f454.graph.mathobject.special;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

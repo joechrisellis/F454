@@ -3,6 +3,8 @@ package com.f454.graph.mathobject;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import javax.swing.JPopupMenu;
+
 import com.f454.graph.ScalingManager;
 
 /**
@@ -21,18 +23,18 @@ public abstract class MathematicalObject {
 	protected Color color = Color.RED;
 	
 	protected boolean removed = false;
+	protected boolean hovered = false;
 	protected boolean visible = true;
 	
-	protected static final int NORMAL_WIDTH = 2, BOLD_WIDTH = NORMAL_WIDTH * 2;
-	protected boolean hovered = false;
-	
+	protected JPopupMenu menu;
+		
 	public MathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {
 		this.sm = sm;
 		this.name = name;
 		this.tooltip = tooltip;
 		this.color = color;
 	}
-	
+		
 	/**
 	 * Renders the mathematical object using the parameter 'g'.
 	 * @param g The Graphics2D object used for rendering.
@@ -85,6 +87,11 @@ public abstract class MathematicalObject {
 
 	public void setHovered(boolean hovered) {
 		this.hovered = hovered;
+	}
+	
+	public JPopupMenu getMenu() {
+		// TODO: will return null in this class
+		return menu;
 	}
 	
 }

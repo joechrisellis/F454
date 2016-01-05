@@ -1,4 +1,4 @@
-package com.f454.gui.mainwindow;
+package com.f454.gui.mainwindow.panel;
 
 import java.awt.Color;
 import java.awt.Cursor;

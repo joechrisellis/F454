@@ -8,9 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import com.f454.graph.mathobject.advanced.Circle;
-import com.f454.graph.mathobject.advanced.constructed.ParametricEquation;
-import com.f454.graph.mathobject.advanced.constructed.SimpleFunctionYEquals;
+import com.f454.graph.mathobject.basic.Circle;
+import com.f454.graph.mathobject.basic.constructed.ParametricEquation;
+import com.f454.graph.mathobject.basic.constructed.SimpleFunctionYEquals;
 import com.f454.gui.input.circle.InputCircleDialog;
 import com.f454.gui.input.function.InputSimpleFunctionDialog1;
 import com.f454.gui.input.function.InputSimpleFunctionDialog2;
