@@ -29,7 +29,7 @@ public class Circle extends BasicMathematicalObject {
 		// we do y + r / 2 here because as far as java's painting is concerned,
 		// y = 0 is the top of the screen and y increases as we go down.
 		// we have to do the opposite to account for this.
-		double[] xy = sm.getCentredXandY(x - r, y + r);
+		double[] xy = sm.getCentredXandY(-x - r, -y + r);
 		
 		// we have to use -r in sm.getScaledY(-r) for the same reason as above;
 		// the getScaledY() method automatically takes into account java's painting
