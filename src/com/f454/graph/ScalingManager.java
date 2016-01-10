@@ -8,10 +8,14 @@ public class ScalingManager {
 	
 	public ScalingManager(GraphingEngine graphingEngine) {
 		this.graphingEngine = graphingEngine;
+		reset();
+	}
+	
+	public void reset() {
 		xScale = 1;
 		yScale = 1;
-		xTranslation = graphingEngine.getGraphingPanel().getWidth() / 2;
-		yTranslation = graphingEngine.getGraphingPanel().getHeight() / 2;
+		xTranslation = 0;
+		yTranslation = 0;
 	}
 	
 	public double[] getCentredXandY(double x, double y) {

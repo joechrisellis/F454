@@ -25,6 +25,8 @@ public class MainWindowBottomPanel extends JPanel {
 	private JButton addSimpleFunction2;
 	private JButton addParametric;
 	private JButton addCircle;
+	
+	private JButton home;
 	private JButton raiseSettings;
 	
 	public MainWindowBottomPanel() {
@@ -81,6 +83,16 @@ public class MainWindowBottomPanel extends JPanel {
 			
 		});
 		
+		home = new JButton("Home");
+		home.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().getGraphingEngine().getScalingManager().reset();
+			}
+			
+		});
+		
 		raiseSettings = new JButton("Settings");
 		raiseSettings.addActionListener(new ActionListener() {
 			
@@ -97,6 +109,8 @@ public class MainWindowBottomPanel extends JPanel {
 		add(addCircle);
 		
 		add(new JSeparator(JSeparator.VERTICAL));
+		
+		add(home);
 		add(raiseSettings);
 	}
 	
