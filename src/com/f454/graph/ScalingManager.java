@@ -1,5 +1,7 @@
 package com.f454.graph;
 
+import com.f454.graph.mathobject.basic.Point;
+
 public class ScalingManager {
 	
 	private GraphingEngine graphingEngine;
@@ -16,6 +18,11 @@ public class ScalingManager {
 		yScale = 1;
 		xTranslation = 0;
 		yTranslation = 0;
+	}
+	
+	public Point transformedPoint(Point p) {
+		double[] p1 = getCentredXandY(p.x, p.y);
+		return new Point(p1[0], p1[1]);
 	}
 	
 	public double[] getCentredXandY(double x, double y) {
