@@ -3,6 +3,7 @@ package com.f454.gui.input.parametric;
 import java.awt.Color;
 
 import com.f454.graph.mathobject.basic.constructed.ParametricEquation;
+import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 
@@ -13,7 +14,7 @@ public class InputParametricEquationDialog extends InputDialog {
 	private InputParametricEquationBasicPanel basicPanel;
 	private InputParametricEquationAdvancedPanel advancedPanel;
 	
-	public InputParametricEquationDialog() {
+	private InputParametricEquationDialog() {
 		super(TITLE, 500);
 		
 		basicPanel = new InputParametricEquationBasicPanel();
@@ -30,9 +31,13 @@ public class InputParametricEquationDialog extends InputDialog {
 	 * Raises a dialogue allowing the user to input the equations and creates
 	 * a parametric equation object from the expressions that they have inputed. 
 	 * @return SimpleFunctionYEquals A parametric equation object created using the inputed expressions.
+	 * @throws InputCancelledException 
 	 */
-	public static ParametricEquation getEquation() {
+	public static ParametricEquation getEquation() throws InputCancelledException {
 		InputParametricEquationDialog window = new InputParametricEquationDialog();
+		if(window.wasCancelled()) {
+			throw new InputCancelledException("Input of parametric was cancelled.");
+		}
 		
 		String expression1 = window.basicPanel.getExpression1();
 		String expression2 = window.basicPanel.getExpression2();

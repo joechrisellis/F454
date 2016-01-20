@@ -73,8 +73,7 @@ public class SetResolutionDialogue extends JDialog {
 		autoSetResolution.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				double n = getProcessingPower();
-				resolutionSpinner.setValue(BENCHMARK_RESOLUTION_COEFFICIENT * n);
+				resolutionSpinner.setValue(getOptimumResolution());
 			}
 			
 		});
@@ -110,13 +109,17 @@ public class SetResolutionDialogue extends JDialog {
 	private static final double BENCHMARK_RESOLUTION_COEFFICIENT = 0.02;
 	private static double processingPower = 0;
 	
+	public static double getOptimumResolution() {
+		return getProcessingPower() * BENCHMARK_RESOLUTION_COEFFICIENT;
+	}
+	
 	/**
 	 * A quick benchmark that determines the speed of the computer that the
 	 * program is running on. The method used to do this is quite simple: find
 	 * how long it takes to get the sum of the first 1000000 integers.
 	 * @return double The time, in milliseconds, taken to compute the first 1000000 integers.
 	 */
-	public static double getProcessingPower() {
+	private static double getProcessingPower() {
 		
 		// Guard clause: if this method has been run, just return the last value
 		// that it found. HotSpot will optimise this method if it detects that it

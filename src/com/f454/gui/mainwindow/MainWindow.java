@@ -2,6 +2,7 @@ package com.f454.gui.mainwindow;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
@@ -10,6 +11,7 @@ import com.f454.gui.mainwindow.menu.MainWindowMenuBar;
 import com.f454.gui.mainwindow.panel.GraphingPanel;
 import com.f454.gui.mainwindow.panel.MainWindowBottomPanel;
 import com.f454.gui.mainwindow.panel.MainWindowMathObjectsPanel;
+import com.f454.gui.tip.TipOfTheDayDialog;
 
 public class MainWindow extends JFrame {
 	
@@ -74,6 +76,10 @@ public class MainWindow extends JFrame {
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		if(!new File(TipOfTheDayDialog.PATH).exists()) {
+			new TipOfTheDayDialog();
+		}
 	}
 	
 	public GraphingPanel getGraphingPanel() {

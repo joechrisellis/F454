@@ -3,6 +3,7 @@ package com.f454.gui.input.circle;
 import java.awt.Color;
 
 import com.f454.graph.mathobject.basic.Circle;
+import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 
@@ -13,7 +14,7 @@ public class InputCircleDialog extends InputDialog {
 	private InputCircleBasicPanel basicPanel;
 	private InputCircleAdvancedPanel advancedPanel;
 		
-	public InputCircleDialog() {
+	private InputCircleDialog() {
 		super(TITLE, 600);
 		
 		basicPanel = new InputCircleBasicPanel();
@@ -31,9 +32,13 @@ public class InputCircleDialog extends InputDialog {
 	 * Raises a dialogue allowing the user to input the circle and creates
 	 * a circle object from the information that they have inputed. 
 	 * @return Circle A circle object created using the inputed information.
+	 * @throws InputCancelledException 
 	 */
-	public static Circle getCircle() {
+	public static Circle getCircle() throws InputCancelledException {
 		InputCircleDialog window = new InputCircleDialog();
+		if(window.wasCancelled()) {
+			throw new InputCancelledException("Input of circle was cancelled.");
+		}
 		
 		double a = window.basicPanel.getA();
 		double b = window.basicPanel.getB();

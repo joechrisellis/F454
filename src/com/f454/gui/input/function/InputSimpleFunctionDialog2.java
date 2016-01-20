@@ -11,7 +11,7 @@ public class InputSimpleFunctionDialog2 extends JDialog {
 	public static final int HEIGHT = 500;
 	public static final int WIDTH = (int) (MainWindow.GOLDEN_RATIO * HEIGHT);
 	
-	public InputSimpleFunctionDialog2() {
+	private InputSimpleFunctionDialog2() {
 		super();
 		
 		setTitle(TITLE);

@@ -11,9 +11,9 @@ import javax.swing.JSeparator;
 import com.f454.graph.mathobject.basic.Circle;
 import com.f454.graph.mathobject.basic.constructed.ParametricEquation;
 import com.f454.graph.mathobject.basic.constructed.SimpleFunctionYEquals;
+import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.circle.InputCircleDialog;
 import com.f454.gui.input.function.InputSimpleFunctionDialog1;
-import com.f454.gui.input.function.InputSimpleFunctionDialog2;
 import com.f454.gui.input.parametric.InputParametricEquationDialog;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.setting.SetResolutionDialogue;
@@ -45,9 +45,14 @@ public class MainWindowBottomPanel extends JPanel {
 		addSimpleFunction1.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				SimpleFunctionYEquals f = InputSimpleFunctionDialog1.getFunction();
-				MainWindow m = MainWindow.getInstance();
-				m.getGraphingPanel().getGraphingEngine().addMathObject(f);
+				SimpleFunctionYEquals f;
+				
+				try {
+					f = InputSimpleFunctionDialog1.getFunction();
+					MainWindow m = MainWindow.getInstance();
+					m.getGraphingPanel().getGraphingEngine().addMathObject(f);
+				} catch (InputCancelledException err) {}
+				
 			}
 			
 		});
@@ -56,7 +61,7 @@ public class MainWindowBottomPanel extends JPanel {
 		addSimpleFunction2.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				new InputSimpleFunctionDialog2();
+//				new InputSimpleFunctionDialog2();
 			}
 			
 		});
@@ -65,9 +70,14 @@ public class MainWindowBottomPanel extends JPanel {
 		addParametric.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				ParametricEquation parametric = InputParametricEquationDialog.getEquation();
-				MainWindow m = MainWindow.getInstance();
-				m.getGraphingPanel().getGraphingEngine().addMathObject(parametric);
+				ParametricEquation parametric;
+				
+				try {
+					parametric = InputParametricEquationDialog.getEquation();
+					MainWindow m = MainWindow.getInstance();
+					m.getGraphingPanel().getGraphingEngine().addMathObject(parametric);
+				} catch (InputCancelledException err) {}
+				
 			}
 			
 		});
@@ -76,9 +86,12 @@ public class MainWindowBottomPanel extends JPanel {
 		addCircle.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Circle circle = InputCircleDialog.getCircle();
-				MainWindow m = MainWindow.getInstance();
-				m.getGraphingPanel().getGraphingEngine().addMathObject(circle);
+				Circle circle;
+				try {
+					circle = InputCircleDialog.getCircle();
+					MainWindow m = MainWindow.getInstance();
+					m.getGraphingPanel().getGraphingEngine().addMathObject(circle);
+				} catch (InputCancelledException err) {}
 			}
 			
 		});

@@ -19,12 +19,6 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 	
 	public BasicMathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {
 		super(name, tooltip, color, sm);
-		initMenus();
-		menu.add(removeMenu);
-	}
-	
-	public void initMenus() {
-		menu = new JPopupMenu();
 		
 		removeMenu = new JMenuItem("Remove");
 		removeMenu.addActionListener(new ActionListener() {
@@ -36,6 +30,8 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 			}
 			
 		});
+		
+		menu.add(removeMenu);
 	}
 	
 }

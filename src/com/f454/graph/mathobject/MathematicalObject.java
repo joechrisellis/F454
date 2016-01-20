@@ -33,6 +33,8 @@ public abstract class MathematicalObject {
 		this.name = name;
 		this.tooltip = tooltip;
 		this.color = color;
+		
+		menu = new JPopupMenu();
 	}
 		
 	/**

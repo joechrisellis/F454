@@ -18,8 +18,6 @@ public class Circle extends BasicMathematicalObject {
 		this.x = x;
 		this.y = y;
 		this.r = r;
-		
-		menu.add(removeMenu);
 	}
 
 	public void render(Graphics2D g) {

@@ -3,6 +3,7 @@ package com.f454.gui.input.function;
 import java.awt.Color;
 
 import com.f454.graph.mathobject.basic.constructed.SimpleFunctionYEquals;
+import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 
@@ -13,7 +14,7 @@ public class InputSimpleFunctionDialog1 extends InputDialog {
 	private InputSimpleFunctionBasicPanel basicPanel;
 	private InputSimpleFunctionAdvancedPanel advancedPanel;
 	
-	public InputSimpleFunctionDialog1() {
+	private InputSimpleFunctionDialog1() {
 		super(TITLE, 500);
 				
 		basicPanel = new InputSimpleFunctionBasicPanel();
@@ -31,9 +32,13 @@ public class InputSimpleFunctionDialog1 extends InputDialog {
 	 * Raises a dialogue allowing the user to input the function and creates
 	 * a function object from the expression that they have inputed. 
 	 * @return SimpleFunctionYEquals A function object created using the inputed expression.
+	 * @throws InputCancelledException 
 	 */
-	public static SimpleFunctionYEquals getFunction() {
+	public static SimpleFunctionYEquals getFunction() throws InputCancelledException {
 		InputSimpleFunctionDialog1 window = new InputSimpleFunctionDialog1();
+		if(window.wasCancelled()) {
+			throw new InputCancelledException("Input of function cancelled.");
+		}
 		
 		String expression = window.basicPanel.getExpression();
 		

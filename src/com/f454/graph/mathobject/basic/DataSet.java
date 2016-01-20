@@ -18,8 +18,6 @@ public class DataSet extends BasicMathematicalObject {
 	public DataSet(String name, ArrayList<Point> points, Color color, ScalingManager sm) {
 		super(name, String.format(TOOLTIP, points.size()), color, sm);
 		this.points = points;
-		
-		menu.add(removeMenu);
 	}
 	
 	public void render(Graphics2D g) {

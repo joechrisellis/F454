@@ -11,6 +11,7 @@ import com.f454.graph.mathobject.basic.DataSet;
 import com.f454.graph.mathobject.special.Axes;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.mainwindow.panel.GraphingPanel;
+import com.f454.gui.setting.SetResolutionDialogue;
 
 /**
  * The engine powering the rendering of mathematical objects.
@@ -24,7 +25,7 @@ public class GraphingEngine {
 	private final GraphingPanel graphingPanel;
 	private ScalingManager sm;
 	
-	private double resolution = 0.5;
+	private double resolution;
 	
 	// A resizing array of all of the mathematical objects, visible or invisible.
 	private ArrayList<MathematicalObject> mathObjects;
@@ -32,6 +33,7 @@ public class GraphingEngine {
 	public GraphingEngine(GraphingPanel graphingPanel) {
 		this.graphingPanel = graphingPanel;
 		sm = new ScalingManager(this);
+		resolution = SetResolutionDialogue.getOptimumResolution();
 		
 		mathObjects = new ArrayList<MathematicalObject>();
 		Axes axes = new Axes(sm);

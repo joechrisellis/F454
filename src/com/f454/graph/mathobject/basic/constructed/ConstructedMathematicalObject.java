@@ -18,6 +18,9 @@ import com.f454.graph.mathobject.basic.Point;
 public abstract class ConstructedMathematicalObject extends BasicMathematicalObject {
 	
 	protected ArrayList<Point> points;
+	
+	// At resolutions LESS THAN this value, cropping optimisations
+	// will take place.
 	protected static final double CROPPING_THRESHOLD = 0.1D;
 	
 	public ConstructedMathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {
@@ -42,7 +45,7 @@ public abstract class ConstructedMathematicalObject extends BasicMathematicalObj
 			// visible on the panel).
 			// Only start filtering out what to render and what not to when
 			// the resolution is low enough, else we will get over-cropped images.
-			if(sm.getResolution() > 0.1 || (isOnScreen(p) || isOnScreen(prev))) {
+			if(sm.getResolution() > CROPPING_THRESHOLD || (isOnScreen(p) || isOnScreen(prev))) {
 				drawLine(g, p, prev);
 			}
 			
@@ -74,6 +77,9 @@ public abstract class ConstructedMathematicalObject extends BasicMathematicalObj
 			&& newPoint.y >= 0 && newPoint.y <= sm.getHeight();
 	}
 	
+	/**
+	 * Clears the arraylist of points.
+	 */
 	public void reinit() {
 		points.clear();
 	}
