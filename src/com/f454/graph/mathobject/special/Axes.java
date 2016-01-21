@@ -11,7 +11,7 @@ import com.f454.graph.mathobject.MathematicalObject;
 
 public class Axes extends MathematicalObject {
 	
-	private static final int NUMBERS = 12;
+	private static final int NUMBERS = 30;
 	
 	protected JCheckBoxMenuItem showGridMenu;
 	protected JCheckBoxMenuItem showNumberingMenu;
@@ -34,7 +34,6 @@ public class Axes extends MathematicalObject {
 		
 		g.setColor(Color.LIGHT_GRAY);
 		
-		// TODO
 		if(showGridMenu.isSelected()) {
 			renderGrid(g);
 		}
@@ -59,7 +58,7 @@ public class Axes extends MathematicalObject {
 		
 		for(int x = -NUMBERS; x <= NUMBERS; x++) {
 			
-			double k = x / Math.floor(sm.getxScale() / ScalingManager.INITIAL_XSCALE);
+			double k = x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X);
 			double[] xy = sm.getCentredXandY(k, 0);
 			
 			g.drawLine((int) (xy[0]), 0, (int) (xy[0]), height);
@@ -67,7 +66,7 @@ public class Axes extends MathematicalObject {
 		
 		for(int y = -NUMBERS; y <= NUMBERS; y++) {
 			
-			double k = y / Math.floor(sm.getxScale() / ScalingManager.INITIAL_YSCALE);
+			double k = y / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_Y);
 			double[] xy = sm.getCentredXandY(0, k);
 			
 			g.drawLine(0, (int) (xy[1]), width, (int) (xy[1]));
@@ -78,12 +77,9 @@ public class Axes extends MathematicalObject {
 	private void renderNumbers(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		
-		int width = sm.getWidth();
-		int height = sm.getHeight();
-		
 		for(int x = -NUMBERS; x <= NUMBERS; x++) {
 			
-			double k = x / Math.floor(sm.getxScale() / ScalingManager.INITIAL_XSCALE);
+			double k = x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X);
 			double[] xy = sm.getCentredXandY(k, 0);
 			
 			String label = String.format("%.2f", k);
@@ -95,7 +91,7 @@ public class Axes extends MathematicalObject {
 			// rendering of the centre (0, 0) done by above for loop
 			if(y == 0) continue;
 			
-			double k = y / Math.floor(sm.getxScale() / ScalingManager.INITIAL_YSCALE);
+			double k = y / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_Y);
 			double[] xy = sm.getCentredXandY(0, k);
 			
 			String label = String.format("%.2f", k);

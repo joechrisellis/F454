@@ -2,19 +2,19 @@ package com.f454.gui.input.function;
 
 import java.awt.Color;
 
-import com.f454.graph.mathobject.basic.constructed.SimpleFunctionYEquals;
+import com.f454.graph.mathobject.basic.constructed.SimpleFunction;
 import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 
-public class InputSimpleFunctionDialog1 extends InputDialog {
+public class InputSimpleFunctionDialog extends InputDialog {
 	
-	public static final String TITLE = "Input Simple Function of the Form y = f(x)";
+	public static final String TITLE = "Input Simple Function";
 	
 	private InputSimpleFunctionBasicPanel basicPanel;
 	private InputSimpleFunctionAdvancedPanel advancedPanel;
 	
-	private InputSimpleFunctionDialog1() {
+	protected InputSimpleFunctionDialog() {
 		super(TITLE, 500);
 				
 		basicPanel = new InputSimpleFunctionBasicPanel();
@@ -31,11 +31,11 @@ public class InputSimpleFunctionDialog1 extends InputDialog {
 	/**
 	 * Raises a dialogue allowing the user to input the function and creates
 	 * a function object from the expression that they have inputed. 
-	 * @return SimpleFunctionYEquals A function object created using the inputed expression.
+	 * @return SimpleFunction A SimpleFunction object created using the inputed expression.
 	 * @throws InputCancelledException 
 	 */
-	public static SimpleFunctionYEquals getFunction() throws InputCancelledException {
-		InputSimpleFunctionDialog1 window = new InputSimpleFunctionDialog1();
+	public static SimpleFunction getFunction() throws InputCancelledException {
+		InputSimpleFunctionDialog window = new InputSimpleFunctionDialog();
 		if(window.wasCancelled()) {
 			throw new InputCancelledException("Input of function cancelled.");
 		}
@@ -46,7 +46,7 @@ public class InputSimpleFunctionDialog1 extends InputDialog {
 		Color color = window.advancedPanel.getChosenColor();
 		
 		MainWindow m = MainWindow.getInstance();
-		SimpleFunctionYEquals f = new SimpleFunctionYEquals(label, expression,
+		SimpleFunction f = new SimpleFunction(label, window.basicPanel.isyEquals(), expression,
 				color, m.getGraphingPanel().getGraphingEngine().getScalingManager());
 		
 		return f;

@@ -78,7 +78,6 @@ public class GraphingPanel extends JPanel {
 		int scroll = -mouse.getScroll();
 		if(sm.getxScale() + scroll > 0) {
 			sm.setxScale(sm.getxScale() + scroll);
-
 		}
 		
 		if(sm.getyScale() + scroll > 0) {

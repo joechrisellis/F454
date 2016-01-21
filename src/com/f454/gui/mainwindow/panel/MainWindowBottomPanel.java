@@ -10,10 +10,10 @@ import javax.swing.JSeparator;
 
 import com.f454.graph.mathobject.basic.Circle;
 import com.f454.graph.mathobject.basic.constructed.ParametricEquation;
-import com.f454.graph.mathobject.basic.constructed.SimpleFunctionYEquals;
+import com.f454.graph.mathobject.basic.constructed.SimpleFunction;
 import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.circle.InputCircleDialog;
-import com.f454.gui.input.function.InputSimpleFunctionDialog1;
+import com.f454.gui.input.function.InputSimpleFunctionDialog;
 import com.f454.gui.input.parametric.InputParametricEquationDialog;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.setting.SetResolutionDialogue;
@@ -21,8 +21,7 @@ import com.f454.gui.setting.SetResolutionDialogue;
 public class MainWindowBottomPanel extends JPanel {
 	
 	private JButton addPoint;
-	private JButton addSimpleFunction1;
-	private JButton addSimpleFunction2;
+	private JButton addSimpleFunction;
 	private JButton addParametric;
 	private JButton addCircle;
 	
@@ -41,27 +40,18 @@ public class MainWindowBottomPanel extends JPanel {
 			
 		});
 		
-		addSimpleFunction1 = new JButton("y = f(x)");
-		addSimpleFunction1.addActionListener(new ActionListener() {
+		addSimpleFunction = new JButton("y = f(x)");
+		addSimpleFunction.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				SimpleFunctionYEquals f;
+				SimpleFunction f;
 				
 				try {
-					f = InputSimpleFunctionDialog1.getFunction();
+					f = InputSimpleFunctionDialog.getFunction();
 					MainWindow m = MainWindow.getInstance();
 					m.getGraphingPanel().getGraphingEngine().addMathObject(f);
 				} catch (InputCancelledException err) {}
 				
-			}
-			
-		});
-		
-		addSimpleFunction2 = new JButton("x = f(y)");
-		addSimpleFunction2.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-//				new InputSimpleFunctionDialog2();
 			}
 			
 		});
@@ -116,8 +106,7 @@ public class MainWindowBottomPanel extends JPanel {
 		});
 		
 		add(addPoint);
-		add(addSimpleFunction1);
-		add(addSimpleFunction2);
+		add(addSimpleFunction);
 		add(addParametric);
 		add(addCircle);
 		

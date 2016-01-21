@@ -4,8 +4,11 @@ import com.f454.graph.mathobject.basic.Point;
 
 public class ScalingManager {
 	
-	public static final int INITIAL_XSCALE = 47;
+	public static final int INITIAL_XSCALE = 10;
 	public static final int INITIAL_YSCALE = INITIAL_XSCALE;
+	
+	public static final int GRIDLINE_CONSTANT_X = 47;
+	public static final int GRIDLINE_CONSTANT_Y = GRIDLINE_CONSTANT_X;
 	
 	private GraphingEngine graphingEngine;
 	private double xScale, yScale;
