@@ -11,6 +11,8 @@ import com.f454.graph.mathobject.MathematicalObject;
 
 public class Axes extends MathematicalObject {
 	
+	private static final int NUMBERS = 12;
+	
 	protected JCheckBoxMenuItem showGridMenu;
 	protected JCheckBoxMenuItem showNumberingMenu;
 	protected JCheckBoxMenuItem showPiMenu;
@@ -19,7 +21,7 @@ public class Axes extends MathematicalObject {
 		super("Axes", null, Color.BLACK, sm);
 		
 		showGridMenu = new JCheckBoxMenuItem("Show Gridlines", true);
-		showNumberingMenu = new JCheckBoxMenuItem("Show Axes Numbering");
+		showNumberingMenu = new JCheckBoxMenuItem("Show Axes Numbering", true);
 		showPiMenu = new JCheckBoxMenuItem("Show Axes in terms of Pi");
 		
 		menu = new JPopupMenu();
@@ -33,7 +35,7 @@ public class Axes extends MathematicalObject {
 		g.setColor(Color.LIGHT_GRAY);
 		
 		// TODO
-		if(false && showGridMenu.isSelected()) {
+		if(showGridMenu.isSelected()) {
 			renderGrid(g);
 		}
 		
@@ -54,32 +56,50 @@ public class Axes extends MathematicalObject {
 		
 		int width = sm.getWidth();
 		int height = sm.getHeight();
-		int xVisible = (int) ((width / 2) * (1 / sm.getxScale()));
-		int yVisible = (int) ((height / 2) * (1 / sm.getyScale()));
 		
-		for(int x = -xVisible; x <= xVisible; x++) {
-			double[] xy = sm.getCentredXandY(x, 0);
-			g.drawLine((int) (xy[0]) % (int) (width / xVisible), 0,
-					   (int) (xy[0]) % (int) (width / xVisible), height);
+		for(int x = -NUMBERS; x <= NUMBERS; x++) {
+			
+			double k = x / Math.floor(sm.getxScale() / ScalingManager.INITIAL_XSCALE);
+			double[] xy = sm.getCentredXandY(k, 0);
+			
+			g.drawLine((int) (xy[0]), 0, (int) (xy[0]), height);
 		}
 		
-//		for(int y = -yVisible; y <= yVisible; y++) {
-//			double[] xy = sm.getCentredXandY(0, y);
-//			g.drawLine(0, (int) (xy[1]) % height, width, (int) (xy[1]) % height);
-//		}
+		for(int y = -NUMBERS; y <= NUMBERS; y++) {
+			
+			double k = y / Math.floor(sm.getxScale() / ScalingManager.INITIAL_YSCALE);
+			double[] xy = sm.getCentredXandY(0, k);
+			
+			g.drawLine(0, (int) (xy[1]), width, (int) (xy[1]));
+		}
 		
 	}
 	
 	private void renderNumbers(Graphics2D g) {
+		g.setColor(Color.BLACK);
 		
 		int width = sm.getWidth();
 		int height = sm.getHeight();
-		int xVisible = (int) ((width / 2) * (1 / sm.getxScale()));
-		int yVisible = (int) ((height / 2) * (1 / sm.getyScale()));
 		
-		for(int x = -xVisible; x <= xVisible; x += width / xVisible) {
-			double[] xy = sm.getCentredXandY(x, 0);
-			g.drawString(String.format("%d", x), (int) (xy[0]), (int) (xy[1]));
+		for(int x = -NUMBERS; x <= NUMBERS; x++) {
+			
+			double k = x / Math.floor(sm.getxScale() / ScalingManager.INITIAL_XSCALE);
+			double[] xy = sm.getCentredXandY(k, 0);
+			
+			String label = String.format("%.2f", k);
+			g.drawString(label, (int) (xy[0]), (int) (xy[1]) + 10); // + 10 so that the numbers are under the axes
+		}
+		
+		for(int y = -NUMBERS; y <= NUMBERS; y++) {
+			
+			// rendering of the centre (0, 0) done by above for loop
+			if(y == 0) continue;
+			
+			double k = y / Math.floor(sm.getxScale() / ScalingManager.INITIAL_YSCALE);
+			double[] xy = sm.getCentredXandY(0, k);
+			
+			String label = String.format("%.2f", k);
+			g.drawString(label, (int) (xy[0]), (int) (xy[1]));
 		}
 		
 	}

@@ -4,6 +4,9 @@ import com.f454.graph.mathobject.basic.Point;
 
 public class ScalingManager {
 	
+	public static final int INITIAL_XSCALE = 47;
+	public static final int INITIAL_YSCALE = INITIAL_XSCALE;
+	
 	private GraphingEngine graphingEngine;
 	private double xScale, yScale;
 	private double xTranslation, yTranslation;
@@ -14,8 +17,8 @@ public class ScalingManager {
 	}
 	
 	public void reset() {
-		xScale = 1;
-		yScale = 1;
+		xScale = INITIAL_XSCALE;
+		yScale = INITIAL_YSCALE;
 		xTranslation = 0;
 		yTranslation = 0;
 	}
@@ -23,6 +26,13 @@ public class ScalingManager {
 	public Point transformedPoint(Point p) {
 		double[] p1 = getCentredXandY(p.x, p.y);
 		return new Point(p1[0], p1[1]);
+	}
+	
+	public double[] getCentredXandY(double x, double y, double extra) {
+		double[] xy = getTransformedXandY(x, y);
+		int w = graphingEngine.getGraphingPanel().getWidth() / 2;
+		int h = graphingEngine.getGraphingPanel().getHeight() / 2;
+		return new double[]{xy[0] + w, xy[1] + h};
 	}
 	
 	public double[] getCentredXandY(double x, double y) {

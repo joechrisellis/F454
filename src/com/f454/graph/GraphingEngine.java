@@ -41,9 +41,9 @@ public class GraphingEngine {
 		
 		ArrayList<Point> p = new ArrayList<Point>();
 		p.add(new Point(0, 20));
-		p.add(new Point(3, 6));
+		p.add(new Point(2, 0));
 		p.add(new Point(2, -4));
-		p.add(new Point(7, 7));
+		p.add(new Point(-12, 0));
 		
 		DataSet ds = new DataSet("Data Set", p, Color.GREEN, sm);
 		mathObjects.add(ds);

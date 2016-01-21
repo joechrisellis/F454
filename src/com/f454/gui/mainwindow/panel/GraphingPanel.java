@@ -24,7 +24,6 @@ public class GraphingPanel extends JPanel {
 	
 	private Timer timer;
 	private final double FPS = 60D;
-	private final double SCROLL_SPEED = 50;
 	
 	public GraphingPanel() {
 		setFocusable(true);
@@ -78,12 +77,12 @@ public class GraphingPanel extends JPanel {
 		
 		int scroll = -mouse.getScroll();
 		if(sm.getxScale() + scroll > 0) {
-			sm.setxScale(sm.getxScale() + scroll * (sm.getxScale() / SCROLL_SPEED));
+			sm.setxScale(sm.getxScale() + scroll);
 
 		}
 		
 		if(sm.getyScale() + scroll > 0) {
-			sm.setyScale(sm.getyScale() + scroll * (sm.getyScale() / SCROLL_SPEED));
+			sm.setyScale(sm.getyScale() + scroll);
 		}
 		
 		mousePrevX = mouse.getX();
