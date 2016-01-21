@@ -2,12 +2,12 @@ package com.f454.graph;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.f454.graph.mathobject.MathematicalObject;
 import com.f454.graph.mathobject.basic.DataSet;
+import com.f454.graph.mathobject.basic.Point;
 import com.f454.graph.mathobject.special.Axes;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.mainwindow.panel.GraphingPanel;
@@ -40,10 +40,10 @@ public class GraphingEngine {
 		mathObjects.add(axes);
 		
 		ArrayList<Point> p = new ArrayList<Point>();
-		p.add(new Point(0, 20));
-		p.add(new Point(2, 0));
-		p.add(new Point(2, -4));
-		p.add(new Point(-12, 0));
+		p.add(new Point(1, 1));
+		p.add(new Point(2, 3));
+		p.add(new Point(3, 2.5));
+
 		
 		DataSet ds = new DataSet("Data Set", p, Color.GREEN, sm);
 		mathObjects.add(ds);

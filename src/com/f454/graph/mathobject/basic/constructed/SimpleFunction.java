@@ -39,7 +39,8 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 		
 		// Iterate through all of the values of x.
 		for(double x = lower; x < upper; x += sm.getResolution()) {
-			variables.set("x", x);
+			if(yEquals) variables.set("x", x);
+			else        variables.set("y", x);
 			
 			if(yEquals) {
 				points.add(new Point(x, evaluator.evaluate(expression, variables)));
