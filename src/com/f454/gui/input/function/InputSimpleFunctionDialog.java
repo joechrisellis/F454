@@ -17,7 +17,7 @@ public class InputSimpleFunctionDialog extends InputDialog {
 	protected InputSimpleFunctionDialog() {
 		super(TITLE, 500);
 				
-		basicPanel = new InputSimpleFunctionBasicPanel();
+		basicPanel = new InputSimpleFunctionBasicPanel(ok);
 		advancedPanel = new InputSimpleFunctionAdvancedPanel();
 		
 		tabs.addTab("Basic", basicPanel);

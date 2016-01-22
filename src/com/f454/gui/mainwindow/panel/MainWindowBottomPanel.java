@@ -40,7 +40,7 @@ public class MainWindowBottomPanel extends JPanel {
 			
 		});
 		
-		addSimpleFunction = new JButton("y = f(x)");
+		addSimpleFunction = new JButton("f(x)");
 		addSimpleFunction.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

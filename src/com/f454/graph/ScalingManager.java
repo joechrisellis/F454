@@ -10,6 +10,9 @@ public class ScalingManager {
 	public static final int INITIAL_XSCALE = GRIDLINE_CONSTANT_X;
 	public static final int INITIAL_YSCALE = INITIAL_XSCALE;
 	
+	public static final int MINIMUM_ZOOM_X = INITIAL_XSCALE;
+	public static final int MINIMUM_ZOOM_Y = INITIAL_YSCALE;
+	
 	private GraphingEngine graphingEngine;
 	private double xScale, yScale;
 	private double xTranslation, yTranslation;

@@ -17,7 +17,7 @@ public class InputParametricEquationDialog extends InputDialog {
 	private InputParametricEquationDialog() {
 		super(TITLE, 500);
 		
-		basicPanel = new InputParametricEquationBasicPanel();
+		basicPanel = new InputParametricEquationBasicPanel(ok);
 		advancedPanel = new InputParametricEquationAdvancedPanel();
 		tabs.addTab("Basic", basicPanel);
 		tabs.addTab("Advanced", advancedPanel);
@@ -36,7 +36,7 @@ public class InputParametricEquationDialog extends InputDialog {
 	public static ParametricEquation getEquation() throws InputCancelledException {
 		InputParametricEquationDialog window = new InputParametricEquationDialog();
 		if(window.wasCancelled()) {
-			throw new InputCancelledException("Input of parametric was cancelled.");
+			throw new InputCancelledException("Input of parametric equation was cancelled.");
 		}
 		
 		String expression1 = window.basicPanel.getExpression1();

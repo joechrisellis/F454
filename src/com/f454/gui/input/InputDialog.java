@@ -12,11 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.f454.gui.mainwindow.MainWindow;
+import com.fathzer.soft.javaluator.DoubleEvaluator;
+import com.fathzer.soft.javaluator.StaticVariableSet;
 
 public class InputDialog extends JDialog {
 	
 	protected JTabbedPane tabs;
-	private boolean cancelled;
+	private boolean okPressed;
+	
+	protected JButton ok;
 	
 	protected InputDialog(String title, int w) {
 		super();
@@ -33,10 +37,11 @@ public class InputDialog extends JDialog {
 		
 		JPanel panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		
-		JButton ok = new JButton("OK");
+		ok = new JButton("OK");
 		ok.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				okPressed = true;
 				dispose();
 			}
 			
@@ -46,7 +51,6 @@ public class InputDialog extends JDialog {
 		cancel.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				cancelled = true;
 				dispose();
 			}
 			
@@ -59,7 +63,24 @@ public class InputDialog extends JDialog {
 	}
 	
 	public boolean wasCancelled() {
-		return cancelled;
+		return !okPressed;
+	}
+	
+	private static DoubleEvaluator validator = new DoubleEvaluator();
+	
+	/**
+	 * Checks the syntax of an expression.
+	 * @param expression The expression to be checked.
+	 * @param variables Any variables to be acknowledged.
+	 * @return A boolean representing whether or not the syntax of expression is valid.
+	 */
+	public static boolean checkSyntax(String expression, StaticVariableSet<Double> variables) {
+		try {
+			validator.evaluate(expression, variables);
+			return true;
+		} catch(IllegalArgumentException e) {
+			return false;
+		}
 	}
 	
 }

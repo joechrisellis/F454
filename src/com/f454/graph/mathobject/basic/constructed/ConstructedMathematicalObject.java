@@ -32,6 +32,7 @@ public abstract class ConstructedMathematicalObject extends BasicMathematicalObj
 		g.setColor(color);
 		
 		// Set the line width to 2 pixels wide; looks prettier.
+		// If hovered over in the mathematical object panel, use bold width.
 		g.setStroke(new BasicStroke(hovered ? BasicMathematicalObject.BOLD_WIDTH : BasicMathematicalObject.NORMAL_WIDTH));
 		
 		ListIterator<Point> itr = points.listIterator();
