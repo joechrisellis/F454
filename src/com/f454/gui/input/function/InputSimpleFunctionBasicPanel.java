@@ -30,6 +30,7 @@ public class InputSimpleFunctionBasicPanel extends JPanel {
 		
 		input = new JTextField(30);
 		this.ok = ok;
+		ok.setEnabled(false);
 		
 		ButtonGroup g = new ButtonGroup();
 		yEquals = new JRadioButton("y = ", true);

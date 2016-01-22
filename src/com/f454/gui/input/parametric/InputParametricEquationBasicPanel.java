@@ -21,6 +21,7 @@ public class InputParametricEquationBasicPanel extends JPanel {
 		inputExpression1 = new JTextField(38);
 		inputExpression2 = new JTextField(38);
 		this.ok = ok;
+		ok.setEnabled(false);
 		
 		DocumentListener l = new DocumentListener() {
 			

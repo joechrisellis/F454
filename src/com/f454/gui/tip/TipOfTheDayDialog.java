@@ -1,6 +1,7 @@
 package com.f454.gui.tip;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,6 +60,7 @@ public class TipOfTheDayDialog extends JDialog {
 		tipDisplay = new JTextArea(TIPS[currentTip]);
 		tipDisplay.setLineWrap(true);
 		tipDisplay.setWrapStyleWord(true);
+		tipDisplay.setFont(new Font("Verdana", Font.BOLD, 20));
 		
 		close = new JButton("Close");
 		close.addActionListener(new ActionListener() {
