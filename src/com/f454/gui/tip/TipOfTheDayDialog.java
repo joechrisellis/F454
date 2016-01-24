@@ -58,6 +58,7 @@ public class TipOfTheDayDialog extends JDialog {
 		
 		currentTip = new Random().nextInt(TIPS.length);
 		tipDisplay = new JTextArea(TIPS[currentTip]);
+		tipDisplay.setEditable(false);
 		tipDisplay.setLineWrap(true);
 		tipDisplay.setWrapStyleWord(true);
 		tipDisplay.setFont(new Font("Verdana", Font.BOLD, 20));
