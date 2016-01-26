@@ -9,10 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
 import com.f454.graph.mathobject.basic.Circle;
+import com.f454.graph.mathobject.basic.DataSet;
 import com.f454.graph.mathobject.basic.constructed.ParametricEquation;
 import com.f454.graph.mathobject.basic.constructed.SimpleFunction;
 import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.circle.InputCircleDialog;
+import com.f454.gui.input.data.InputDataDialog;
 import com.f454.gui.input.function.InputSimpleFunctionDialog;
 import com.f454.gui.input.parametric.InputParametricEquationDialog;
 import com.f454.gui.mainwindow.MainWindow;
@@ -35,7 +37,13 @@ public class MainWindowBottomPanel extends JPanel {
 		addPoint.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				// TODO: raise input points dialogue.
+				DataSet d;
+				
+				try {
+					d = InputDataDialog.getData();
+					MainWindow m = MainWindow.getInstance();
+					m.getGraphingPanel().getGraphingEngine().addMathObject(d);
+				} catch(InputCancelledException err) {}
 			}
 			
 		});
