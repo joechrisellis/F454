@@ -5,6 +5,7 @@ import java.awt.Color;
 import com.f454.graph.mathobject.basic.Circle;
 import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.InputDialog;
+import com.f454.gui.input.NameAndColorPanel;
 import com.f454.gui.mainwindow.MainWindow;
 
 public class InputCircleDialog extends InputDialog {
@@ -12,13 +13,13 @@ public class InputCircleDialog extends InputDialog {
 	public static final String TITLE = "Input Circle";
 	
 	private InputCircleBasicPanel basicPanel;
-	private InputCircleAdvancedPanel advancedPanel;
+	private NameAndColorPanel advancedPanel;
 		
 	private InputCircleDialog() {
 		super(TITLE, 600);
 		
 		basicPanel = new InputCircleBasicPanel();
-		advancedPanel = new InputCircleAdvancedPanel();
+		advancedPanel = new NameAndColorPanel();
 		
 		tabs.addTab("Basic", basicPanel);
 		tabs.addTab("Advanced", advancedPanel);

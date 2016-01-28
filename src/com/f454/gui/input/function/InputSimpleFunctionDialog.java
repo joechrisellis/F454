@@ -5,6 +5,7 @@ import java.awt.Color;
 import com.f454.graph.mathobject.basic.constructed.SimpleFunction;
 import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.InputDialog;
+import com.f454.gui.input.NameAndColorPanel;
 import com.f454.gui.mainwindow.MainWindow;
 
 public class InputSimpleFunctionDialog extends InputDialog {
@@ -12,13 +13,13 @@ public class InputSimpleFunctionDialog extends InputDialog {
 	public static final String TITLE = "Input Simple Function";
 	
 	private InputSimpleFunctionBasicPanel basicPanel;
-	private InputSimpleFunctionAdvancedPanel advancedPanel;
+	private NameAndColorPanel advancedPanel;
 	
 	protected InputSimpleFunctionDialog() {
 		super(TITLE, 500);
 				
 		basicPanel = new InputSimpleFunctionBasicPanel(ok);
-		advancedPanel = new InputSimpleFunctionAdvancedPanel();
+		advancedPanel = new NameAndColorPanel();
 		
 		tabs.addTab("Basic", basicPanel);
 		tabs.addTab("Advanced", advancedPanel);

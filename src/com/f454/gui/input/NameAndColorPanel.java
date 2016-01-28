@@ -1,4 +1,4 @@
-package com.f454.gui.input.circle;
+package com.f454.gui.input;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -11,17 +11,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class InputCircleAdvancedPanel extends JPanel {
+public class NameAndColorPanel extends JPanel {
 	
 	private JTextField label;
 	private JButton changeColor;
-	private Color color;
+	private Color color = Color.RED;
 	
-	public InputCircleAdvancedPanel() {
+	public NameAndColorPanel() {
 		super();
 		setLayout(new GridLayout(2, 2));
 		
-		label = new JTextField("Circle");
+		label = new JTextField("Function");
 		changeColor = new JButton("Change Colour");
 		changeColor.addActionListener(new ActionListener() {
 			
