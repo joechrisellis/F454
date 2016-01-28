@@ -50,14 +50,7 @@ public class InputDataBasicPanel extends JScrollPane {
 		ArrayList<Point> realPoints = new ArrayList<Point>();
 		for(SinglePointInputPanel point : points) {
 			String x = point.getXVal(), y = point.getYVal();
-			
-			try {
-				realPoints.add(new Point(Double.parseDouble(x), Double.parseDouble(y)));
-			} catch(NumberFormatException e) {
-				JOptionPane.showMessageDialog(this, "Please ensure all inputted data is numeric.", "Error", JOptionPane.WARNING_MESSAGE);
-				return null;
-			}
-			
+			realPoints.add(new Point(Double.parseDouble(x), Double.parseDouble(y)));
 		}
 		
 		return realPoints;

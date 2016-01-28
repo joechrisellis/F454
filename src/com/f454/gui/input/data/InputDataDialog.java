@@ -49,19 +49,6 @@ public class InputDataDialog extends InputDialog {
 		
 		return ds;
 		
-		//TODO: write code that interprets the data in JTables and translates
-		// it to points in a data set.
-//		
-//		String expression = window.basicPanel.getData();
-//		
-//		String label = window.advancedPanel.getLabel();
-//		Color color = window.advancedPanel.getChosenColor();
-//		
-//		MainWindow m = MainWindow.getInstance();
-//		SimpleFunction f = new SimpleFunction(label, window.basicPanel.isyEquals(), expression,
-//				color, m.getGraphingPanel().getGraphingEngine().getScalingManager());
-//		
-//		return f;
 	}
 
 }

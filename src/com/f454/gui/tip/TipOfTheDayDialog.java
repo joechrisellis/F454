@@ -54,6 +54,10 @@ public class TipOfTheDayDialog extends JDialog {
 	private JButton close;
 	
 	public TipOfTheDayDialog() {
+		this(false);
+	}
+	
+	public TipOfTheDayDialog(boolean raisedExplicitly) {
 		super();
 		
 		setTitle(TITLE);
@@ -77,7 +81,8 @@ public class TipOfTheDayDialog extends JDialog {
 			
 		});
 		
-		showAtStartup = new JCheckBox("Show Tip of the Day at Startup", true);
+		boolean enabled = raisedExplicitly ? !new File(TipOfTheDayDialog.PATH).exists() : true;
+		showAtStartup = new JCheckBox("Show Tip of the Day at Startup", enabled);
 		
 		nextTip = new JButton("Next Tip");
 		nextTip.addActionListener(new ActionListener() {
@@ -122,13 +127,15 @@ public class TipOfTheDayDialog extends JDialog {
 	public void dispose() {
 		super.dispose();
 		
+		File f = new File(PATH);
 		if(!showAtStartup.isSelected()) {
-			File f = new File(PATH);
 			try {
 				f.createNewFile();
 			} catch (IOException err) {
 				err.printStackTrace();
 			}
+		} else {
+			f.delete();
 		}
 	}
 

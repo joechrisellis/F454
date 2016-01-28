@@ -1,10 +1,13 @@
 package com.f454.graph;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.f454.graph.mathobject.MathematicalObject;
+import com.f454.graph.mathobject.basic.DataSet;
+import com.f454.graph.mathobject.basic.Point;
 import com.f454.graph.mathobject.special.Axes;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.mainwindow.panel.GraphingPanel;

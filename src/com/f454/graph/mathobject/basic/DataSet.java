@@ -51,7 +51,7 @@ public class DataSet extends BasicMathematicalObject {
 		ListIterator<Point> itr = points.listIterator();
 		while(itr.hasNext()) {
 			Point p = itr.next();
-			double[] xy = sm.getCentredXandY(p.y, p.x);
+			double[] xy = sm.getCentredXandY(p.x, p.y);
 			
 			g.fillOval((int) (xy[0] - r / 2), (int) (xy[1] - r / 2), r, r);
 			
