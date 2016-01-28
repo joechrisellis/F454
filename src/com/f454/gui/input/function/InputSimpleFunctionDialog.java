@@ -19,7 +19,7 @@ public class InputSimpleFunctionDialog extends InputDialog {
 		super(TITLE, 500);
 				
 		basicPanel = new InputSimpleFunctionBasicPanel(ok);
-		advancedPanel = new NameAndColorPanel();
+		advancedPanel = new NameAndColorPanel("Function");
 		
 		tabs.addTab("Basic", basicPanel);
 		tabs.addTab("Advanced", advancedPanel);
@@ -32,7 +32,7 @@ public class InputSimpleFunctionDialog extends InputDialog {
 	/**
 	 * Raises a dialogue allowing the user to input the function and creates
 	 * a function object from the expression that they have inputed. 
-	 * @return SimpleFunction A SimpleFunction object created using the inputed expression.
+	 * @return SimpleFunction A SimpleFunction object created using the inputted expression.
 	 * @throws InputCancelledException 
 	 */
 	public static SimpleFunction getFunction() throws InputCancelledException {

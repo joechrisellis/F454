@@ -19,7 +19,7 @@ public class InputParametricEquationDialog extends InputDialog {
 		super(TITLE, 500);
 		
 		basicPanel = new InputParametricEquationBasicPanel(ok);
-		advancedPanel = new NameAndColorPanel();
+		advancedPanel = new NameAndColorPanel("Parametric Equation");
 		tabs.addTab("Basic", basicPanel);
 		tabs.addTab("Advanced", advancedPanel);
 		

@@ -22,6 +22,80 @@ import com.f454.gui.setting.SetResolutionDialogue;
 
 public class MainWindowBottomPanel extends JPanel {
 	
+	public static ActionListener addPointListener = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			DataSet d;
+			
+			try {
+				d = InputDataDialog.getData();
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().getGraphingEngine().addMathObject(d);
+			} catch(InputCancelledException err) {}
+		}
+		
+	};
+	
+	public static ActionListener addSimpleFunctionListener = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			SimpleFunction f;
+			
+			try {
+				f = InputSimpleFunctionDialog.getFunction();
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().getGraphingEngine().addMathObject(f);
+			} catch (InputCancelledException err) {}
+			
+		}
+		
+	};
+	
+	public static ActionListener addParametricListener = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			ParametricEquation parametric;
+			
+			try {
+				parametric = InputParametricEquationDialog.getEquation();
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().getGraphingEngine().addMathObject(parametric);
+			} catch (InputCancelledException err) {}
+			
+		}
+		
+	};
+	
+	public static ActionListener addCircleListener = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			Circle circle;
+			try {
+				circle = InputCircleDialog.getCircle();
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().getGraphingEngine().addMathObject(circle);
+			} catch (InputCancelledException err) {}
+		}
+		
+	};
+	
+	public static ActionListener homeListener = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			MainWindow m = MainWindow.getInstance();
+			m.getGraphingPanel().getGraphingEngine().getScalingManager().reset();
+		}
+		
+	};
+	
+	public static ActionListener settingsListener = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			new SetResolutionDialogue();
+		}
+		
+	};
+	
 	private JButton addPoint;
 	private JButton addSimpleFunction;
 	private JButton addParametric;
@@ -34,84 +108,22 @@ public class MainWindowBottomPanel extends JPanel {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		addPoint = new JButton("(x, y)");
-		addPoint.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				DataSet d;
-				
-				try {
-					d = InputDataDialog.getData();
-					MainWindow m = MainWindow.getInstance();
-					m.getGraphingPanel().getGraphingEngine().addMathObject(d);
-				} catch(InputCancelledException err) {}
-			}
-			
-		});
+		addPoint.addActionListener(addPointListener);
 		
 		addSimpleFunction = new JButton("f(x)");
-		addSimpleFunction.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				SimpleFunction f;
-				
-				try {
-					f = InputSimpleFunctionDialog.getFunction();
-					MainWindow m = MainWindow.getInstance();
-					m.getGraphingPanel().getGraphingEngine().addMathObject(f);
-				} catch (InputCancelledException err) {}
-				
-			}
-			
-		});
+		addSimpleFunction.addActionListener(addSimpleFunctionListener);
 		
 		addParametric = new JButton("x(t), y(t)");
-		addParametric.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				ParametricEquation parametric;
-				
-				try {
-					parametric = InputParametricEquationDialog.getEquation();
-					MainWindow m = MainWindow.getInstance();
-					m.getGraphingPanel().getGraphingEngine().addMathObject(parametric);
-				} catch (InputCancelledException err) {}
-				
-			}
-			
-		});
+		addParametric.addActionListener(addParametricListener);
 		
 		addCircle = new JButton("Circle");
-		addCircle.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				Circle circle;
-				try {
-					circle = InputCircleDialog.getCircle();
-					MainWindow m = MainWindow.getInstance();
-					m.getGraphingPanel().getGraphingEngine().addMathObject(circle);
-				} catch (InputCancelledException err) {}
-			}
-			
-		});
+		addCircle.addActionListener(addCircleListener);
 		
 		home = new JButton("Home");
-		home.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				MainWindow m = MainWindow.getInstance();
-				m.getGraphingPanel().getGraphingEngine().getScalingManager().reset();
-			}
-			
-		});
+		home.addActionListener(homeListener);
 		
 		raiseSettings = new JButton("Settings");
-		raiseSettings.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				new SetResolutionDialogue();
-			}
-			
-		});
+		raiseSettings.addActionListener(settingsListener);
 		
 		add(addPoint);
 		add(addSimpleFunction);

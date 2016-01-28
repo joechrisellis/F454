@@ -17,16 +17,19 @@ public class NameAndColorPanel extends JPanel {
 	private JButton changeColor;
 	private Color color = Color.RED;
 	
-	public NameAndColorPanel() {
+	public NameAndColorPanel(String initialText) {
 		super();
 		setLayout(new GridLayout(2, 2));
 		
-		label = new JTextField("Function");
+		label = new JTextField(initialText);
 		changeColor = new JButton("Change Colour");
+		changeColor.setForeground(color);
+		
 		changeColor.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				color = JColorChooser.showDialog(null, "Circle Color", Color.RED);
+				changeColor.setForeground(color);
 			}
 			
 		});

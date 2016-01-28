@@ -30,12 +30,17 @@ public class TipOfTheDayDialog extends JDialog {
 		"Press <enter> in the graphing calculator to enter a simple function.",
 		"Press <shift + enter> in the graphing calculator to enter a simple function.",
 		"Press <shift + c> in the graphing calculator to input a circle.",
-		"Check the checkbox below if you don't want to see these at startup!",
+		"Uncheck the checkbox below if you don't want to see these at startup!",
 		"Adjust the resolution using the settings dialog to fit your needs.",
 		"You can toggle the visibility of an object using the checkboxes in the left hand panel.",
 		"See additional options by right-clicking objects in the left hand panel",
 		"Right clicking the axes entry allows you to enable/disable gridlines, as well as plot the axes in terms of pi.",
 		"When inputting simple functions, try using functions such as sin, cos, tan and abs.",
+		"You can use variables such as 'pi' and 'e' when inputting simple functions and parametric equations.",
+		"Try plotting the parametric equation x(t) = t * sin(t), y(t) = t * cos(t)",
+		"You can change the colour of any mathematical object using the advanced tab in its input menu.",
+		"Hover over a mathematical object in the left-hand panel to highlight it on the graphing panel for easy recognition.",
+		"Hover over a mathematical object in the left-hand panel to see important information about it.",
 	};
 	
 	private int currentTip;

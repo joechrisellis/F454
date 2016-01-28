@@ -42,6 +42,10 @@ public class Axes extends MathematicalObject {
 			renderNumbers(g);
 		}
 		
+		if(showPiMenu.isSelected()) {
+			renderPi(g);
+		}
+		
 		int width = sm.getWidth();
 		int height = sm.getHeight();
 		
@@ -83,7 +87,7 @@ public class Axes extends MathematicalObject {
 			double[] xy = sm.getCentredXandY(k, 0);
 			
 			String label = String.format("%.2f", k);
-			g.drawString(label, (int) (xy[0]), (int) (xy[1]) + 10); // + 10 so that the numbers are under the axes
+			g.drawString(label, (int) (xy[0]), (int) (xy[1]) + 12); // + 12 so that the numbers are under the axes
 		}
 		
 		for(int y = -NUMBERS; y <= NUMBERS; y++) {
@@ -100,6 +104,21 @@ public class Axes extends MathematicalObject {
 		
 	}
 	
-	private void renderPi(Graphics2D g) {}
+	private void renderPi(Graphics2D g) {
+		g.setColor(Color.BLACK);
+		
+		for(int x = -NUMBERS; x <= NUMBERS; x++) {
+			
+			double k = (x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X)) * Math.PI;
+			double[] xy = sm.getCentredXandY(k, 0);
+			
+			String label = String.format("%.2f", k);
+			
+			// draw a line to mark where each pi is.
+			g.drawLine((int) (xy[0]), (int) (xy[1]) - 4, (int) (xy[0]), (int) (xy[1]) + 4);
+			g.drawString(label, (int) (xy[0]), (int) (xy[1]) - 5); // -5 so that the numbers are above the axes
+		}
+		
+	}
 	
 }

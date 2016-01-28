@@ -2,6 +2,7 @@ package com.f454.gui.mainwindow;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
 import java.io.File;
 
 import javax.swing.JFrame;
@@ -80,6 +81,10 @@ public class MainWindow extends JFrame {
 		if(!new File(TipOfTheDayDialog.PATH).exists()) {
 			new TipOfTheDayDialog();
 		}
+	}
+	
+	public void stop() {
+		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}
 	
 	public GraphingPanel getGraphingPanel() {

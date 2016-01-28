@@ -19,7 +19,7 @@ public class InputCircleDialog extends InputDialog {
 		super(TITLE, 600);
 		
 		basicPanel = new InputCircleBasicPanel();
-		advancedPanel = new NameAndColorPanel();
+		advancedPanel = new NameAndColorPanel("Circle");
 		
 		tabs.addTab("Basic", basicPanel);
 		tabs.addTab("Advanced", advancedPanel);
