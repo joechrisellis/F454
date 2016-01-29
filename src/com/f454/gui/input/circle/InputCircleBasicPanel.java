@@ -3,6 +3,8 @@ package com.f454.gui.input.circle;
 import java.awt.BorderLayout;
 import java.awt.Font;
 
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -27,6 +29,14 @@ public class InputCircleBasicPanel extends JPanel {
 		a = new JSpinner();
 		b = new JSpinner();
 		r = new JSpinner();
+		
+		// increase the size of each spinner
+		for(JSpinner s : new JSpinner[] {a, b, r}) {
+			JComponent editor = s.getEditor();
+			JFormattedTextField tf = ((JSpinner.DefaultEditor) editor).getTextField();
+			tf.setColumns(4);
+		}
+		
 		r.setValue(1);
 		
 		SpinnerChange change = new SpinnerChange();

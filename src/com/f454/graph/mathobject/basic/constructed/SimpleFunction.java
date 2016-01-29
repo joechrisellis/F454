@@ -16,13 +16,11 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 	protected double domainLBound, domainUBound;
 	protected double rangeLBound, rangeUBound;
 	
-	public SimpleFunction(String name, boolean yEquals, String expression, Color color,
-									ScalingManager sm) {
+	public SimpleFunction(String name, boolean yEquals, String expression,
+							Color color, ScalingManager sm) {
 		super(name, expression, color, sm);
 		this.expression = expression;
 		this.yEquals = yEquals;
-		
-		reinit();
 	}
 	
 	public void reinit() {
@@ -42,13 +40,30 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 			if(yEquals) variables.set("x", x);
 			else        variables.set("y", x);
 			
+			double e = evaluator.evaluate(expression, variables);
+			if(hasRange && (e < rangeLBound || e > rangeUBound)) {
+				continue;
+			}
+			
 			if(yEquals) {
-				points.add(new Point(x, evaluator.evaluate(expression, variables)));
+				points.add(new Point(x, e));
 			} else {
-				points.add(new Point(evaluator.evaluate(expression, variables), x));
+				points.add(new Point(e, x));
 			}
 			
 		}
+	}
+	
+	public void setDomain(double l, double u) {
+		this.hasDomain = true;
+		this.domainLBound = l;
+		this.domainUBound = u;
+	}
+	
+	public void setRange(double l, double u) {
+		this.hasRange = true;
+		this.rangeLBound = l;
+		this.rangeUBound = u;
 	}
 	
 }

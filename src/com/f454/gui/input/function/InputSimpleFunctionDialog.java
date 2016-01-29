@@ -13,15 +13,18 @@ public class InputSimpleFunctionDialog extends InputDialog {
 	public static final String TITLE = "Input Simple Function";
 	
 	private InputSimpleFunctionBasicPanel basicPanel;
+	private InputSimpleFunctionDomainPanel domainPanel;
 	private NameAndColorPanel advancedPanel;
 	
 	protected InputSimpleFunctionDialog() {
 		super(TITLE, 500);
 				
 		basicPanel = new InputSimpleFunctionBasicPanel(ok);
+		domainPanel = new InputSimpleFunctionDomainPanel();
 		advancedPanel = new NameAndColorPanel("Function");
 		
 		tabs.addTab("Basic", basicPanel);
+		tabs.addTab("Domain & Range", domainPanel);
 		tabs.addTab("Advanced", advancedPanel);
 		
 		add(tabs);
@@ -49,6 +52,16 @@ public class InputSimpleFunctionDialog extends InputDialog {
 		MainWindow m = MainWindow.getInstance();
 		SimpleFunction f = new SimpleFunction(label, window.basicPanel.isyEquals(), expression,
 				color, m.getGraphingPanel().getGraphingEngine().getScalingManager());
+		
+		if(window.domainPanel.hasDomain()) {
+			f.setDomain(window.domainPanel.getDomainLBound(), window.domainPanel.getDomainUBound());
+		}
+		
+		if(window.domainPanel.hasRange()) {
+			f.setRange(window.domainPanel.getRangeLBound(), window.domainPanel.getRangeUBound());
+		}
+		
+		f.reinit();
 		
 		return f;
 	}

@@ -13,14 +13,18 @@ public class InputParametricEquationDialog extends InputDialog {
 	public static final String TITLE = "Input Parametric Equation";
 	
 	private InputParametricEquationBasicPanel basicPanel;
+	private InputParametricEquationDomainPanel domainPanel;
 	private NameAndColorPanel advancedPanel;
 	
 	private InputParametricEquationDialog() {
 		super(TITLE, 500);
 		
 		basicPanel = new InputParametricEquationBasicPanel(ok);
+		domainPanel = new InputParametricEquationDomainPanel();
 		advancedPanel = new NameAndColorPanel("Parametric Equation");
+		
 		tabs.addTab("Basic", basicPanel);
+		tabs.addTab("Domain", domainPanel);
 		tabs.addTab("Advanced", advancedPanel);
 		
 		add(tabs);
@@ -42,13 +46,16 @@ public class InputParametricEquationDialog extends InputDialog {
 		
 		String expression1 = window.basicPanel.getExpression1();
 		String expression2 = window.basicPanel.getExpression2();
+		int tMax = window.domainPanel.getMax();
 		
 		String label = window.advancedPanel.getLabel();
 		Color color = window.advancedPanel.getChosenColor();
 		
 		MainWindow m = MainWindow.getInstance();
-		ParametricEquation p = new ParametricEquation(label, expression1, expression2,
+		ParametricEquation p = new ParametricEquation(label, expression1, expression2, tMax,
 				color, m.getGraphingPanel().getGraphingEngine().getScalingManager());
+		
+		p.reinit();
 		
 		return p;
 	}
