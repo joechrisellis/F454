@@ -118,8 +118,6 @@ public class DataSet extends BasicMathematicalObject {
 	}
 	
 	  public static double correlation(double[] xs, double[] ys) {
-		    //TODO: check here that arrays are not null, of the same length etc
-
 		    double sx = 0.0;
 		    double sy = 0.0;
 		    double sxx = 0.0;

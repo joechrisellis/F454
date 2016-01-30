@@ -16,7 +16,10 @@ public class NameAndColorPanel extends JPanel {
 	
 	private JTextField label;
 	private JButton changeColor;
-	private Color color = randomColor();
+	
+	// Automatically assign a random colour if the user chooses not to select
+	// one themselves.
+	private Color color = randomColor(null);
 	
 	public NameAndColorPanel(String initialText) {
 		super();
@@ -52,14 +55,20 @@ public class NameAndColorPanel extends JPanel {
 	}
 	
 	private static Random r = new Random();
-	private static Color randomColor() {
-		float hue = r.nextFloat();
-		// Saturation between 0.1 and 0.3
-		float saturation = (r.nextInt(2000) + 1000) / 10000f;
-		float luminance = 0.9f;
-		Color color = Color.getHSBColor(hue, saturation, luminance);
-		
-		return color;
+	private static Color randomColor(Color mix) {
+	    int red = r.nextInt(256);
+	    int green = r.nextInt(256);
+	    int blue = r.nextInt(256);
+
+	    // mix the color
+	    if (mix != null) {
+	        red = (red + mix.getRed()) / 2;
+	        green = (green + mix.getGreen()) / 2;
+	        blue = (blue + mix.getBlue()) / 2;
+	    }
+
+	    Color color = new Color(red, green, blue);
+	    return color;
 	}
 	
 }

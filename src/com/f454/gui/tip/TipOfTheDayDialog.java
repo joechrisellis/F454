@@ -43,6 +43,9 @@ public class TipOfTheDayDialog extends JDialog {
 		"You can change the colour of any mathematical object using the advanced tab in its input menu.",
 		"Hover over a mathematical object in the left-hand panel to highlight it on the graphing panel for easy recognition.",
 		"Hover over a mathematical object in the left-hand panel to see important information about it.",
+		"If you want to save a graph, don't screenshot it! Try the File->Export command.",
+		"You can change the range and domain for both parametric equations and functions using their input dialogs.",
+		"If you're unsure what a button or menu does, hover over it! Most menus have a tool tip attached.",
 	};
 	
 	private int currentTip;

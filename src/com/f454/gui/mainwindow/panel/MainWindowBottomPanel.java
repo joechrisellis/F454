@@ -108,21 +108,27 @@ public class MainWindowBottomPanel extends JPanel {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		addPoint = new JButton("(x, y)");
+		addPoint.setToolTipText("Add a data set");
 		addPoint.addActionListener(addPointListener);
 		
 		addSimpleFunction = new JButton("f(x)");
+		addSimpleFunction.setToolTipText("Add a simple function");
 		addSimpleFunction.addActionListener(addSimpleFunctionListener);
 		
 		addParametric = new JButton("x(t), y(t)");
+		addParametric.setToolTipText("Add a parametric equation");
 		addParametric.addActionListener(addParametricListener);
 		
 		addCircle = new JButton("Circle");
+		addCircle.setToolTipText("Add a circle");
 		addCircle.addActionListener(addCircleListener);
 		
 		home = new JButton("Home");
+		home.setToolTipText("Return to the default view");
 		home.addActionListener(homeListener);
 		
 		raiseSettings = new JButton("Settings");
+		raiseSettings.setToolTipText("Edit the resolution");
 		raiseSettings.addActionListener(settingsListener);
 		
 		add(addPoint);

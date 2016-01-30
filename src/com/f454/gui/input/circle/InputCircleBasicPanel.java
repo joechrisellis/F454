@@ -14,7 +14,7 @@ import javax.swing.event.ChangeListener;
 public class InputCircleBasicPanel extends JPanel {
 	
 	public static final String CARTESIAN_EQUATION = 
-			"<html><i>(x %+d)<sup>2</sup> + (y %+d)<sup>2</sup> = %d<sup>2</sup></i></html>";
+			"<html>(x %+d)<sup>2</sup> + (y %+d)<sup>2</sup> = %d<sup>2</sup></html>";
 	
 	protected JLabel label;
 	protected JSpinner a, b, r;

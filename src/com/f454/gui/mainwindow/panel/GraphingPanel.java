@@ -7,12 +7,18 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
+import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.misc.Mouse;
 
 public class GraphingPanel extends JPanel {
@@ -87,6 +93,25 @@ public class GraphingPanel extends JPanel {
 		
 		mousePrevX = mouse.getX();
 		mousePrevY = mouse.getY();
+	}
+	
+	public void export() {
+		BufferedImage bufferedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+		Graphics2D g2d = bufferedImage.createGraphics();
+		paintAll(g2d);
+		
+		try {
+			final JFileChooser fc = new JFileChooser();
+			
+			// if the user didn't cancel...
+			if(fc.showDialog(MainWindow.getInstance(), "Export") == JFileChooser.APPROVE_OPTION) {
+				File f = fc.getSelectedFile();
+				ImageIO.write(bufferedImage, "png", f);
+			}
+		} catch(IOException e) {
+			// ignore.
+		}
+		
 	}
 	
 	public GraphingEngine getGraphingEngine() {

@@ -17,7 +17,7 @@ public class Circle extends BasicMathematicalObject {
 		super(name, String.format(TOOLTIP, x, y, r), color, sm);
 		this.x = x;
 		this.y = y;
-		this.r = r;
+		this.r = Math.abs(r);
 	}
 
 	public void render(Graphics2D g) {
@@ -36,21 +36,5 @@ public class Circle extends BasicMathematicalObject {
 		
 		g.drawOval((int) (xy[0]), (int) (xy[1]), (int) (sr[0]), (int) (sr[1]));
 	}
-	
-	public void edit() {
-		
-	}
-	
-	public double getX() {
-		return x;
-	}
 
-	public double getY() {
-		return y;
-	}
-
-	public double getR() {
-		return r;
-	}
-	
 }

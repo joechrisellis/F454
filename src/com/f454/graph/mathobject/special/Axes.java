@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
@@ -15,11 +16,11 @@ import com.f454.gui.setting.SetScalingDialog;
 
 public class Axes extends MathematicalObject {
 	
-	private static final int NUMBERS = 30;
+	private static final int NUMBERS = 100;
 	
 	protected JMenuItem raiseScalingDialog;
 	protected JCheckBoxMenuItem showGridMenu;
-	protected JCheckBoxMenuItem showNumberingMenu;
+	protected JCheckBoxMenuItem showXNumberingMenu, showYNumberingMenu;
 	protected JCheckBoxMenuItem showPiMenu;
 	
 	public Axes(ScalingManager sm) {
@@ -35,13 +36,19 @@ public class Axes extends MathematicalObject {
 		});
 		
 		showGridMenu = new JCheckBoxMenuItem("Show Gridlines", true);
-		showNumberingMenu = new JCheckBoxMenuItem("Show Axes Numbering", true);
+		
+		JMenu numberingMenu = new JMenu("Axes Numbering");
+		showXNumberingMenu = new JCheckBoxMenuItem("Show numbering on x-axis", true);
+		showYNumberingMenu = new JCheckBoxMenuItem("Show numbering on y-axis", true);
+		numberingMenu.add(showXNumberingMenu);
+		numberingMenu.add(showYNumberingMenu);
+		
 		showPiMenu = new JCheckBoxMenuItem("Show Axes in terms of Pi");
 		
 		menu = new JPopupMenu();
 		menu.add(raiseScalingDialog);
 		menu.add(showGridMenu);
-		menu.add(showNumberingMenu);
+		menu.add(numberingMenu);
 		menu.add(showPiMenu);
 	}
 
@@ -53,8 +60,12 @@ public class Axes extends MathematicalObject {
 			renderGrid(g);
 		}
 		
-		if(showNumberingMenu.isSelected()) {
-			renderNumbers(g);
+		if(showXNumberingMenu.isSelected()) {
+			renderXNumbers(g);
+		}
+		
+		if(showYNumberingMenu.isSelected()) {
+			renderYNumbers(g);
 		}
 		
 		if(showPiMenu.isSelected()) {
@@ -85,7 +96,7 @@ public class Axes extends MathematicalObject {
 		
 		for(int y = -NUMBERS; y <= NUMBERS; y++) {
 			
-			double k = y / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_Y);
+			double k = y / Math.floor(sm.getyScale() / ScalingManager.GRIDLINE_CONSTANT_Y);
 			double[] xy = sm.getCentredXandY(0, k);
 			
 			g.drawLine(0, (int) (xy[1]), width, (int) (xy[1]));
@@ -93,7 +104,7 @@ public class Axes extends MathematicalObject {
 		
 	}
 	
-	private void renderNumbers(Graphics2D g) {
+	private void renderXNumbers(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		
 		for(int x = -NUMBERS; x <= NUMBERS; x++) {
@@ -104,6 +115,11 @@ public class Axes extends MathematicalObject {
 			String label = String.format("%.2f", k);
 			g.drawString(label, (int) (xy[0]), (int) (xy[1]) + 12); // + 12 so that the numbers are under the axes
 		}
+				
+	}
+	
+	private void renderYNumbers(Graphics2D g) {
+		g.setColor(Color.BLACK);
 		
 		for(int y = -NUMBERS; y <= NUMBERS; y++) {
 			
@@ -124,10 +140,13 @@ public class Axes extends MathematicalObject {
 		
 		for(int x = -NUMBERS; x <= NUMBERS; x++) {
 			
+			// rendering of the centre (0, 0) done by x-axis numbering
+			if(x == 0) continue;
+			
 			double k = (x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X)) * Math.PI;
 			double[] xy = sm.getCentredXandY(k, 0);
 			
-			String label = String.format("%.2f", k);
+			String label = String.format("%.2f\u03C0", (x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X)));
 			
 			// draw a line to mark where each pi is.
 			g.drawLine((int) (xy[0]), (int) (xy[1]) - 4, (int) (xy[0]), (int) (xy[1]) + 4);

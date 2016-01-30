@@ -18,6 +18,8 @@ public class MainWindowEditMenu extends JMenu {
 		setMnemonic(KeyEvent.VK_E);
 		
 		clear = new JMenuItem("Clear");
+		clear.setToolTipText("Delete all of the mathematical objects.");
+		
 		clear.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

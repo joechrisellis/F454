@@ -19,6 +19,14 @@ public class MainWindowFileMenu extends JMenu {
 		setMnemonic(KeyEvent.VK_F);
 		
 		export = new JMenuItem("Export");
+		export.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().export();
+			}
+			
+		});
 		
 		quit = new JMenuItem("Quit");
 		quit.addActionListener(new ActionListener() {
