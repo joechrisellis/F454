@@ -9,6 +9,7 @@ import java.util.ListIterator;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.constructed.SimpleFunction;
@@ -17,6 +18,8 @@ import com.f454.gui.mainwindow.MainWindow;
 public class DataSet extends BasicMathematicalObject {
 	
 	private static final String TOOLTIP = "%d points";
+	public static final String ERR_INSUFFICIENT_POINTS = "At least two points need to be present in a "
+													   + "data set to plot a line of best fit.";
 	
 	private ArrayList<Point> points;
 	private static final int RADIUS_NORMAL = 7, RADIUS_BOLD = (int) (RADIUS_NORMAL * 1.5);
@@ -63,6 +66,13 @@ public class DataSet extends BasicMathematicalObject {
 	}
 	
 	public void plotLineOfBestFit() {
+		
+		if(points.size() <= 1) {
+			JOptionPane.showMessageDialog(MainWindow.getInstance(), ERR_INSUFFICIENT_POINTS, "Error",
+											JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		double[] xs = new double[points.size()], ys = new double[points.size()];
 		for(int i = 0; i < points.size(); i++) {
 			xs[i] = points.get(i).x;
@@ -77,8 +87,11 @@ public class DataSet extends BasicMathematicalObject {
 		
 		String title = String.format("Line of best fit for \"%s\"", name);
 		String expression = String.format("%.2f*x + %.2f", a, b);
-		m.getGraphingPanel().getGraphingEngine().addMathObject(
-				new SimpleFunction(title, true, expression, color, sm));
+		
+		SimpleFunction f = new SimpleFunction(title, true, expression, color, sm);
+		f.reinit();
+		
+		m.getGraphingPanel().getGraphingEngine().addMathObject(f);
 	}
 	
 	public void addPoint(Point p) {

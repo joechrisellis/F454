@@ -46,6 +46,8 @@ public class InputParametricEquationBasicPanel extends JPanel {
 		add(inputExpression1);
 		add(new JLabel("y(t) = "));
 		add(inputExpression2);
+		
+		InputDialog.requestFocus(inputExpression1);
 	}
 	
 	private void checkSyntaxAndUpdateButton() {

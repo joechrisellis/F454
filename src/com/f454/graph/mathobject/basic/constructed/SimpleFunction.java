@@ -41,14 +41,12 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 			else        variables.set("y", x);
 			
 			double e = evaluator.evaluate(expression, variables);
-			if(hasRange && (e < rangeLBound || e > rangeUBound)) {
-				continue;
-			}
+			boolean outOfRange = hasRange && (e < rangeLBound || e > rangeUBound);
 			
 			if(yEquals) {
-				points.add(new Point(x, e));
+				points.add(new Point(x, e, outOfRange));
 			} else {
-				points.add(new Point(e, x));
+				points.add(new Point(e, x, outOfRange));
 			}
 			
 		}

@@ -1,11 +1,13 @@
 package com.f454.gui.input;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -81,6 +83,20 @@ public class InputDialog extends JDialog {
 		} catch(IllegalArgumentException e) {
 			return false;
 		}
+	}
+	
+	/**
+	 * Requests focus to a particular component.
+	 * @param component The component to focus.
+	 */
+	public static void requestFocus(final JComponent component) {
+		EventQueue.invokeLater(new Runnable() {
+			
+			public void run() {
+				component.requestFocus();
+			}
+			
+		});
 	}
 	
 }

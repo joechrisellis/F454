@@ -1,5 +1,6 @@
 package com.f454.gui.input.function;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,7 +29,7 @@ public class InputSimpleFunctionBasicPanel extends JPanel {
 	public InputSimpleFunctionBasicPanel(JButton ok) {
 		super();
 		
-		input = new JTextField(30);
+		input = new JTextField(30);		
 		this.ok = ok;
 		ok.setEnabled(false);
 		
@@ -69,6 +70,8 @@ public class InputSimpleFunctionBasicPanel extends JPanel {
 		add(yEquals);
 		add(xEquals);
 		add(input);
+		
+		InputDialog.requestFocus(input);
 	}
 	
 	private void checkSyntaxAndUpdateButton() {

@@ -96,4 +96,8 @@ public abstract class MathematicalObject {
 		return menu;
 	}
 	
+	public Color getColor() {
+		return color;
+	}
+	
 }

@@ -41,7 +41,10 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
 
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+		leftHeld = SwingUtilities.isLeftMouseButton(e);
+		rightHeld = SwingUtilities.isRightMouseButton(e);
+	}
 
 	public void mouseReleased(MouseEvent e) {
 		x = e.getX();

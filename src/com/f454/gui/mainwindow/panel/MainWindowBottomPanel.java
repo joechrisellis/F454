@@ -18,7 +18,7 @@ import com.f454.gui.input.data.InputDataDialog;
 import com.f454.gui.input.function.InputSimpleFunctionDialog;
 import com.f454.gui.input.parametric.InputParametricEquationDialog;
 import com.f454.gui.mainwindow.MainWindow;
-import com.f454.gui.setting.SetResolutionDialogue;
+import com.f454.gui.setting.SetResolutionDialog;
 
 public class MainWindowBottomPanel extends JPanel {
 	
@@ -91,7 +91,7 @@ public class MainWindowBottomPanel extends JPanel {
 	public static ActionListener settingsListener = new ActionListener() {
 		
 		public void actionPerformed(ActionEvent e) {
-			new SetResolutionDialogue();
+			new SetResolutionDialog();
 		}
 		
 	};

@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
 
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.MathematicalObject;
@@ -16,9 +15,18 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 	protected static final int NORMAL_WIDTH = 2, BOLD_WIDTH = NORMAL_WIDTH * 2;
 	
 	protected JMenuItem removeMenu;
+	protected JMenuItem editMenu;
 	
 	public BasicMathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {
 		super(name, tooltip, color, sm);
+		
+		editMenu = new JMenuItem("Edit");
+		editMenu.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+			}
+			
+		});
 		
 		removeMenu = new JMenuItem("Remove");
 		removeMenu.addActionListener(new ActionListener() {
@@ -31,6 +39,7 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 			
 		});
 		
+		menu.add(editMenu);
 		menu.add(removeMenu);
 	}
 	

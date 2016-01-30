@@ -16,8 +16,8 @@ public class InputCircleBasicPanel extends JPanel {
 	public static final String CARTESIAN_EQUATION = 
 			"<html><i>(x %+d)<sup>2</sup> + (y %+d)<sup>2</sup> = %d<sup>2</sup></i></html>";
 	
-	private JLabel label;
-	private JSpinner a, b, r;
+	protected JLabel label;
+	protected JSpinner a, b, r;
 	
 	public InputCircleBasicPanel() {
 		super();

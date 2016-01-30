@@ -14,7 +14,7 @@ public class InputCircleDialog extends InputDialog {
 	
 	private InputCircleBasicPanel basicPanel;
 	private NameAndColorPanel advancedPanel;
-		
+	
 	private InputCircleDialog() {
 		super(TITLE, 600);
 		

@@ -42,15 +42,19 @@ public abstract class ConstructedMathematicalObject extends BasicMathematicalObj
 		while(itr.hasNext()) {
 			Point p = itr.next();
 			
-			// Draw a line between current and previous point (if it is
-			// visible on the panel).
-			// Only start filtering out what to render and what not to when
-			// the resolution is low enough, else we will get over-cropped images.
-			if(sm.getResolution() > CROPPING_THRESHOLD || (isOnScreen(p) || isOnScreen(prev))) {
+			// This boolean says 'draw a line between current and previous point (if it is
+			// visible on the panel)'.
+			// Only start filtering out what to render and what not to when the resolution
+			// is low enough, else we will get over-cropped, buggy images.
+			boolean onScreen = sm.getResolution() > CROPPING_THRESHOLD || (isOnScreen(p) || isOnScreen(prev));
+			
+			// Also, if the point is out of the user defined range, don't draw to it.
+			if(onScreen && !p.outOfRange) {
 				drawLine(g, p, prev);
 			}
 			
 			prev = p;
+			
 		}
 	}
 	

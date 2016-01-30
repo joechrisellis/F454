@@ -13,7 +13,7 @@ import javax.swing.SpinnerNumberModel;
 
 import com.f454.gui.mainwindow.MainWindow;
 
-public class SetResolutionDialogue extends JDialog {
+public class SetResolutionDialog extends JDialog {
 	
 	public static final String TITLE = "Settings";
 	
@@ -23,7 +23,7 @@ public class SetResolutionDialogue extends JDialog {
 	private JButton setHighQualResolution;
 	private JButton setPerformanceResolution;
 	
-	public SetResolutionDialogue() {
+	public SetResolutionDialog() {
 		super();
 		
 		setTitle(TITLE);

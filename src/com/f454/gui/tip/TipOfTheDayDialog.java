@@ -27,9 +27,11 @@ public class TipOfTheDayDialog extends JDialog {
 	public static final String PATH = System.getProperty("user.home") + File.separator + ".nototd";
 	
 	private static final String TIPS[] = {
-		"Press <enter> in the graphing calculator to enter a simple function.",
+		"Press <ctrl+enter> in the graphing calculator to enter a simple function.",
 		"Press <shift + enter> in the graphing calculator to enter a simple function.",
-		"Press <shift + c> in the graphing calculator to input a circle.",
+		"Press <ctrl + c> in the graphing calculator to input a circle.",
+		"Press <ctrl + p> in the graphing calculator to input a parametric equation.",
+		"Press <ctrl + d> in the graphing calculator to input a data set.",
 		"Uncheck the checkbox below if you don't want to see these at startup!",
 		"Adjust the resolution using the settings dialog to fit your needs.",
 		"You can toggle the visibility of an object using the checkboxes in the left hand panel.",

@@ -36,6 +36,11 @@ public class InputSimpleFunctionDomainPanel extends JPanel {
 		rangeUBound.setValue(10);
 		rangeUBound.setEnabled(false);
 		
+		domainLBound.addChangeListener(new LowerBoundListener(domainLBound, domainUBound));
+		domainUBound.addChangeListener(new LowerBoundListener(domainLBound, domainUBound));
+		rangeLBound.addChangeListener(new LowerBoundListener(rangeLBound, rangeUBound));
+		rangeUBound.addChangeListener(new LowerBoundListener(rangeLBound, rangeUBound));
+		
 		// increase the length of each spinner
 		for(JSpinner s : new JSpinner[] {domainLBound, domainUBound,
 										rangeLBound, rangeUBound}) {
@@ -99,6 +104,32 @@ public class InputSimpleFunctionDomainPanel extends JPanel {
 	
 	public boolean hasRange() {
 		return hasRange.isSelected();
+	}
+	
+	private class LowerBoundListener implements ChangeListener {
+		
+		private JSpinner lower, upper;
+		
+		public LowerBoundListener(JSpinner lower, JSpinner upper) {
+			this.lower = lower;
+			this.upper = upper;
+		}
+
+		public void stateChanged(ChangeEvent e) {
+			boolean lowerPressed = e.getSource().equals(lower);
+			int l = (int) (lower.getValue());
+			int u = (int) (upper.getValue());
+			
+			if(lowerPressed && l >= u) {
+				lower.setValue(u - 1);
+			}
+			
+			if(!lowerPressed && u <= l) {
+				upper.setValue(l + 1);
+			}
+			
+		}
+		
 	}
 	
 }

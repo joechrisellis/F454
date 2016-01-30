@@ -36,5 +36,21 @@ public class Circle extends BasicMathematicalObject {
 		
 		g.drawOval((int) (xy[0]), (int) (xy[1]), (int) (sr[0]), (int) (sr[1]));
 	}
+	
+	public void edit() {
+		
+	}
+	
+	public double getX() {
+		return x;
+	}
 
+	public double getY() {
+		return y;
+	}
+
+	public double getR() {
+		return r;
+	}
+	
 }

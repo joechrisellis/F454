@@ -20,6 +20,7 @@ public class InputSimpleFunctionDialog extends InputDialog {
 		super(TITLE, 500);
 				
 		basicPanel = new InputSimpleFunctionBasicPanel(ok);
+		
 		domainPanel = new InputSimpleFunctionDomainPanel();
 		advancedPanel = new NameAndColorPanel("Function");
 		

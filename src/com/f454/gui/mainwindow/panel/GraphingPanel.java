@@ -69,6 +69,7 @@ public class GraphingPanel extends JPanel {
 	}
 	
 	private void update() {
+		
 		ScalingManager sm = graphingEngine.getScalingManager();
 		if(mouse.isLeftHeld()) {
 			sm.setxTranslation((mouse.getX() + sm.getxTranslation()) - mousePrevX);

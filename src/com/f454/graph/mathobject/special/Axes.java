@@ -2,17 +2,22 @@ package com.f454.graph.mathobject.special;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.MathematicalObject;
+import com.f454.gui.setting.SetScalingDialog;
 
 public class Axes extends MathematicalObject {
 	
 	private static final int NUMBERS = 30;
 	
+	protected JMenuItem raiseScalingDialog;
 	protected JCheckBoxMenuItem showGridMenu;
 	protected JCheckBoxMenuItem showNumberingMenu;
 	protected JCheckBoxMenuItem showPiMenu;
@@ -20,11 +25,21 @@ public class Axes extends MathematicalObject {
 	public Axes(ScalingManager sm) {
 		super("Axes", null, Color.BLACK, sm);
 		
+		raiseScalingDialog = new JMenuItem("Show Scaling Settings");
+		raiseScalingDialog.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				new SetScalingDialog();
+			}
+			
+		});
+		
 		showGridMenu = new JCheckBoxMenuItem("Show Gridlines", true);
 		showNumberingMenu = new JCheckBoxMenuItem("Show Axes Numbering", true);
 		showPiMenu = new JCheckBoxMenuItem("Show Axes in terms of Pi");
 		
 		menu = new JPopupMenu();
+		menu.add(raiseScalingDialog);
 		menu.add(showGridMenu);
 		menu.add(showNumberingMenu);
 		menu.add(showPiMenu);
@@ -95,7 +110,7 @@ public class Axes extends MathematicalObject {
 			// rendering of the centre (0, 0) done by above for loop
 			if(y == 0) continue;
 			
-			double k = y / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_Y);
+			double k = y / Math.floor(sm.getyScale() / ScalingManager.GRIDLINE_CONSTANT_Y);
 			double[] xy = sm.getCentredXandY(0, k);
 			
 			String label = String.format("%.2f", k);

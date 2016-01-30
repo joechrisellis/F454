@@ -11,7 +11,7 @@ import com.f454.graph.mathobject.basic.Point;
 import com.f454.graph.mathobject.special.Axes;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.mainwindow.panel.GraphingPanel;
-import com.f454.gui.setting.SetResolutionDialogue;
+import com.f454.gui.setting.SetResolutionDialog;
 
 /**
  * The engine powering the rendering of mathematical objects.
@@ -33,7 +33,7 @@ public class GraphingEngine {
 	public GraphingEngine(GraphingPanel graphingPanel) {
 		this.graphingPanel = graphingPanel;
 		sm = new ScalingManager(this);
-		resolution = SetResolutionDialogue.getOptimumResolution();
+		resolution = SetResolutionDialog.getOptimumResolution();
 		
 		mathObjects = new ArrayList<MathematicalObject>();
 		Axes axes = new Axes(sm);

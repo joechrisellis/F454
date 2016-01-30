@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
@@ -15,7 +16,7 @@ public class NameAndColorPanel extends JPanel {
 	
 	private JTextField label;
 	private JButton changeColor;
-	private Color color = Color.RED;
+	private Color color = randomColor();
 	
 	public NameAndColorPanel(String initialText) {
 		super();
@@ -47,6 +48,17 @@ public class NameAndColorPanel extends JPanel {
 	}
 	
 	public Color getChosenColor() {
+		return color;
+	}
+	
+	private static Random r = new Random();
+	private static Color randomColor() {
+		float hue = r.nextFloat();
+		// Saturation between 0.1 and 0.3
+		float saturation = (r.nextInt(2000) + 1000) / 10000f;
+		float luminance = 0.9f;
+		Color color = Color.getHSBColor(hue, saturation, luminance);
+		
 		return color;
 	}
 	
