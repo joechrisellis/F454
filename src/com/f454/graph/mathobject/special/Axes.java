@@ -14,8 +14,15 @@ import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.MathematicalObject;
 import com.f454.gui.setting.SetScalingDialog;
 
+/**
+ * The special mathematical object for the axes.
+ * @author Joe Ellis
+ *
+ */
 public class Axes extends MathematicalObject {
 	
+	// The number of labels to place either side of the origin for both the 
+	// x and y-axes.
 	private static final int NUMBERS = 100;
 	
 	public static final ActionListener showScalingListener = new ActionListener() {
@@ -58,18 +65,22 @@ public class Axes extends MathematicalObject {
 		
 		g.setColor(Color.LIGHT_GRAY);
 		
+		// If the user has opted to show the grid, render it.
 		if(showGridMenu.isSelected()) {
 			renderGrid(g);
 		}
 		
+		// If the user has opted to show axes number on the x-axis, render it.
 		if(showXNumberingMenu.isSelected()) {
 			renderXNumbers(g);
 		}
 		
+		// If the user has opted to show axes number on the y-axis, render it.
 		if(showYNumberingMenu.isSelected()) {
 			renderYNumbers(g);
 		}
 		
+		// If the user has opted to show axes in terms of pi, render it.
 		if(showPiMenu.isSelected()) {
 			renderPi(g);
 		}
@@ -77,6 +88,8 @@ public class Axes extends MathematicalObject {
 		int width = sm.getWidth();
 		int height = sm.getHeight();
 		
+		
+		// draw the actual axes themselves.
 		g.setColor(color);
 		double[] xy = sm.getTranslatedXandY(width / 2, height / 2);
 		g.drawLine((int) (xy[0]), 0, (int) (xy[0]), height);
@@ -91,7 +104,7 @@ public class Axes extends MathematicalObject {
 		for(int x = -NUMBERS; x <= NUMBERS; x++) {
 			
 			double k = x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X);
-			double[] xy = sm.getCentredXandY(k, 0);
+			double[] xy = sm.getFinalisedXandY(k, 0);
 			
 			g.drawLine((int) (xy[0]), 0, (int) (xy[0]), height);
 		}
@@ -99,7 +112,7 @@ public class Axes extends MathematicalObject {
 		for(int y = -NUMBERS; y <= NUMBERS; y++) {
 			
 			double k = y / Math.floor(sm.getyScale() / ScalingManager.GRIDLINE_CONSTANT_Y);
-			double[] xy = sm.getCentredXandY(0, k);
+			double[] xy = sm.getFinalisedXandY(0, k);
 			
 			g.drawLine(0, (int) (xy[1]), width, (int) (xy[1]));
 		}
@@ -112,7 +125,7 @@ public class Axes extends MathematicalObject {
 		for(int x = -NUMBERS; x <= NUMBERS; x++) {
 			
 			double k = x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X);
-			double[] xy = sm.getCentredXandY(k, 0);
+			double[] xy = sm.getFinalisedXandY(k, 0);
 			
 			String label = String.format("%.2f", k);
 			g.drawString(label, (int) (xy[0]), (int) (xy[1]) + 12); // + 12 so that the numbers are under the axes
@@ -129,7 +142,7 @@ public class Axes extends MathematicalObject {
 			if(y == 0) continue;
 			
 			double k = y / Math.floor(sm.getyScale() / ScalingManager.GRIDLINE_CONSTANT_Y);
-			double[] xy = sm.getCentredXandY(0, k);
+			double[] xy = sm.getFinalisedXandY(0, k);
 			
 			String label = String.format("%.2f", k);
 			g.drawString(label, (int) (xy[0]), (int) (xy[1]));
@@ -146,7 +159,7 @@ public class Axes extends MathematicalObject {
 			if(x == 0) continue;
 			
 			double k = (x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X)) * Math.PI;
-			double[] xy = sm.getCentredXandY(k, 0);
+			double[] xy = sm.getFinalisedXandY(k, 0);
 			
 			String label = String.format("%.2f\u03C0", (x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X)));
 			

@@ -3,7 +3,6 @@ package com.f454.gui.mainwindow;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
@@ -14,6 +13,11 @@ import com.f454.gui.mainwindow.panel.MainWindowBottomPanel;
 import com.f454.gui.mainwindow.panel.MainWindowMathObjectsPanel;
 import com.f454.gui.tip.TipOfTheDayDialog;
 
+/**
+ * The main window for the graphing calculator. Where the magic happens.
+ * @author Joe Ellis
+ *
+ */
 public class MainWindow extends JFrame {
 	
 	public static final String TITLE = "F454 Graphing Calculator";
@@ -23,13 +27,15 @@ public class MainWindow extends JFrame {
 	public static final int HEIGHT = 920;
 	public static final int WIDTH = (int) (GOLDEN_RATIO * HEIGHT);
 	
+	// The SINGLE STATIC INSTANCE of the main window. This is accessed through
+	// the method getInstance() (singleton design).
 	public static MainWindow instance = null;
 	
+	// GUI elements:
 	private MainWindowMenuBar menuBar;
 	private JSplitPane splitPane;
 	private MainWindowMathObjectsPanel mathPanel;
 	private GraphingPanel graphingPanel;
-	
 	private MainWindowBottomPanel bottomPanel;
 	
 	// private so that you can't instantiate outside of this class.
@@ -45,6 +51,10 @@ public class MainWindow extends JFrame {
 		MainWindow.getInstance().start();
 	}
 	
+	/**
+	 * Gets the single main window instance.
+	 * @return The single main window instance.
+	 */
 	public static MainWindow getInstance() {
 		if(instance == null) {
 			instance = new MainWindow();
@@ -53,12 +63,17 @@ public class MainWindow extends JFrame {
 		return instance;
 	}
 	
+	/**
+	 * Starts the graphing calculator.
+	 */
 	private void start() {
 		// this function is necessary due to the fact that we have a static instance
 		// of the main window. we want the static instance to FULLY INITIALISE (through
 		// the constructor) before we start to do anything. this is because this static
 		// instance is accessed through other objects. we don't want nullpointers.
 		
+		
+		// create the gui
 		menuBar = new MainWindowMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -78,11 +93,13 @@ public class MainWindow extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 		
-		if(!new File(TipOfTheDayDialog.PATH).exists()) {
-			new TipOfTheDayDialog();
-		}
+		// If the file ~/.nototd doesn't exist, then raise the tip of the day dialog.
+		TipOfTheDayDialog.raiseIfNecessary();
 	}
 	
+	/**
+	 * Closes the graphing calculator cleanly.
+	 */
 	public void stop() {
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 	}

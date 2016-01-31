@@ -23,6 +23,11 @@ import com.f454.gui.mainwindow.MainWindow;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
+/**
+ * Framework for the input dialogs used to input mathematical objects.
+ * @author Joe Ellis
+ *
+ */
 public abstract class InputDialog extends JDialog {
 	
 	protected JTabbedPane tabs;
@@ -110,6 +115,8 @@ public abstract class InputDialog extends JDialog {
 			validator.evaluate(expression, variables);
 			return true;
 		} catch(IllegalArgumentException e) {
+			// If an error is raised, it means that the syntax was incorrect
+			// so return false.
 			return false;
 		}
 	}

@@ -25,6 +25,8 @@ public class GraphingPanel extends JPanel {
 	
 	private GraphingEngine graphingEngine;
 	
+	// mousePrevX and mousePrevY are required for tracking the previous position
+	// of the mouse so that we can monitor how it changes.
 	private Mouse mouse;
 	private int mousePrevX, mousePrevY;
 	
@@ -43,7 +45,11 @@ public class GraphingPanel extends JPanel {
 		
 		graphingEngine = new GraphingEngine(this);
 	}
-
+	
+	/**
+	 * Starts the thread for the graphing panel. This thread renders the mathematical
+	 * objects and accepts user input through the mouse.
+	 */
 	public void start() {
 		int delay = (int) (1000 / FPS);
 		timer = new Timer(delay, new ActionListener() {
@@ -57,32 +63,50 @@ public class GraphingPanel extends JPanel {
 		timer.start();
 	}
 	
+	/**
+	 * Stops the thread for the graphing panel cleanly.
+	 */
 	public void stop() {
 		timer.stop();
 	}
-
+	
+	/**
+	 * Renders all of the mathematical objects on the graphing panel using the
+	 * graphing engine.
+	 */
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 		Graphics2D g2d = (Graphics2D) g;
+		
+		// enable antialiasing for smooth images
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
-		graphingEngine.render(g2d);
+		graphingEngine.render(g2d); // pass the g2d object to the graphing engine for rendering
 		
 		g.dispose();
 	}
 	
+	/**
+	 * Accept user input and change variables from the graphing engine's scaling
+	 * manager accordingly.
+	 */
 	private void update() {
 		
 		ScalingManager sm = graphingEngine.getScalingManager();
+		
+		// If the left mouse button is held, add the change in mouse position
+		// to the xTranslation and yTranslation variables.
 		if(mouse.isLeftHeld()) {
 			sm.setxTranslation((mouse.getX() + sm.getxTranslation()) - mousePrevX);
 			sm.setyTranslation((mouse.getY() + sm.getyTranslation()) - mousePrevY);
 		}
 		
 		int scroll = -mouse.getScroll();
+		
+		// If the scale + scroll is larger than the minimum zoom, allow zooming.
 		if(sm.getxScale() + scroll > ScalingManager.MINIMUM_ZOOM_X) {
 			sm.setxScale(sm.getxScale() + scroll);
 		}
@@ -91,10 +115,15 @@ public class GraphingPanel extends JPanel {
 			sm.setyScale(sm.getyScale() + scroll);
 		}
 		
+		// Update the previous position of the mouse ready for the next tick.
 		mousePrevX = mouse.getX();
 		mousePrevY = mouse.getY();
 	}
 	
+	/**
+	 * Raise a file chooser dialogue and export the image on the graphing panel
+	 * to the chosen file.
+	 */
 	public void export() {
 		BufferedImage bufferedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = bufferedImage.createGraphics();

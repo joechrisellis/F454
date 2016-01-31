@@ -7,11 +7,20 @@ import com.f454.graph.mathobject.basic.Point;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
+/**
+ * The mathematical object that represents a function of the form y=f(x) or x=f(y).
+ * @author Joe Ellis
+ *
+ */
 public class SimpleFunction extends ConstructedMathematicalObject {
 	
 	protected String expression;
+	
+	// If true, y=f(x)
+	// If false, x=f(y)
 	protected boolean yEquals;
 	
+	// Domain and range...
 	protected boolean hasDomain, hasRange;
 	protected double domainLBound, domainUBound;
 	protected double rangeLBound, rangeUBound;
@@ -41,6 +50,8 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 			else        variables.set("y", x);
 			
 			double e = evaluator.evaluate(expression, variables);
+			
+			// if outside of the user defined range...
 			boolean outOfRange = hasRange && (e < rangeLBound || e > rangeUBound);
 			
 			if(yEquals) {

@@ -7,6 +7,11 @@ import com.f454.graph.mathobject.basic.Point;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
+/**
+ * The mathematical object for a parametric equation.
+ * @author Joe Ellis
+ *
+ */
 public class ParametricEquation extends ConstructedMathematicalObject {
 	
 	private static final String TOOLTIP = "x(t) = %s, y(t) = %s";

@@ -143,5 +143,14 @@ public class TipOfTheDayDialog extends JDialog {
 			f.delete();
 		}
 	}
+	
+	/**
+	 * Raises the tip of the day dialog if the file ~/.nototd does NOT exist.
+	 */
+	public static void raiseIfNecessary() {
+		if(!new File(TipOfTheDayDialog.PATH).exists()) {
+			new TipOfTheDayDialog();
+		}
+	}
 
 }

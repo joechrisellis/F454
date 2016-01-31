@@ -2,18 +2,29 @@ package com.f454.graph;
 
 import com.f454.graph.mathobject.basic.Point;
 
+/**
+ * Used to manage the scaling for the graphing engine. Provides helpful
+ * functions to make everything a bit easier.
+ * @author Joe Ellis
+ *
+ */
 public class ScalingManager {
 		
+	// Constant variables require for the rendering of gridlines.
 	public static final int GRIDLINE_CONSTANT_X = 47;
 	public static final int GRIDLINE_CONSTANT_Y = GRIDLINE_CONSTANT_X;
-
+	
+	// The initial zooming for the graphing calculator.
 	public static final int INITIAL_XSCALE = GRIDLINE_CONSTANT_X;
 	public static final int INITIAL_YSCALE = INITIAL_XSCALE;
 	
+	// The minimum zooming for the graphing calculator.
 	public static final int MINIMUM_ZOOM_X = INITIAL_XSCALE;
 	public static final int MINIMUM_ZOOM_Y = INITIAL_YSCALE;
 	
+	// A reference back to the graphing engine which is using this.
 	private GraphingEngine graphingEngine;
+	
 	private double xScale, yScale;
 	private double xTranslation, yTranslation;
 	
@@ -22,6 +33,9 @@ public class ScalingManager {
 		reset();
 	}
 	
+	/**
+	 * Resets the scaling and translation to default.
+	 */
 	public void reset() {
 		xScale = INITIAL_XSCALE;
 		yScale = INITIAL_YSCALE;
@@ -29,25 +43,33 @@ public class ScalingManager {
 		yTranslation = 0;
 	}
 	
+	/**
+	 * Transforms a point according to the current scaling.
+	 * @param p The point to be transformed.
+	 * @return The transformed point.
+	 */
 	public Point transformedPoint(Point p) {
-		double[] p1 = getCentredXandY(p.x, p.y);
+		double[] p1 = getFinalisedXandY(p.x, p.y);
 		return new Point(p1[0], p1[1]);
 	}
 	
-	public double[] getCentredXandY(double x, double y, double extra) {
+	/**
+	 * Gets the transformed, centred x and y position.
+	 * @param x The x-position.
+	 * @param y The y-position.
+	 * @return A 2-element double array representing the new point.
+	 */
+	public double[] getFinalisedXandY(double x, double y) {
 		double[] xy = getTransformedXandY(x, y);
 		int w = graphingEngine.getGraphingPanel().getWidth() / 2;
 		int h = graphingEngine.getGraphingPanel().getHeight() / 2;
 		return new double[]{xy[0] + w, xy[1] + h};
 	}
 	
-	public double[] getCentredXandY(double x, double y) {
-		double[] xy = getTransformedXandY(x, y);
-		int w = graphingEngine.getGraphingPanel().getWidth() / 2;
-		int h = graphingEngine.getGraphingPanel().getHeight() / 2;
-		return new double[]{xy[0] + w, xy[1] + h};
-	}
-	
+	/**
+	 * Gets the centre of the graphing panel.
+	 * @return The centre of the graphing panel.
+	 */
 	public int[] getCentre() {
 		int w = graphingEngine.getGraphingPanel().getWidth();
 		int h = graphingEngine.getGraphingPanel().getHeight();

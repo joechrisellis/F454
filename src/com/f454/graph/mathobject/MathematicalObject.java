@@ -18,14 +18,16 @@ public abstract class MathematicalObject {
 	// how scaling will affect rendering.
 	protected ScalingManager sm;
 	
+	// Attributes that all mathematical objects will have.
 	protected String name;
 	protected String tooltip;
 	protected Color color = Color.RED;
-	
 	protected boolean removed = false;
 	protected boolean hovered = false;
 	protected boolean visible = true;
 	
+	// The menu that appears when the object is right-clicked in the mathematical
+	// objects panel.
 	protected JPopupMenu menu;
 		
 	public MathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {

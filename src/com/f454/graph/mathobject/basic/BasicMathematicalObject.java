@@ -11,8 +11,18 @@ import com.f454.graph.mathobject.MathematicalObject;
 import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 
+/**
+ * An abstract class for a mathematical object not based on drawing lines
+ * between a set of points.
+ * @author Joe Ellis
+ *
+ */
 public abstract class BasicMathematicalObject extends MathematicalObject {
 	
+	// When the object is hovered over in the mathematical objects panel, it will
+	// be highlighted on the coordinate system. These variables define how thick the
+	// stroke will be normally, and how thick the stroke will be when the mathematical
+	// object is highlighted.
 	protected static final int NORMAL_WIDTH = 2, BOLD_WIDTH = NORMAL_WIDTH * 2;
 	
 	protected JMenuItem removeMenu;
@@ -34,6 +44,9 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 		removeMenu.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				
+				// remove this mathematical object and refresh
+				// the mathematical objects panel.
 				remove();
 				MainWindow m = MainWindow.getInstance();
 				m.getMathPanel().refreshAll();

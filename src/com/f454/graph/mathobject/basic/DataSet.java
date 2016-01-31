@@ -15,13 +15,23 @@ import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.constructed.SimpleFunction;
 import com.f454.gui.mainwindow.MainWindow;
 
+/**
+ * The data set mathematical objects. In the simplest terms possible, this is
+ * a collection of points.
+ * @author Joe Ellis
+ *
+ */
 public class DataSet extends BasicMathematicalObject {
 	
+	// Used in conjunction with String.format().
 	private static final String TOOLTIP = "%d points";
+	
+	// Errors that might be raised.
 	public static final String ERR_INSUFFICIENT_POINTS = "At least two points need to be present in a "
 													   + "data set to plot a line of best fit.";
 	public static final String ERR_ALL_SAME = "The points form a horizontal/vertical line of best fit.";
 	
+	// The arraylist of all of the points.
 	private ArrayList<Point> points;
 	private static final int RADIUS_NORMAL = 7, RADIUS_BOLD = (int) (RADIUS_NORMAL * 1.5);
 	
@@ -55,7 +65,7 @@ public class DataSet extends BasicMathematicalObject {
 		ListIterator<Point> itr = points.listIterator();
 		while(itr.hasNext()) {
 			Point p = itr.next();
-			double[] xy = sm.getCentredXandY(p.x, p.y);
+			double[] xy = sm.getFinalisedXandY(p.x, p.y);
 			
 			g.fillOval((int) (xy[0] - r / 2), (int) (xy[1] - r / 2), r, r);
 			
@@ -66,13 +76,22 @@ public class DataSet extends BasicMathematicalObject {
 		}
 	}
 	
+	/**
+	 * Creates a function that is the line of best fit for this set of points and
+	 * adds it to the graphing engine.
+	 */
 	public void plotLineOfBestFit() {
 		
+		// If there's only one point (or somehow less than one point), tell the user
+		// that it's impossible to plot a line of best fit and abort.
 		if(points.size() <= 1) {
 			JOptionPane.showMessageDialog(MainWindow.getInstance(), ERR_INSUFFICIENT_POINTS, "Error",
 											JOptionPane.ERROR_MESSAGE);
 			return;
 		}
+		
+		// Check whether the points form either a vertical or horizontal line.
+		// If they do, raise an error.
 		
 		boolean allSameX = true, allSameY = true;
 		ListIterator<Point> itr = points.listIterator();
@@ -106,11 +125,11 @@ public class DataSet extends BasicMathematicalObject {
 		
 		String title = String.format("Line of best fit for \"%s\"", name);
 		String expression = String.format("%.2f*x + %.2f", a, b);
-		System.out.println(expression);
 		
 		SimpleFunction f = new SimpleFunction(title, true, expression, color, sm);
 		f.reinit();
 		
+		// Add the function that we have created to the graphing engine.
 		m.getGraphingPanel().getGraphingEngine().addMathObject(f);
 	}
 	
@@ -118,6 +137,11 @@ public class DataSet extends BasicMathematicalObject {
 		points.add(p);
 	}
 	
+	/**
+	 * Gives the arithmetic mean for an array of doubles.
+	 * @param n The array of doubles.
+	 * @return The arithmetic mean.
+	 */
 	private static double mean(double[] n) {
 		double sum = 0;
 		for(double i : n) {
@@ -127,6 +151,11 @@ public class DataSet extends BasicMathematicalObject {
 		return sum / n.length;
 	}
 	
+	/**
+	 * Gives the standard deviation for an array of doubles.
+	 * @param n The array of doubles.
+	 * @return The standard deviation.
+	 */
 	private static double deviation(double[] n) {
         double mean = mean(n);
         double v = 0;
@@ -137,36 +166,43 @@ public class DataSet extends BasicMathematicalObject {
         return Math.sqrt(v / n.length);
 	}
 	
-	  public static double correlation(double[] xs, double[] ys) {
-		    double sx = 0.0;
-		    double sy = 0.0;
-		    double sxx = 0.0;
-		    double syy = 0.0;
-		    double sxy = 0.0;
+	/**
+	 * Gives the product moment correlation coefficient (r) between two sets
+	 * of data xs and ys.
+	 * @param xs The x-set of data.
+	 * @param ys The y-set of data.
+	 * @return The product moment correlation coefficient.
+	 */
+	public static double correlation(double[] xs, double[] ys) {
+		double sx = 0.0;
+		double sy = 0.0;
+		double sxx = 0.0;
+		double syy = 0.0;
+		double sxy = 0.0;
 
-		    int n = xs.length;
+		int n = xs.length;
 
-		    for(int i = 0; i < n; ++i) {
-		      double x = xs[i];
-		      double y = ys[i];
+		for(int i = 0; i < n; ++i) {
+			double x = xs[i];
+			double y = ys[i];
+			
+			sx += x;
+			sy += y;
+			sxx += x * x;
+			syy += y * y;
+			sxy += x * y;
+		}
 
-		      sx += x;
-		      sy += y;
-		      sxx += x * x;
-		      syy += y * y;
-		      sxy += x * y;
-		    }
-
-		    // covariation
-		    double cov = sxy / n - sx * sy / n / n;
-		    // standard error of x
-		    double sigmax = Math.sqrt(sxx / n -  sx * sx / n / n);
-		    // standard error of y
-		    double sigmay = Math.sqrt(syy / n -  sy * sy / n / n);
-
-		    // correlation is just a normalized covariation
-		    return cov / sigmax / sigmay;
-		    
-	  }
+		// covariation
+		double cov = sxy / n - sx * sy / n / n;
+		// standard error of x
+		double sigmax = Math.sqrt(sxx / n -  sx * sx / n / n);
+		// standard error of y
+		double sigmay = Math.sqrt(syy / n -  sy * sy / n / n);
+		
+		// correlation is just a normalized covariation
+		return cov / sigmax / sigmay;
+		
+	}
 	
 }

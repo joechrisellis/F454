@@ -19,6 +19,7 @@ public class AboutDialog extends JDialog {
 	public static final int HEIGHT = 500;
 	public static final int WIDTH = (int) (MainWindow.GOLDEN_RATIO * HEIGHT);
 	
+	// The string to be shown in the JTextField for the about menu.
 	public static final String ABOUT = "Graphing Calculator is a piece of 2D graph plotting software developed by Joe Ellis "
 									+  "for the F454 Computing Project 2016. It was originally developed for use by the mathematics "
 									+  "department of the South Wolds Academy and Sixth Form.\n\nIt is capable of plotting functions "
@@ -44,10 +45,12 @@ public class AboutDialog extends JDialog {
 		});
 		
 		JTextArea about = new JTextArea(ABOUT);
+		
+		// enable word wrapping and increase the font size.
 		about.setEditable(false);
 		about.setLineWrap(true);
 		about.setWrapStyleWord(true);
-		about.setFont(new Font("Verdana", Font.PLAIN, 20));
+		about.setFont(new Font(null, Font.PLAIN, 20));
 		
 		JScrollPane scrollPane = new JScrollPane(about);
 		

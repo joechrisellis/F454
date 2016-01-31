@@ -12,6 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * All mathematical objects require the need to have customisable labels and
+ * colours. This panel makes the process of adding this functionality to other
+ * input boxes far easier.
+ * @author Joe Ellis
+ *
+ */
 public class NameAndColorPanel extends JPanel {
 	
 	private JTextField label;
@@ -55,6 +62,13 @@ public class NameAndColorPanel extends JPanel {
 	}
 	
 	private static Random r = new Random();
+	
+	/**
+	 * Returns an aesthetically pleasing colour using a colour
+	 * generation algorithm. 
+	 * @param mix The colour to mix with. (Optional)
+	 * @return The randomly generated colour.
+	 */
 	private static Color randomColor(Color mix) {
 	    int red = r.nextInt(256);
 	    int green = r.nextInt(256);

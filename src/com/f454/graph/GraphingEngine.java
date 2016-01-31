@@ -32,6 +32,7 @@ public class GraphingEngine {
 		sm = new ScalingManager(this);
 		resolution = SetResolutionDialog.getOptimumResolution();
 		
+		// create the list of mathematical objects and add the axes.
 		mathObjects = new ArrayList<MathematicalObject>();
 		Axes axes = new Axes(sm);
 		mathObjects.add(axes);
@@ -43,16 +44,21 @@ public class GraphingEngine {
 	 * @param g The Graphics2D object used for rendering.
 	 */
 	public void render(Graphics2D g) {
+		
+		// iterate through all of the mathematical objects...
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
 		while(itr.hasNext()) {
 			
 			MathematicalObject o = itr.next();
 			
+			// if the mathematical object o has been flagged as removed, delete
+			// it from the list of mathematical objects.
 			if(o.isRemoved()) {
 				itr.remove();
 				continue;
 			}
 			
+			// if o is visible, render it.
 			if(o.isVisible()) {
 				o.render(g);
 			}
@@ -60,17 +66,27 @@ public class GraphingEngine {
 		}
 	}
 	
+	/**
+	 * Clears the arraylist of mathematical objects (except for the axes).
+	 */
 	public void clear() {
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
 		while(itr.hasNext()) {
+			
+			// if the object isn't the axes, delete it.
 			if(itr.next() instanceof Axes) continue;
 			else itr.remove();
 		}
 		
+		// refresh the mathematical objects panel GUI element.
 		MainWindow m = MainWindow.getInstance();
 		m.getMathPanel().refreshAll();
 	}
 	
+	/**
+	 * Adds a mathematical object to the arraylist.
+	 * @param o The mathematical object to be added.
+	 */
 	public void addMathObject(MathematicalObject o) {
 		mathObjects.add(o);
 		MainWindow m = MainWindow.getInstance();
@@ -100,6 +116,8 @@ public class GraphingEngine {
 	public void setResolution(double resolution) {
 		this.resolution = resolution;
 		
+		// iterate through all of the mathematical objects and ask them
+		// to reinitialise themselves to account for the change in resolution.
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
 		while(itr.hasNext()) {
 			MathematicalObject m = itr.next();

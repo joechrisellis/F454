@@ -12,7 +12,8 @@ import com.f454.graph.mathobject.basic.BasicMathematicalObject;
 import com.f454.graph.mathobject.basic.Point;
 
 /**
- * A mathematical object that has to be constructed through creating points.
+ * A mathematical object that has to be constructed through creating points
+ * and drawing lines between them.
  * @author Joe Ellis
  */
 public abstract class ConstructedMathematicalObject extends BasicMathematicalObject {
