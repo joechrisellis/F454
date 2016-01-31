@@ -20,6 +20,7 @@ public class DataSet extends BasicMathematicalObject {
 	private static final String TOOLTIP = "%d points";
 	public static final String ERR_INSUFFICIENT_POINTS = "At least two points need to be present in a "
 													   + "data set to plot a line of best fit.";
+	public static final String ERR_ALL_SAME = "The points form a horizontal/vertical line of best fit.";
 	
 	private ArrayList<Point> points;
 	private static final int RADIUS_NORMAL = 7, RADIUS_BOLD = (int) (RADIUS_NORMAL * 1.5);
@@ -73,6 +74,24 @@ public class DataSet extends BasicMathematicalObject {
 			return;
 		}
 		
+		boolean allSameX = true, allSameY = true;
+		ListIterator<Point> itr = points.listIterator();
+		Point first = itr.next();
+		double firstX = first.x;
+		double firstY = first.y;
+		
+		while(itr.hasNext()) {
+			Point p = itr.next();
+			if(p.x != firstX) allSameX = false;
+			if(p.y != firstY) allSameY = false;
+		}
+		
+		if(allSameX || allSameY) {
+			JOptionPane.showMessageDialog(MainWindow.getInstance(), ERR_ALL_SAME, "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
 		double[] xs = new double[points.size()], ys = new double[points.size()];
 		for(int i = 0; i < points.size(); i++) {
 			xs[i] = points.get(i).x;
@@ -87,6 +106,7 @@ public class DataSet extends BasicMathematicalObject {
 		
 		String title = String.format("Line of best fit for \"%s\"", name);
 		String expression = String.format("%.2f*x + %.2f", a, b);
+		System.out.println(expression);
 		
 		SimpleFunction f = new SimpleFunction(title, true, expression, color, sm);
 		f.reinit();

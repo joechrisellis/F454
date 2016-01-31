@@ -30,19 +30,18 @@ public class InputCircleBasicPanel extends JPanel {
 		b = new JSpinner();
 		r = new JSpinner();
 		
-		// increase the size of each spinner
+		SpinnerChange change = new SpinnerChange();
+		
+		// set up each spinner
 		for(JSpinner s : new JSpinner[] {a, b, r}) {
 			JComponent editor = s.getEditor();
 			JFormattedTextField tf = ((JSpinner.DefaultEditor) editor).getTextField();
 			tf.setColumns(4);
+			
+			s.addChangeListener(change);
 		}
 		
 		r.setValue(1);
-		
-		SpinnerChange change = new SpinnerChange();
-		a.addChangeListener(change);
-		b.addChangeListener(change);
-		r.addChangeListener(change);
 		
 		JPanel panel = new JPanel();
 		panel.add(new JLabel("a: "));

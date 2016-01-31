@@ -11,11 +11,11 @@ import javax.swing.event.ChangeListener;
 
 public class InputSimpleFunctionDomainPanel extends JPanel {
 	
-	private JCheckBox hasDomain;
-	private JSpinner domainLBound, domainUBound;
+	protected JCheckBox hasDomain;
+	protected JSpinner domainLBound, domainUBound;
 	
-	private JCheckBox hasRange;
-	private JSpinner rangeLBound, rangeUBound;
+	protected JCheckBox hasRange;
+	protected JSpinner rangeLBound, rangeUBound;
 	
 	public InputSimpleFunctionDomainPanel() {
 		super();

@@ -1,6 +1,5 @@
 package com.f454.gui.input.function;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,11 +16,11 @@ import com.fathzer.soft.javaluator.StaticVariableSet;
 
 public class InputSimpleFunctionBasicPanel extends JPanel {
 	
-	private JRadioButton yEquals;
-	private JRadioButton xEquals;
+	protected JRadioButton yEquals;
+	protected JRadioButton xEquals;
 	
-	private JTextField input;
-	private JButton ok;
+	protected JTextField input;
+	protected JButton ok;
 	
 	// Constructor accepts a JButton 'ok' as a parameter.
 	// This is so that we can enable it and disable it according
@@ -29,9 +28,14 @@ public class InputSimpleFunctionBasicPanel extends JPanel {
 	public InputSimpleFunctionBasicPanel(JButton ok) {
 		super();
 		
-		input = new JTextField(30);		
 		this.ok = ok;
 		ok.setEnabled(false);
+		
+		input = new JTextField(30);
+		
+		// set the action listener for the input field to the
+		// action listener for the 'ok' button.
+		input.addActionListener(ok.getActionListeners()[0]);
 		
 		ButtonGroup g = new ButtonGroup();
 		yEquals = new JRadioButton("y = ", true);

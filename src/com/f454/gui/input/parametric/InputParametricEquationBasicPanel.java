@@ -18,10 +18,16 @@ public class InputParametricEquationBasicPanel extends JPanel {
 	public InputParametricEquationBasicPanel(JButton ok) {
 		super();
 		
-		inputExpression1 = new JTextField(38);
-		inputExpression2 = new JTextField(38);
 		this.ok = ok;
 		ok.setEnabled(false);
+		
+		inputExpression1 = new JTextField(38);
+		inputExpression2 = new JTextField(38);
+		
+		// set the action listener for the input field to the
+		// action listener for the 'ok' button.
+		inputExpression1.addActionListener(ok.getActionListeners()[0]);
+		inputExpression2.addActionListener(ok.getActionListeners()[0]);
 		
 		DocumentListener l = new DocumentListener() {
 			

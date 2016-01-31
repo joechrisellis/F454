@@ -18,6 +18,14 @@ public class Axes extends MathematicalObject {
 	
 	private static final int NUMBERS = 100;
 	
+	public static final ActionListener showScalingListener = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			new SetScalingDialog();
+		}
+		
+	};
+	
 	protected JMenuItem raiseScalingDialog;
 	protected JCheckBoxMenuItem showGridMenu;
 	protected JCheckBoxMenuItem showXNumberingMenu, showYNumberingMenu;
@@ -27,13 +35,7 @@ public class Axes extends MathematicalObject {
 		super("Axes", null, Color.BLACK, sm);
 		
 		raiseScalingDialog = new JMenuItem("Show Scaling Settings");
-		raiseScalingDialog.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				new SetScalingDialog();
-			}
-			
-		});
+		raiseScalingDialog.addActionListener(showScalingListener);
 		
 		showGridMenu = new JCheckBoxMenuItem("Show Gridlines", true);
 		

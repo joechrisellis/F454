@@ -8,6 +8,7 @@ import javax.swing.JMenuItem;
 
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.MathematicalObject;
+import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 
 public abstract class BasicMathematicalObject extends MathematicalObject {
@@ -24,6 +25,7 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 		editMenu.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				edit();
 			}
 			
 		});
@@ -41,6 +43,10 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 		
 		menu.add(editMenu);
 		menu.add(removeMenu);
+	}
+	
+	private void edit() {
+		InputDialog.edit(this);
 	}
 	
 }

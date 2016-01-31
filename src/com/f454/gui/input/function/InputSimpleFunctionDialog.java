@@ -17,6 +17,10 @@ public class InputSimpleFunctionDialog extends InputDialog {
 	private NameAndColorPanel advancedPanel;
 	
 	protected InputSimpleFunctionDialog() {
+		this(null);
+	}
+	
+	protected InputSimpleFunctionDialog(SimpleFunction f) {
 		super(TITLE, 500);
 				
 		basicPanel = new InputSimpleFunctionBasicPanel(ok);
@@ -29,6 +33,16 @@ public class InputSimpleFunctionDialog extends InputDialog {
 		tabs.addTab("Advanced", advancedPanel);
 		
 		add(tabs);
+		
+		// If an object has been passed in, we are expected to 
+		// recreate the window for editing.
+		if(f != null) {
+			basicPanel.input.setText(f.getExpression());
+			basicPanel.yEquals.setSelected(f.isyEquals());
+			basicPanel.xEquals.setSelected(!f.isyEquals());
+			domainPanel.hasDomain.setSelected(f.hasDomain());
+			
+		}
 		
 		setVisible(true);
 	}
@@ -65,6 +79,13 @@ public class InputSimpleFunctionDialog extends InputDialog {
 		f.reinit();
 		
 		return f;
+	}
+	
+	public static void editFunction(SimpleFunction f) throws InputCancelledException {
+		InputSimpleFunctionDialog window = new InputSimpleFunctionDialog(f);
+		if(window.wasCancelled()) {
+			throw new InputCancelledException("Input of function cancelled.");
+		}
 	}
 	
 }

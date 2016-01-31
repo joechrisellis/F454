@@ -52,6 +52,18 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 		}
 	}
 	
+	public boolean isyEquals() {
+		return yEquals;
+	}
+	
+	public boolean hasDomain() {
+		return hasDomain;
+	}
+	
+	public boolean hasRange() {
+		return hasRange;
+	}
+	
 	public void setDomain(double l, double u) {
 		this.hasDomain = true;
 		this.domainLBound = l;
