@@ -13,12 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import com.f454.graph.mathobject.basic.BasicMathematicalObject;
-import com.f454.graph.mathobject.basic.Circle;
-import com.f454.graph.mathobject.basic.DataSet;
-import com.f454.graph.mathobject.basic.constructed.ParametricEquation;
-import com.f454.graph.mathobject.basic.constructed.SimpleFunction;
-import com.f454.gui.input.function.InputSimpleFunctionDialog;
 import com.f454.gui.mainwindow.MainWindow;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
@@ -86,20 +80,6 @@ public abstract class InputDialog extends JDialog {
 	
 	public boolean wasCancelled() {
 		return !okPressed;
-	}
-	
-	public static void edit(BasicMathematicalObject o) {
-		if(o instanceof SimpleFunction) {
-			try {
-				InputSimpleFunctionDialog.editFunction((SimpleFunction) (o));
-			} catch (InputCancelledException e) {}
-		} else if(o instanceof DataSet) {
-			
-		} else if(o instanceof ParametricEquation) {
-			
-		} else if(o instanceof Circle) {
-			
-		}
 	}
 	
 	private static DoubleEvaluator validator = new DoubleEvaluator();

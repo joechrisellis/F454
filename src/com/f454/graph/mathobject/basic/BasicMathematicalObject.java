@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JColorChooser;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.MathematicalObject;
@@ -25,19 +27,28 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 	// object is highlighted.
 	protected static final int NORMAL_WIDTH = 2, BOLD_WIDTH = NORMAL_WIDTH * 2;
 	
+	protected JMenuItem changeLabelMenu;
+	protected JMenuItem changeColorMenu;
 	protected JMenuItem removeMenu;
-	protected JMenuItem editMenu;
 	
 	public BasicMathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {
 		super(name, tooltip, color, sm);
 		
-		editMenu = new JMenuItem("Edit");
-		editMenu.addActionListener(new ActionListener() {
+		changeLabelMenu = new JMenuItem("Change Label");
+		changeLabelMenu.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				edit();
+				changeLabel();
 			}
 			
+		});
+		
+		changeColorMenu = new JMenuItem("Change Colour");
+		changeColorMenu.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				changeColor();
+			}
 		});
 		
 		removeMenu = new JMenuItem("Remove");
@@ -54,12 +65,22 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 			
 		});
 		
-		menu.add(editMenu);
+		menu.add(changeLabelMenu);
+		menu.add(changeColorMenu);
 		menu.add(removeMenu);
 	}
 	
-	private void edit() {
-		InputDialog.edit(this);
+	private void changeLabel() {
+		String newLabel = JOptionPane.showInputDialog(null, "Enter a new label: ", "Change Label",
+											JOptionPane.QUESTION_MESSAGE);
+		name = newLabel;
+		
+		MainWindow m = MainWindow.getInstance();
+		m.getMathPanel().refreshAll();
+	}
+	
+	private void changeColor() {
+		color = JColorChooser.showDialog(null, "Colour", Color.RED);
 	}
 	
 }

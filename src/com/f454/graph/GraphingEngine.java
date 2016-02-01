@@ -6,6 +6,7 @@ import java.util.ListIterator;
 
 import com.f454.graph.mathobject.MathematicalObject;
 import com.f454.graph.mathobject.special.Axes;
+import com.f454.graph.mathobject.special.Key;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.mainwindow.panel.GraphingPanel;
 import com.f454.gui.setting.SetResolutionDialog;
@@ -26,6 +27,7 @@ public class GraphingEngine {
 	
 	// A resizing array of all of the mathematical objects, visible or invisible.
 	private ArrayList<MathematicalObject> mathObjects;
+	private Key key;
 	
 	public GraphingEngine(GraphingPanel graphingPanel) {
 		this.graphingPanel = graphingPanel;
@@ -36,6 +38,10 @@ public class GraphingEngine {
 		mathObjects = new ArrayList<MathematicalObject>();
 		Axes axes = new Axes(sm);
 		mathObjects.add(axes);
+		
+		key = new Key(mathObjects);
+		mathObjects.add(key);
+		
 	}
 	
 
@@ -64,6 +70,7 @@ public class GraphingEngine {
 			}
 			
 		}
+		
 	}
 	
 	/**
@@ -74,7 +81,7 @@ public class GraphingEngine {
 		while(itr.hasNext()) {
 			
 			// if the object isn't the axes, delete it.
-			if(itr.next() instanceof Axes) continue;
+			if(!itr.next().isRemovable()) continue;
 			else itr.remove();
 		}
 		
@@ -107,6 +114,10 @@ public class GraphingEngine {
 
 	public void setMathObjects(ArrayList<MathematicalObject> mathObjects) {
 		this.mathObjects = mathObjects;
+	}
+	
+	public Key getKey() {
+		return key;
 	}
 	
 	public double getResolution() {

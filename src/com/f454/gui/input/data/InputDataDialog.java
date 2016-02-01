@@ -5,7 +5,7 @@ import java.awt.Color;
 import com.f454.graph.mathobject.basic.DataSet;
 import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.InputDialog;
-import com.f454.gui.input.NameAndColorPanel;
+import com.f454.gui.input.LabelAndColorPanel;
 import com.f454.gui.mainwindow.MainWindow;
 
 public class InputDataDialog extends InputDialog {
@@ -13,13 +13,13 @@ public class InputDataDialog extends InputDialog {
 	public static final String TITLE = "Input Data";
 	
 	private InputDataBasicPanel basicPanel;
-	private NameAndColorPanel advancedPanel;
+	private LabelAndColorPanel advancedPanel;
 	
 	public InputDataDialog() {
 		super(TITLE, 500);
 		
 		basicPanel = new InputDataBasicPanel(ok);
-		advancedPanel = new NameAndColorPanel("Data Set");
+		advancedPanel = new LabelAndColorPanel("Data Set");
 		
 		tabs.addTab("Basic", basicPanel);
 		tabs.addTab("Advanced", advancedPanel);

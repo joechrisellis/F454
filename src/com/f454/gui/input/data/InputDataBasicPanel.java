@@ -7,7 +7,6 @@ import java.util.ListIterator;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -83,7 +82,9 @@ public class InputDataBasicPanel extends JScrollPane {
 		panel.add(add);
 		
 		panel.revalidate();
-		panel.repaint();
+		panel.repaint();		
+		revalidate();
+		repaint();
 	}
 	
 	public void updateOkButton() {

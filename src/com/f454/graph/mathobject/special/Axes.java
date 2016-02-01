@@ -40,6 +40,7 @@ public class Axes extends MathematicalObject {
 	
 	public Axes(ScalingManager sm) {
 		super("Axes", null, Color.BLACK, sm);
+		this.removable = false;
 		
 		raiseScalingDialog = new JMenuItem("Show Scaling Settings");
 		raiseScalingDialog.addActionListener(showScalingListener);

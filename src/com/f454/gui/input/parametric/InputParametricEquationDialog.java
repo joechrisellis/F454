@@ -5,7 +5,7 @@ import java.awt.Color;
 import com.f454.graph.mathobject.basic.constructed.ParametricEquation;
 import com.f454.gui.input.InputCancelledException;
 import com.f454.gui.input.InputDialog;
-import com.f454.gui.input.NameAndColorPanel;
+import com.f454.gui.input.LabelAndColorPanel;
 import com.f454.gui.mainwindow.MainWindow;
 
 public class InputParametricEquationDialog extends InputDialog {
@@ -14,14 +14,14 @@ public class InputParametricEquationDialog extends InputDialog {
 	
 	private InputParametricEquationBasicPanel basicPanel;
 	private InputParametricEquationDomainPanel domainPanel;
-	private NameAndColorPanel advancedPanel;
+	private LabelAndColorPanel advancedPanel;
 	
 	private InputParametricEquationDialog() {
 		super(TITLE, 500);
 		
 		basicPanel = new InputParametricEquationBasicPanel(ok);
 		domainPanel = new InputParametricEquationDomainPanel();
-		advancedPanel = new NameAndColorPanel("Parametric Equation");
+		advancedPanel = new LabelAndColorPanel("Parametric Equation");
 		
 		tabs.addTab("Basic", basicPanel);
 		tabs.addTab("Domain", domainPanel);

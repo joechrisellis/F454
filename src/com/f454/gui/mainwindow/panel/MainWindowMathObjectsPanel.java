@@ -42,14 +42,14 @@ public class MainWindowMathObjectsPanel extends JScrollPane {
 			// the list in the future.
 			if(o.isRemoved()) continue;
 			
-			MathematicalObjectCheckbox c = new MathematicalObjectCheckbox(o.getName(), o);
+			MathematicalObjectCheckbox c = new MathematicalObjectCheckbox(o.getLabel(), o);
 			panel.add(c);
 		}
 		
 	}
 	
 	public void addMathObject(MathematicalObject o) {
-		MathematicalObjectCheckbox c = new MathematicalObjectCheckbox(o.getName(), o);
+		MathematicalObjectCheckbox c = new MathematicalObjectCheckbox(o.getLabel(), o);
 		panel.add(c);
 		refresh();
 	}

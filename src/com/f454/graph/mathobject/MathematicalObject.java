@@ -22,6 +22,8 @@ public abstract class MathematicalObject {
 	protected String name;
 	protected String tooltip;
 	protected Color color = Color.RED;
+	
+	protected boolean removable = true;
 	protected boolean removed = false;
 	protected boolean hovered = false;
 	protected boolean visible = true;
@@ -52,11 +54,11 @@ public abstract class MathematicalObject {
 	 */
 	public void reinit() {}
 	
-	public String getName() {
+	public String getLabel() {
 		return name;
 	}
 	
-	public void setName(String name) {
+	public void setLabel(String name) {
 		this.name = name;
 	}
 	
@@ -76,6 +78,9 @@ public abstract class MathematicalObject {
 		this.visible = visible;
 	}
 	
+	public boolean isRemovable() {
+		return removable;
+	}
 	
 	public boolean isRemoved() {
 		return removed;

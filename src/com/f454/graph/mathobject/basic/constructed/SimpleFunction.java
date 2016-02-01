@@ -14,6 +14,9 @@ import com.fathzer.soft.javaluator.StaticVariableSet;
  */
 public class SimpleFunction extends ConstructedMathematicalObject {
 	
+	// This tooltip will be used in conjunction with String.format().
+	private static final String TOOLTIP = "%s = %s";
+	
 	protected String expression;
 	
 	// If true, y=f(x)
@@ -24,10 +27,10 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 	protected boolean hasDomain, hasRange;
 	protected double domainLBound, domainUBound;
 	protected double rangeLBound, rangeUBound;
-	
+		
 	public SimpleFunction(String name, boolean yEquals, String expression,
 							Color color, ScalingManager sm) {
-		super(name, expression, color, sm);
+		super(name, String.format(TOOLTIP, (yEquals ? "y" : "x"), expression), color, sm);
 		this.expression = expression;
 		this.yEquals = yEquals;
 	}

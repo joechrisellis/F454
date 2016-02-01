@@ -19,16 +19,16 @@ import javax.swing.JTextField;
  * @author Joe Ellis
  *
  */
-public class NameAndColorPanel extends JPanel {
+public class LabelAndColorPanel extends JPanel {
 	
 	private JTextField label;
 	private JButton changeColor;
 	
-	// Automatically assign a random colour if the user chooses not to select
+	// Automatically assign a random colour just in case the user chooses not to select
 	// one themselves.
 	private Color color = randomColor(null);
 	
-	public NameAndColorPanel(String initialText) {
+	public LabelAndColorPanel(String initialText) {
 		super();
 		setLayout(new GridLayout(2, 2));
 		
@@ -39,7 +39,7 @@ public class NameAndColorPanel extends JPanel {
 		changeColor.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				color = JColorChooser.showDialog(null, "Circle Color", Color.RED);
+				color = JColorChooser.showDialog(null, "Colour", Color.RED);
 				changeColor.setForeground(color);
 			}
 			
