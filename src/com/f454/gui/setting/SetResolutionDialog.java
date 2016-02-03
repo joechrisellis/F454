@@ -130,7 +130,6 @@ public class SetResolutionDialog extends JDialog {
 		// Guard clause: if this method has been run, just return the last value
 		// that it found. HotSpot will optimise this method if it detects that it
 		// is being run more than once, so it is important to benchmark only once.
-		// There probably is a better way to do this, but it works, so eh.
 		if(processingPower > 0) {
 			return processingPower;
 		}
