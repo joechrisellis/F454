@@ -40,7 +40,11 @@ public class LabelAndColorPanel extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				color = JColorChooser.showDialog(null, "Colour", Color.RED);
-				changeColor.setForeground(color);
+				
+				if(color != null) {
+					changeColor.setForeground(color);
+				}
+				
 			}
 			
 		});

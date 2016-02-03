@@ -25,7 +25,7 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 	// be highlighted on the coordinate system. These variables define how thick the
 	// stroke will be normally, and how thick the stroke will be when the mathematical
 	// object is highlighted.
-	protected static final int NORMAL_WIDTH = 2, BOLD_WIDTH = NORMAL_WIDTH * 2;
+	protected static final int NORMAL_WIDTH = 3, BOLD_WIDTH = NORMAL_WIDTH * 2;
 	
 	protected JMenuItem changeLabelMenu;
 	protected JMenuItem changeColorMenu;
@@ -73,14 +73,21 @@ public abstract class BasicMathematicalObject extends MathematicalObject {
 	private void changeLabel() {
 		String newLabel = JOptionPane.showInputDialog(null, "Enter a new label: ", "Change Label",
 											JOptionPane.QUESTION_MESSAGE);
-		name = newLabel;
+		newLabel = newLabel.trim();
 		
-		MainWindow m = MainWindow.getInstance();
-		m.getMathPanel().refreshAll();
+		if(newLabel != null && newLabel.length() >= 1) {
+			name = newLabel;
+			MainWindow m = MainWindow.getInstance();
+			m.getMathPanel().refreshAll();
+		}
+		
 	}
 	
 	private void changeColor() {
-		color = JColorChooser.showDialog(null, "Colour", Color.RED);
+		Color c = JColorChooser.showDialog(null, "Colour", Color.RED);
+		if(c != null) {
+			color = c;
+		}
 	}
 	
 }
