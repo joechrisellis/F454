@@ -1,6 +1,7 @@
 package com.f454.graph.mathobject.special;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,8 @@ public class Axes extends MathematicalObject {
 	
 	// The number of labels to place either side of the origin for both the 
 	// x and y-axes.
-	private static final int NUMBERS = 100;
+	public static final int NUMBERS = 500;
+	private static final Font FONT = new Font(null, Font.PLAIN, 10);
 	
 	public static final ActionListener showScalingListener = new ActionListener() {
 		
@@ -65,6 +67,7 @@ public class Axes extends MathematicalObject {
 	public void render(Graphics2D g) {
 		
 		g.setColor(Color.LIGHT_GRAY);
+		g.setFont(FONT);
 		
 		// If the user has opted to show the grid, render it.
 		if(showGridMenu.isSelected()) {

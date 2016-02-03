@@ -33,7 +33,7 @@ public class InputParametricEquationDialog extends InputDialog {
 	}
 	
 	/**
-	 * Raises a dialogue allowing the user to input the equations and creates
+	 * Raises a dialog allowing the user to input the equations and creates
 	 * a parametric equation object from the expressions that they have inputed. 
 	 * @return SimpleFunctionYEquals A parametric equation object created using the inputed expressions.
 	 * @throws InputCancelledException 

@@ -16,8 +16,11 @@ import com.f454.graph.mathobject.basic.BasicMathematicalObject;
  */
 public class Key extends MathematicalObject {
 	
+	// Make the font for the key BOLD and SIZE 12.
 	private static final Font FONT = new Font(null, Font.BOLD, 12);
 	
+	// Keep a reference to the graphing engine's math objects so that we can
+	// update the key easily.
 	private ArrayList<MathematicalObject> mathObjects;
 	
 	public Key(ArrayList<MathematicalObject> mathObjects) {
@@ -28,6 +31,7 @@ public class Key extends MathematicalObject {
 		this.removable = false;
 	}
 	
+	// Variables to do with the positioning of the key. 
 	private static final int X = 30;
 	private static final int Y = -17;
 	private static final int Y_STEP = 17;

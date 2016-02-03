@@ -15,46 +15,46 @@ import javax.swing.SwingUtilities;
  */
 public class Mouse implements MouseListener, MouseMotionListener, MouseWheelListener {
 	
+	// The x and y position of the mouse, and the scrolls since the last tick.
+	// All volatile because they are likely to be accessed by different threads.
 	private volatile int x, y;
 	private volatile int scroll;
 	
+	// These booleans indicate to the graphing panel whether or not the user is
+	// holding down the mouse buttons.
 	private boolean leftHeld, rightHeld;
 	
-	public void mouseDragged(MouseEvent e) {
+	/**
+	 * Update the position of the mouse and the state of the buttons.
+	 * @param e The MouseEvent to glean mouse information from.
+	 */
+	private void update(MouseEvent e) {
 		x = e.getX();
 		y = e.getY();
 		leftHeld = SwingUtilities.isLeftMouseButton(e);
 		rightHeld = SwingUtilities.isRightMouseButton(e);
 	}
-
+	
+	public void mouseDragged(MouseEvent e) {
+		update(e);
+	}
+	
 	public void mouseMoved(MouseEvent e) {
-		x = e.getX();
-		y = e.getY();
+		update(e);
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		x = e.getX();
-		y = e.getY();
-		leftHeld = SwingUtilities.isLeftMouseButton(e);
-		rightHeld = SwingUtilities.isRightMouseButton(e);
+		update(e);
 	}
 
 	public void mouseEntered(MouseEvent e) {}
 	public void mouseExited(MouseEvent e) {}
 	public void mousePressed(MouseEvent e) {
-		leftHeld = SwingUtilities.isLeftMouseButton(e);
-		rightHeld = SwingUtilities.isRightMouseButton(e);
+		update(e);
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		x = e.getX();
-		y = e.getY();
-		
-		if(SwingUtilities.isLeftMouseButton(e)) {
-			leftHeld = false;
-		} else {
-			rightHeld = false;
-		}
+		update(e);
 	}
 
 	public void mouseWheelMoved(MouseWheelEvent e) {

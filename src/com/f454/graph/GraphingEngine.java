@@ -123,7 +123,12 @@ public class GraphingEngine {
 	public double getResolution() {
 		return resolution;
 	}
-
+	
+	/**
+	 * Sets a new value for the resolution and updates all of the mathematical
+	 * objects to account for the change.
+	 * @param resolution
+	 */
 	public void setResolution(double resolution) {
 		this.resolution = resolution;
 		

@@ -13,6 +13,11 @@ import javax.swing.JTextArea;
 
 import com.f454.gui.mainwindow.MainWindow;
 
+/**
+ * The 'about' user interface, giving general info about the graphing calculator.
+ * @author joe
+ *
+ */
 public class AboutDialog extends JDialog {
 	
 	public static final String TITLE = "About";
@@ -50,7 +55,7 @@ public class AboutDialog extends JDialog {
 		about.setEditable(false);
 		about.setLineWrap(true);
 		about.setWrapStyleWord(true);
-		about.setFont(new Font(null, Font.PLAIN, 20));
+		about.setFont(new Font(null, Font.PLAIN, 16));
 		
 		JScrollPane scrollPane = new JScrollPane(about);
 		
