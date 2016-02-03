@@ -29,7 +29,7 @@ public class InputDataDialog extends InputDialog {
 	}
 	
 	/**
-	 * Raises a dialogue allowing the user to input the function and creates
+	 * Raises a dialog allowing the user to input the function and creates
 	 * a function object from the expression that they have inputed. 
 	 * @return SimpleFunction A SimpleFunction object created using the inputed expression.
 	 * @throws InputCancelledException 

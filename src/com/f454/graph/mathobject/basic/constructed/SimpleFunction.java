@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.Point;
-import com.fathzer.soft.javaluator.DoubleEvaluator;
+import com.f454.graph.mathobject.special.Axes;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
 /**
@@ -39,12 +39,9 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 		super.reinit();
 		
 		int w = sm.getCentre()[0];
-		double lower = hasDomain ? domainLBound : -w;
-		double upper = hasDomain ? domainUBound : w;
+		double lower = hasDomain ? domainLBound : -Axes.NUMBERS;
+		double upper = hasDomain ? domainUBound : Axes.NUMBERS;
 		
-		// Evaluator object and variable set for evaluating the user
-		// inputed expression.
-		DoubleEvaluator evaluator = new DoubleEvaluator();
 		StaticVariableSet<Double> variables = new StaticVariableSet<Double>();
 		
 		// Iterate through all of the values of x.
@@ -52,7 +49,15 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 			if(yEquals) variables.set("x", x);
 			else        variables.set("y", x);
 			
-			double e = evaluator.evaluate(expression, variables);
+			double e;
+			
+			// try to evaluate the user's expression
+			try {
+				e = ConstructedMathematicalObject.evaluate(expression, variables);
+			} catch(IllegalArgumentException err) {
+				// if we can't, skip this point.
+				continue;
+			}
 			
 			// if outside of the user defined range...
 			boolean outOfRange = hasRange && (e < rangeLBound || e > rangeUBound);

@@ -13,6 +13,12 @@ import javax.swing.SpinnerNumberModel;
 
 import com.f454.gui.mainwindow.MainWindow;
 
+/**
+ * The dialog that the user can use to change the resolution used by the
+ * graphing engine.
+ * @author Joe Ellis
+ *
+ */
 public class SetResolutionDialog extends JDialog {
 	
 	public static final String TITLE = "Settings";
@@ -34,7 +40,7 @@ public class SetResolutionDialog extends JDialog {
 		add(new JLabel("Resolution Settings"));
 		
 		resolutionSpinner = new JSpinner(
-			new SpinnerNumberModel(0.01, 0.01, 5, 0.01)
+			new SpinnerNumberModel(0.01, 0.001, 5, 0.001)
 		);
 		
 		MainWindow m = MainWindow.getInstance();

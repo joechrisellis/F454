@@ -18,6 +18,12 @@ import javax.swing.SpinnerNumberModel;
 import com.f454.graph.ScalingManager;
 import com.f454.gui.mainwindow.MainWindow;
 
+/**
+ * The dialog that the user can use to change the scaling of the axes relative
+ * to one another.
+ * @author Joe Ellis
+ *
+ */
 public class SetScalingDialog extends JDialog {
 	
 	public static final String TITLE = "Axes Scaling Settings";

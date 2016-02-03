@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.Point;
-import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
 /**
@@ -32,16 +31,24 @@ public class ParametricEquation extends ConstructedMathematicalObject {
 		
 		// Evaluator object and variable set for evaluating the user
 		// inputed expression.
-		DoubleEvaluator evaluator = new DoubleEvaluator();
 		StaticVariableSet<Double> variables = new StaticVariableSet<Double>();
 		
 		// Iterate through all of the values of x.
 		for(double t = lower; t < tMax; t += sm.getResolution()) {
 			variables.set("t", t);
 			
-			double x = evaluator.evaluate(expression1, variables);
-			double y = evaluator.evaluate(expression2, variables);
-			super.points.add(new Point(x, y));
+			double x, y;
+			
+			// try to evaluate the user's expressions
+			try {
+				x = ConstructedMathematicalObject.evaluate(expression1, variables);
+				y = ConstructedMathematicalObject.evaluate(expression2, variables);
+			} catch(IllegalArgumentException err) {
+				// if we can't, skip this value of t.
+				continue;
+			}
+			
+			points.add(new Point(x, y));
 		}
 	}
 	

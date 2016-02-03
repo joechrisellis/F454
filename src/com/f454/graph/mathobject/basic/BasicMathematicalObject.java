@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
 
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.MathematicalObject;
-import com.f454.gui.input.InputDialog;
 import com.f454.gui.mainwindow.MainWindow;
 
 /**
  * An abstract class for a mathematical object not based on drawing lines
  * between a set of points.
+ * Examples of such mathematical objects are circles and date sets.
  * @author Joe Ellis
  *
  */

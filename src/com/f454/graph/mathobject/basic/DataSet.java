@@ -1,6 +1,7 @@
 package com.f454.graph.mathobject.basic;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ public class DataSet extends BasicMathematicalObject {
 	
 	// Used in conjunction with String.format().
 	private static final String TOOLTIP = "%d points";
+	private static final Font FONT = new Font(null, Font.PLAIN, 10);
 	
 	// Errors that might be raised.
 	public static final String ERR_INSUFFICIENT_POINTS = "At least two points need to be present in a "
@@ -59,6 +61,7 @@ public class DataSet extends BasicMathematicalObject {
 	
 	public void render(Graphics2D g) {
 		g.setColor(color);
+		g.setFont(FONT);
 		
 		int r = hovered ? RADIUS_BOLD : RADIUS_NORMAL;
 		
@@ -70,7 +73,7 @@ public class DataSet extends BasicMathematicalObject {
 			g.fillOval((int) (xy[0] - r / 2), (int) (xy[1] - r / 2), r, r);
 			
 			if(showLabels.isSelected()) {
-				g.drawString(String.format("(%.2f, %.2f)", p.x, p.y), (int) (xy[0]), (int) (xy[1]));
+				g.drawString(String.format("(%.2f, %.2f)", p.x, p.y), (int) (xy[0] + 3), (int) (xy[1] - 3));
 			}
 			
 		}

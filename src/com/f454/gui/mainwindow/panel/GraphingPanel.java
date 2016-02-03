@@ -121,7 +121,7 @@ public class GraphingPanel extends JPanel {
 	}
 	
 	/**
-	 * Raise a file chooser dialogue and export the image on the graphing panel
+	 * Raise a file chooser dialog and export the image on the graphing panel
 	 * to the chosen file.
 	 */
 	public void export() {

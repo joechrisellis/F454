@@ -10,6 +10,8 @@ import java.util.ListIterator;
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.BasicMathematicalObject;
 import com.f454.graph.mathobject.basic.Point;
+import com.fathzer.soft.javaluator.DoubleEvaluator;
+import com.fathzer.soft.javaluator.StaticVariableSet;
 
 /**
  * A mathematical object that has to be constructed through creating points
@@ -57,6 +59,11 @@ public abstract class ConstructedMathematicalObject extends BasicMathematicalObj
 			prev = p;
 			
 		}
+	}
+	
+	private static DoubleEvaluator evaluator = new DoubleEvaluator();
+	public static Double evaluate(String expression, StaticVariableSet<Double> variables) throws IllegalArgumentException {
+		return evaluator.evaluate(expression, variables);
 	}
 	
 	/**

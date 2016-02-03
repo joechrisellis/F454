@@ -18,17 +18,23 @@ import javax.swing.JTextArea;
 
 import com.f454.gui.mainwindow.MainWindow;
 
+/**
+ * This dialog allows the user to scan through a collection of useful tips.
+ * @author Joe Ellis
+ *
+ */
 public class TipOfTheDayDialog extends JDialog {
 	
 	public static final String TITLE = "Tip of the Day";
 	public static final int HEIGHT = 400;
 	public static final int WIDTH = (int) (MainWindow.GOLDEN_RATIO * HEIGHT);
 	
+	// The path to the file whose existence determines whether this dialog is raised.
 	public static final String PATH = System.getProperty("user.home") + File.separator + ".nototd";
 	
+	// All of the tips that can be displayed by the tip of the day dialog.
 	private static final String TIPS[] = {
 		"Press <ctrl+enter> in the graphing calculator to enter a simple function.",
-		"Press <shift + enter> in the graphing calculator to enter a simple function.",
 		"Press <ctrl + c> in the graphing calculator to input a circle.",
 		"Press <ctrl + p> in the graphing calculator to input a parametric equation.",
 		"Press <ctrl + d> in the graphing calculator to input a data set.",
@@ -39,13 +45,17 @@ public class TipOfTheDayDialog extends JDialog {
 		"Right clicking the axes entry allows you to enable/disable gridlines, as well as plot the axes in terms of pi.",
 		"When inputting simple functions, try using functions such as sin, cos, tan and abs.",
 		"You can use variables such as 'pi' and 'e' when inputting simple functions and parametric equations.",
-		"Try plotting the parametric equation x(t) = t * sin(t), y(t) = t * cos(t)",
+		"Try plotting the parametric equation x(t) = t * sin(t), y(t) = t * cos(t)!",
 		"You can change the colour of any mathematical object using the advanced tab in its input menu.",
 		"Hover over a mathematical object in the left-hand panel to highlight it on the graphing panel for easy recognition.",
 		"Hover over a mathematical object in the left-hand panel to see important information about it.",
 		"If you want to save a graph, don't screenshot it! Try the File->Export command.",
 		"You can change the range and domain for both parametric equations and functions using their input dialogs.",
 		"If you're unsure what a button or menu does, hover over it! Most menus have a tool tip attached.",
+		"Exporting an image? Be sure to enable the key in the left-hand panel to attach information on mathematical objects into the image.",
+		"It is possible to rename mathematical objects; just right click them in the left-hand panel and select 'Change Label'.",
+		"The graphing calculator tries to generate aesthetically pleasing colours. You can change the colour of a mathematical object by right clicking it in the left-hand panel and selecting 'Change Colour'.",
+		"Pressing the home button in the bottom panel returns the graphing calculator to its default view.",
 	};
 	
 	private int currentTip;
@@ -75,7 +85,7 @@ public class TipOfTheDayDialog extends JDialog {
 		tipDisplay.setEditable(false);
 		tipDisplay.setLineWrap(true);
 		tipDisplay.setWrapStyleWord(true);
-		tipDisplay.setFont(new Font("Verdana", Font.BOLD, 20));
+		tipDisplay.setFont(new Font("Verdana", Font.BOLD, 16));
 		
 		close = new JButton("Close");
 		close.addActionListener(new ActionListener() {

@@ -30,7 +30,7 @@ public class InputCircleDialog extends InputDialog {
 	}
 	
 	/**
-	 * Raises a dialogue allowing the user to input the circle and creates
+	 * Raises a dialog allowing the user to input the circle and creates
 	 * a circle object from the information that they have inputed. 
 	 * @return Circle A circle object created using the inputed information.
 	 * @throws InputCancelledException 
