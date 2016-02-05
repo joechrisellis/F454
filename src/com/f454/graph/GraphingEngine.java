@@ -74,7 +74,8 @@ public class GraphingEngine {
 	}
 	
 	/**
-	 * Clears the arraylist of mathematical objects (except for the axes).
+	 * Clears the arraylist of mathematical objects (except for anything marked
+	 * as not removable).
 	 */
 	public void clear() {
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
