@@ -2,6 +2,7 @@ package com.f454.graph.mathobject.basic.constructed;
 
 import java.awt.Color;
 
+import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.Point;
 import com.fathzer.soft.javaluator.StaticVariableSet;
@@ -17,8 +18,9 @@ public class ParametricEquation extends ConstructedMathematicalObject {
 	private String expression1, expression2;
 	private int tMax;
 	
-	public ParametricEquation(String name, String ex1, String ex2, int tMax, Color color, ScalingManager sm) {
-		super(name, String.format(TOOLTIP, ex1, ex2), color, sm);
+	public ParametricEquation(String name, String ex1, String ex2, int tMax, Color color, GraphingEngine ge, 
+									ScalingManager sm) {
+		super(name, String.format(TOOLTIP, ex1, ex2), color, ge, sm);
 		this.expression1 = ex1;
 		this.expression2 = ex2;
 		this.tMax = tMax;
@@ -31,7 +33,7 @@ public class ParametricEquation extends ConstructedMathematicalObject {
 		
 		// Evaluator object and variable set for evaluating the user
 		// inputed expression.
-		StaticVariableSet<Double> variables = new StaticVariableSet<Double>();
+		StaticVariableSet<Double> variables = ge.getVariables();
 		
 		// Iterate through all of the values of x.
 		for(double t = lower; t < tMax; t += sm.getResolution()) {

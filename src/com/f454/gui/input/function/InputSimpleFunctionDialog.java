@@ -66,7 +66,8 @@ public class InputSimpleFunctionDialog extends InputDialog {
 		
 		MainWindow m = MainWindow.getInstance();
 		SimpleFunction f = new SimpleFunction(label, window.basicPanel.isyEquals(), expression,
-				color, m.getGraphingPanel().getGraphingEngine().getScalingManager());
+				color, m.getGraphingPanel().getGraphingEngine(),
+				m.getGraphingPanel().getGraphingEngine().getScalingManager());
 		
 		if(window.domainPanel.hasDomain()) {
 			f.setDomain(window.domainPanel.getDomainLBound(), window.domainPanel.getDomainUBound());

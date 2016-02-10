@@ -53,7 +53,8 @@ public class InputParametricEquationDialog extends InputDialog {
 		
 		MainWindow m = MainWindow.getInstance();
 		ParametricEquation p = new ParametricEquation(label, expression1, expression2, tMax,
-				color, m.getGraphingPanel().getGraphingEngine().getScalingManager());
+				color, m.getGraphingPanel().getGraphingEngine(),
+				m.getGraphingPanel().getGraphingEngine().getScalingManager());
 		
 		p.reinit();
 		

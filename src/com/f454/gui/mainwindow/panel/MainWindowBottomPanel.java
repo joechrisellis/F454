@@ -19,6 +19,7 @@ import com.f454.gui.input.function.InputSimpleFunctionDialog;
 import com.f454.gui.input.parametric.InputParametricEquationDialog;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.setting.SetResolutionDialog;
+import com.f454.gui.setting.variableslider.VariableSliderWindow;
 
 public class MainWindowBottomPanel extends JPanel {
 	
@@ -79,6 +80,14 @@ public class MainWindowBottomPanel extends JPanel {
 		
 	};
 	
+	public static ActionListener variableListener = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			new VariableSliderWindow();
+		}
+		
+	};
+	
 	public static ActionListener homeListener = new ActionListener() {
 		
 		public void actionPerformed(ActionEvent e) {
@@ -101,6 +110,7 @@ public class MainWindowBottomPanel extends JPanel {
 	private JButton addParametric;
 	private JButton addCircle;
 	
+	private JButton raiseVariableSliderWindow;
 	private JButton home;
 	private JButton raiseSettings;
 	
@@ -123,6 +133,10 @@ public class MainWindowBottomPanel extends JPanel {
 		addCircle.setToolTipText("Add a circle");
 		addCircle.addActionListener(addCircleListener);
 		
+		raiseVariableSliderWindow = new JButton("Variables");
+		raiseVariableSliderWindow.setToolTipText("Open the variable slider window");
+		raiseVariableSliderWindow.addActionListener(variableListener);
+		
 		home = new JButton("Home");
 		home.setToolTipText("Return to the default view");
 		home.addActionListener(homeListener);
@@ -138,6 +152,7 @@ public class MainWindowBottomPanel extends JPanel {
 		
 		add(new JSeparator(JSeparator.VERTICAL));
 		
+		add(raiseVariableSliderWindow);
 		add(home);
 		add(raiseSettings);
 	}

@@ -10,6 +10,8 @@ import com.f454.graph.mathobject.special.Key;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.mainwindow.panel.GraphingPanel;
 import com.f454.gui.setting.SetResolutionDialog;
+import com.f454.gui.setting.variableslider.VariableSliderWindow;
+import com.fathzer.soft.javaluator.StaticVariableSet;
 
 /**
  * The engine powering the rendering of mathematical objects.
@@ -25,6 +27,9 @@ public class GraphingEngine {
 	
 	private double resolution;
 	
+	// The variable that the user can change using the sliders.
+	private static StaticVariableSet<Double> variables;
+	
 	// A resizing array of all of the mathematical objects, visible or invisible.
 	private ArrayList<MathematicalObject> mathObjects;
 	private Key key;
@@ -33,6 +38,11 @@ public class GraphingEngine {
 		this.graphingPanel = graphingPanel;
 		sm = new ScalingManager(this);
 		resolution = SetResolutionDialog.getOptimumResolution();
+		
+		variables = new StaticVariableSet<Double>();
+		for(String s : VariableSliderWindow.VARIABLES) {
+			variables.set(s, 1D);
+		}
 		
 		// create the list of mathematical objects and add the axes.
 		mathObjects = new ArrayList<MathematicalObject>();
@@ -121,6 +131,14 @@ public class GraphingEngine {
 		return key;
 	}
 	
+	public StaticVariableSet<Double> getVariables() {
+		return variables;
+	}
+	
+	public void setVariable(String s, int v) {
+		variables.set(s, (double) (v));
+	}
+	
 	public double getResolution() {
 		return resolution;
 	}
@@ -132,7 +150,10 @@ public class GraphingEngine {
 	 */
 	public void setResolution(double resolution) {
 		this.resolution = resolution;
-		
+		refresh();
+	}
+	
+	public void refresh() {
 		// iterate through all of the mathematical objects and ask them
 		// to reinitialise themselves to account for the change in resolution.
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();

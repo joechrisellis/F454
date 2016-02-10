@@ -12,6 +12,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import com.f454.gui.input.InputDialog;
+import com.f454.gui.mainwindow.MainWindow;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
 public class InputSimpleFunctionBasicPanel extends JPanel {
@@ -79,7 +80,8 @@ public class InputSimpleFunctionBasicPanel extends JPanel {
 	}
 	
 	private void checkSyntaxAndUpdateButton() {
-		StaticVariableSet<Double> variables = new StaticVariableSet<Double>();
+		MainWindow m = MainWindow.getInstance();
+		StaticVariableSet<Double> variables = m.getGraphingPanel().getGraphingEngine().getVariables();
 		
 		// If yEquals is selected, acknowledge that a variable 'x' may exist.
 		// Likewise, if xEquals is selected, acknowledge that a variable 'y'

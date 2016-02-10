@@ -8,6 +8,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import com.f454.gui.input.InputDialog;
+import com.f454.gui.mainwindow.MainWindow;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
 public class InputParametricEquationBasicPanel extends JPanel {
@@ -57,7 +58,8 @@ public class InputParametricEquationBasicPanel extends JPanel {
 	}
 	
 	private void checkSyntaxAndUpdateButton() {
-		StaticVariableSet<Double> variables = new StaticVariableSet<Double>();
+		MainWindow m = MainWindow.getInstance();
+		StaticVariableSet<Double> variables = m.getGraphingPanel().getGraphingEngine().getVariables();
 		
 		// Acknowledge that a variable 't' exists.
 		variables.set("t", 1D);

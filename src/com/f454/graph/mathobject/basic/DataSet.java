@@ -129,7 +129,8 @@ public class DataSet extends BasicMathematicalObject {
 		String title = String.format("Line of best fit for \"%s\"", name);
 		String expression = String.format("%.2f*x + %.2f", a, b);
 		
-		SimpleFunction f = new SimpleFunction(title, true, expression, color, sm);
+		SimpleFunction f = new SimpleFunction(title, true, expression, color, 
+				m.getGraphingPanel().getGraphingEngine(), sm);
 		f.reinit();
 		
 		// Add the function that we have created to the graphing engine.

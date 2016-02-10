@@ -2,6 +2,7 @@ package com.f454.graph.mathobject.basic.constructed;
 
 import java.awt.Color;
 
+import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.Point;
 import com.f454.graph.mathobject.special.Axes;
@@ -29,8 +30,8 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 	protected double rangeLBound, rangeUBound;
 		
 	public SimpleFunction(String name, boolean yEquals, String expression,
-							Color color, ScalingManager sm) {
-		super(name, String.format(TOOLTIP, (yEquals ? "y" : "x"), expression), color, sm);
+							Color color, GraphingEngine ge, ScalingManager sm) {
+		super(name, String.format(TOOLTIP, (yEquals ? "y" : "x"), expression), color, ge, sm);
 		this.expression = expression;
 		this.yEquals = yEquals;
 	}
@@ -38,11 +39,10 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 	public void reinit() {
 		super.reinit();
 		
-		int w = sm.getCentre()[0];
 		double lower = hasDomain ? domainLBound : -Axes.NUMBERS;
 		double upper = hasDomain ? domainUBound : Axes.NUMBERS;
 		
-		StaticVariableSet<Double> variables = new StaticVariableSet<Double>();
+		StaticVariableSet<Double> variables = ge.getVariables();
 		
 		// Iterate through all of the values of x.
 		for(double x = lower; x < upper; x += sm.getResolution()) {

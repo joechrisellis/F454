@@ -7,6 +7,7 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.BasicMathematicalObject;
 import com.f454.graph.mathobject.basic.Point;
@@ -25,9 +26,11 @@ public abstract class ConstructedMathematicalObject extends BasicMathematicalObj
 	// At resolutions LESS THAN this value, cropping optimisations
 	// will take place.
 	protected static final double CROPPING_THRESHOLD = 0.1D;
+	protected GraphingEngine ge;
 	
-	public ConstructedMathematicalObject(String name, String tooltip, Color color, ScalingManager sm) {
+	public ConstructedMathematicalObject(String name, String tooltip, Color color, GraphingEngine ge, ScalingManager sm) {
 		super(name, tooltip, color, sm);
+		this.ge = ge;
 		points = new ArrayList<Point>();
 	}
 	
