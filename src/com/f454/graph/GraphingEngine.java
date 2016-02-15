@@ -27,9 +27,6 @@ public class GraphingEngine {
 	
 	private double resolution;
 	
-	// The variable that the user can change using the sliders.
-	private static StaticVariableSet<Double> variables;
-	
 	// A resizing array of all of the mathematical objects, visible or invisible.
 	private ArrayList<MathematicalObject> mathObjects;
 	private Key key;
@@ -38,11 +35,6 @@ public class GraphingEngine {
 		this.graphingPanel = graphingPanel;
 		sm = new ScalingManager(this);
 		resolution = SetResolutionDialog.getOptimumResolution();
-		
-		variables = new StaticVariableSet<Double>();
-		for(String s : VariableSliderWindow.VARIABLES) {
-			variables.set(s, 1D);
-		}
 		
 		// create the list of mathematical objects and add the axes.
 		mathObjects = new ArrayList<MathematicalObject>();
@@ -131,14 +123,6 @@ public class GraphingEngine {
 		return key;
 	}
 	
-	public StaticVariableSet<Double> getVariables() {
-		return variables;
-	}
-	
-	public void setVariable(String s, int v) {
-		variables.set(s, (double) (v));
-	}
-	
 	public double getResolution() {
 		return resolution;
 	}
@@ -155,7 +139,7 @@ public class GraphingEngine {
 	
 	public void refresh() {
 		// iterate through all of the mathematical objects and ask them
-		// to reinitialise themselves to account for the change in resolution.
+		// to reinitialise themselves.
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
 		while(itr.hasNext()) {
 			MathematicalObject m = itr.next();

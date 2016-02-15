@@ -19,7 +19,6 @@ import com.f454.gui.input.function.InputSimpleFunctionDialog;
 import com.f454.gui.input.parametric.InputParametricEquationDialog;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.setting.SetResolutionDialog;
-import com.f454.gui.setting.variableslider.VariableSliderWindow;
 
 public class MainWindowBottomPanel extends JPanel {
 	
@@ -83,7 +82,7 @@ public class MainWindowBottomPanel extends JPanel {
 	public static ActionListener variableListener = new ActionListener() {
 		
 		public void actionPerformed(ActionEvent e) {
-			new VariableSliderWindow();
+			MainWindow.getInstance().getSliderWindow().showWindow();
 		}
 		
 	};

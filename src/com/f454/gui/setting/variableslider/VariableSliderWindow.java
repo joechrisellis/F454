@@ -8,8 +8,8 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.f454.graph.GraphingEngine;
 import com.f454.gui.mainwindow.MainWindow;
+import com.fathzer.soft.javaluator.StaticVariableSet;
 
 public class VariableSliderWindow extends JFrame {
 	
@@ -30,38 +30,44 @@ public class VariableSliderWindow extends JFrame {
 		setLayout(new GridLayout(4, 2));
 		setLocationRelativeTo(null);
 		
-		ChangeListener l = new ChangeListener() {
+		ChangeListener cl = new ChangeListener() {
 			
 			public void stateChanged(ChangeEvent e) {
-				GraphingEngine ge = MainWindow.getInstance().getGraphingPanel().getGraphingEngine();
-				
-				for(int i = 0; i < VARIABLES.length; i++) {
-					ge.setVariable(VARIABLES[i], sliders[i].getValue());
-				}
-				
-				ge.refresh();
+				MainWindow m = MainWindow.getInstance();
+				m.getGraphingPanel().getGraphingEngine().refresh();
 			}
 			
 		};
 		
 		sliders = new JSlider[VARIABLES.length];
-		GraphingEngine ge = MainWindow.getInstance().getGraphingPanel().getGraphingEngine();
 		for(int i = 0; i < VARIABLES.length; i++) {
-			int value = ge.getVariables().get(VARIABLES[i]).intValue();
+			int value = 1;
 			sliders[i] = new JSlider(JSlider.HORIZONTAL, MIN, MAX, value);
 			sliders[i].setMinorTickSpacing(1);
 			sliders[i].setMajorTickSpacing(5);
 			sliders[i].setPaintLabels(true);
 			sliders[i].setPaintTicks(true);
-			
-			sliders[i].addChangeListener(l);
+			sliders[i].addChangeListener(cl);
 			
 			add(new JLabel(VARIABLES[i], JLabel.CENTER));
 			add(sliders[i]);
 		}
 				
-		setVisible(true);
+		setVisible(false);
 		
+	}
+	
+	public void showWindow() {
+		setVisible(true);
+	}
+	
+	public StaticVariableSet<Double> getUserVariables() {
+		StaticVariableSet<Double> userVariables = new StaticVariableSet<Double>();
+		for(int i = 0; i < VARIABLES.length; i++) {
+			userVariables.set(VARIABLES[i], (double) (sliders[i].getValue()));
+		}
+		
+		return userVariables;
 	}
 	
 }

@@ -59,7 +59,7 @@ public class InputParametricEquationBasicPanel extends JPanel {
 	
 	private void checkSyntaxAndUpdateButton() {
 		MainWindow m = MainWindow.getInstance();
-		StaticVariableSet<Double> variables = m.getGraphingPanel().getGraphingEngine().getVariables();
+		StaticVariableSet<Double> variables = m.getSliderWindow().getUserVariables();
 		
 		// Acknowledge that a variable 't' exists.
 		variables.set("t", 1D);

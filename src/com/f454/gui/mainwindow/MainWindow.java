@@ -11,6 +11,7 @@ import com.f454.gui.mainwindow.menu.MainWindowMenuBar;
 import com.f454.gui.mainwindow.panel.GraphingPanel;
 import com.f454.gui.mainwindow.panel.MainWindowBottomPanel;
 import com.f454.gui.mainwindow.panel.MainWindowMathObjectsPanel;
+import com.f454.gui.setting.variableslider.VariableSliderWindow;
 import com.f454.gui.tip.TipOfTheDayDialog;
 
 /**
@@ -37,6 +38,9 @@ public class MainWindow extends JFrame {
 	private MainWindowMathObjectsPanel mathPanel;
 	private GraphingPanel graphingPanel;
 	private MainWindowBottomPanel bottomPanel;
+	
+	// slider window
+	private VariableSliderWindow sliderWindow;
 	
 	// private so that you can't instantiate outside of this class.
 	private MainWindow() {
@@ -89,6 +93,8 @@ public class MainWindow extends JFrame {
 		bottomPanel = new MainWindowBottomPanel();
 		add(bottomPanel, BorderLayout.SOUTH);
 		
+		sliderWindow = new VariableSliderWindow();
+		
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -110,6 +116,10 @@ public class MainWindow extends JFrame {
 	
 	public MainWindowMathObjectsPanel getMathPanel() {
 		return mathPanel;
+	}
+	
+	public VariableSliderWindow getSliderWindow() {
+		return sliderWindow;
 	}
 	
 }

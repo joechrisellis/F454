@@ -81,7 +81,7 @@ public class InputSimpleFunctionBasicPanel extends JPanel {
 	
 	private void checkSyntaxAndUpdateButton() {
 		MainWindow m = MainWindow.getInstance();
-		StaticVariableSet<Double> variables = m.getGraphingPanel().getGraphingEngine().getVariables();
+		StaticVariableSet<Double> variables = m.getSliderWindow().getUserVariables();
 		
 		// If yEquals is selected, acknowledge that a variable 'x' may exist.
 		// Likewise, if xEquals is selected, acknowledge that a variable 'y'

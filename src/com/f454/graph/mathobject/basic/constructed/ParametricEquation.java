@@ -5,6 +5,7 @@ import java.awt.Color;
 import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.Point;
+import com.f454.gui.mainwindow.MainWindow;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
 /**
@@ -33,7 +34,8 @@ public class ParametricEquation extends ConstructedMathematicalObject {
 		
 		// Evaluator object and variable set for evaluating the user
 		// inputed expression.
-		StaticVariableSet<Double> variables = ge.getVariables();
+		MainWindow m = MainWindow.getInstance();
+		StaticVariableSet<Double> variables = m.getSliderWindow().getUserVariables();
 		
 		// Iterate through all of the values of x.
 		for(double t = lower; t < tMax; t += sm.getResolution()) {
