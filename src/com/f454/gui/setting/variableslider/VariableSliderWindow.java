@@ -1,9 +1,14 @@
 package com.f454.gui.setting.variableslider;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -21,38 +26,57 @@ public class VariableSliderWindow extends JFrame {
 	private static final int MIN = -10;
 	private static final int MAX = 10;
 	private static final double STEP = 0.1;
-		
-	public JSlider sliders[];
+	
+	private static final int DEFAULT_VAL = (int) (Math.pow(STEP, -1));
+	
+	private JSlider sliders[];
+	private JButton reset;
 	
 	public VariableSliderWindow() {
 		super(TITLE);
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLayout(new GridLayout(VARIABLES.length, 2));
 		setLocationRelativeTo(null);
 		
-		ChangeListener cl = new ChangeListener() {
-			
-			public void stateChanged(ChangeEvent e) {
-				MainWindow m = MainWindow.getInstance();
-				m.getGraphingPanel().getGraphingEngine().refresh();
-			}
-			
-		};
-		
 		sliders = new JSlider[VARIABLES.length];
+		JPanel sliderPanel = new JPanel();
+		sliderPanel.setLayout(new GridLayout(VARIABLES.length, 2));
 		
+		//
 		final int min = (int) (MIN * Math.pow(STEP, -1));
 		final int max = (int) (MAX * Math.pow(STEP, -1));
-		final int value = (int) (Math.pow(STEP, -1));
+		
 		for(int i = 0; i < VARIABLES.length; i++) {
 			
-			sliders[i] = new JSlider(JSlider.HORIZONTAL, min, max, value);
-			sliders[i].addChangeListener(cl);
+			sliders[i] = new JSlider(JSlider.HORIZONTAL);
+			JLabel label = new JLabel("", JLabel.CENTER);
 			
-			add(new JLabel(VARIABLES[i], JLabel.CENTER));
-			add(sliders[i]);
+			sliders[i].addChangeListener(new SliderListener(VARIABLES[i], label));
+			
+			sliders[i].setMinimum(min);
+			sliders[i].setMaximum(max);
+			
+			// EXPLICITLY set the value of the JSlider so that the change listener
+			// is called. This sets the label to the correct text. :)
+			sliders[i].setValue(DEFAULT_VAL);
+			
+			sliderPanel.add(label);
+			sliderPanel.add(sliders[i]);
 		}
+		
+		reset = new JButton("Reset");
+		reset.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				for(JSlider slider : sliders) {
+					slider.setValue(DEFAULT_VAL);
+				}
+			}
+			
+		});
+		
+		add(sliderPanel);
+		add(reset, BorderLayout.SOUTH);
 		
 		setResizable(false);
 		setVisible(false);
@@ -71,5 +95,27 @@ public class VariableSliderWindow extends JFrame {
 		
 		return userVariables;
 	}
+	
+	private class SliderListener implements ChangeListener {
+		
+		private String variableName;
+		private JLabel label;
+		
+		public SliderListener(String variableName, JLabel label) {
+			this.variableName = variableName;
+			this.label = label;
+		}
+		
+		public void stateChanged(ChangeEvent e) {
+			// refresh the mathematical objects in accordance to the
+			// change in variables...
+			MainWindow m = MainWindow.getInstance();
+			m.getGraphingPanel().getGraphingEngine().refresh();
+			
+			JSlider slider = (JSlider) (e.getSource());
+			label.setText(String.format("%s = %.2f", variableName, slider.getValue() * STEP));
+		}
+		
+	};
 	
 }
