@@ -75,6 +75,8 @@ public class VariableSliderWindow extends JFrame {
 			
 		});
 		
+		reset.setToolTipText("Reset the variable sliders back to their default positions.");
+		
 		add(sliderPanel);
 		add(reset, BorderLayout.SOUTH);
 		

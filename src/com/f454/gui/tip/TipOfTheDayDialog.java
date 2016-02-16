@@ -56,7 +56,11 @@ public class TipOfTheDayDialog extends JDialog {
 		"It is possible to rename mathematical objects; just right click them in the left-hand panel and select 'Change Label'.",
 		"The graphing calculator tries to generate aesthetically pleasing colours. You can change the colour of a mathematical object by right clicking it in the left-hand panel and selecting 'Change Colour'.",
 		"Pressing the home button in the bottom panel returns the graphing calculator to its default view.",
-		"Variable sliders can be used in the program. Use any of the six variables in your expressions and modify their values in the variable sliders window. You can use this to make graphs move and change shape.",
+		"Variable sliders can be used in the program. Use any of the six variables in your expressions and modify their values in the variable sliders window. You can use this to animate graphs, making them move and change shape.",
+		"When you have plotted a line of best fit for a data set, you can return its equation by hovering over the item in the list of mathematical objects.",
+		"To find the equation of a straight line connecting two points, create a data set consisting of the points, then plot a line of best fit. Find the equation by hovering over it in the list of mathematical objects.",
+		"If you don't want to see labels for the points in a data set, you can make them invisible. Try right clicking the data set in the list of mathematical objects.",
+		"Pressing the reset button in the variable sliders menu resets all of the variable sliders back to their default value.",
 	};
 	
 	private int currentTip;

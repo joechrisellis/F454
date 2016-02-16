@@ -5,6 +5,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class InputParametricEquationDomainPanel extends JPanel {
 	
@@ -13,8 +14,9 @@ public class InputParametricEquationDomainPanel extends JPanel {
 	public InputParametricEquationDomainPanel() {
 		super();
 		
-		tMax = new JSpinner();
-		tMax.setValue(1000);
+		tMax = new JSpinner(
+			new SpinnerNumberModel(25, 1, 1000, 1)		
+		);
 		
 		// increase the length of the spinner
 		JComponent editor = tMax.getEditor();

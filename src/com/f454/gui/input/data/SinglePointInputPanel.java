@@ -3,6 +3,8 @@ package com.f454.gui.input.data;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,7 +16,7 @@ import javax.swing.event.DocumentListener;
 public class SinglePointInputPanel extends JPanel {
 	
 	private InputDataBasicPanel panel;
-	private JTextField x, y;
+	private FocusField x, y;
 	private JButton remove;
 	
 	private boolean validSyntax = true;
@@ -25,8 +27,8 @@ public class SinglePointInputPanel extends JPanel {
 		this.panel = panel;
 		
 		setLayout(new FlowLayout());
-		x = new JTextField("0", 10);
-		y = new JTextField("0", 10);
+		x = new FocusField("0", 10);
+		y = new FocusField("0", 10);
 		
 		DocumentListener l = new DocumentListener() {
 			
@@ -65,6 +67,7 @@ public class SinglePointInputPanel extends JPanel {
 			
 		});
 		
+		remove.setFocusable(false);
 		add(remove);
 	}
 	
@@ -101,6 +104,29 @@ public class SinglePointInputPanel extends JPanel {
 		} catch(NumberFormatException e) {
 			return false;
 		}
+	}
+	
+	private static class FocusField extends JTextField {
+		
+		{
+			addFocusListener(new FocusListener() {
+				
+				public void focusLost(FocusEvent e) {
+					FocusField.this.select(0, 0);
+				}
+				
+				public void focusGained(FocusEvent e) {
+					FocusField.this.select(0, getText().length());
+				}
+				
+			});
+			
+		}
+		
+		public FocusField(String label, int size) {
+			super(label, size);
+		}
+				
 	}
 	
 }
