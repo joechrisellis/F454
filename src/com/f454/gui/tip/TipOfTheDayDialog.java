@@ -56,6 +56,7 @@ public class TipOfTheDayDialog extends JDialog {
 		"It is possible to rename mathematical objects; just right click them in the left-hand panel and select 'Change Label'.",
 		"The graphing calculator tries to generate aesthetically pleasing colours. You can change the colour of a mathematical object by right clicking it in the left-hand panel and selecting 'Change Colour'.",
 		"Pressing the home button in the bottom panel returns the graphing calculator to its default view.",
+		"Variable sliders can be used in the program. Use any of the six variables in your expressions and modify their values in the variable sliders window. You can use this to make graphs move and change shape.",
 	};
 	
 	private int currentTip;

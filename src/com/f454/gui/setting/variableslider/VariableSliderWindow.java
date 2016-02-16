@@ -17,9 +17,10 @@ public class VariableSliderWindow extends JFrame {
 	public static final int HEIGHT = 300;
 	public static final int WIDTH = (int) (MainWindow.GOLDEN_RATIO * HEIGHT);
 	
-	public static final String[] VARIABLES = {"a", "b", "c", "d"};
+	public static final String[] VARIABLES = {"a", "b", "c", "d", "f", "g"};
 	private static final int MIN = -10;
 	private static final int MAX = 10;
+	private static final double STEP = 0.1;
 		
 	public JSlider sliders[];
 	
@@ -27,7 +28,7 @@ public class VariableSliderWindow extends JFrame {
 		super(TITLE);
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLayout(new GridLayout(4, 2));
+		setLayout(new GridLayout(VARIABLES.length, 2));
 		setLocationRelativeTo(null);
 		
 		ChangeListener cl = new ChangeListener() {
@@ -40,19 +41,20 @@ public class VariableSliderWindow extends JFrame {
 		};
 		
 		sliders = new JSlider[VARIABLES.length];
+		
+		final int min = (int) (MIN * Math.pow(STEP, -1));
+		final int max = (int) (MAX * Math.pow(STEP, -1));
+		final int value = (int) (Math.pow(STEP, -1));
 		for(int i = 0; i < VARIABLES.length; i++) {
-			int value = 1;
-			sliders[i] = new JSlider(JSlider.HORIZONTAL, MIN, MAX, value);
-			sliders[i].setMinorTickSpacing(1);
-			sliders[i].setMajorTickSpacing(5);
-			sliders[i].setPaintLabels(true);
-			sliders[i].setPaintTicks(true);
+			
+			sliders[i] = new JSlider(JSlider.HORIZONTAL, min, max, value);
 			sliders[i].addChangeListener(cl);
 			
 			add(new JLabel(VARIABLES[i], JLabel.CENTER));
 			add(sliders[i]);
 		}
-				
+		
+		setResizable(false);
 		setVisible(false);
 		
 	}
@@ -64,7 +66,7 @@ public class VariableSliderWindow extends JFrame {
 	public StaticVariableSet<Double> getUserVariables() {
 		StaticVariableSet<Double> userVariables = new StaticVariableSet<Double>();
 		for(int i = 0; i < VARIABLES.length; i++) {
-			userVariables.set(VARIABLES[i], (double) (sliders[i].getValue()));
+			userVariables.set(VARIABLES[i], (double) (sliders[i].getValue()) * STEP);
 		}
 		
 		return userVariables;
