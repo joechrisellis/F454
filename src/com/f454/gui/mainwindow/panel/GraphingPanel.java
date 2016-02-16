@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -20,8 +21,13 @@ import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.misc.Mouse;
+import com.f454.gui.setting.SetResolutionDialog;
 
 public class GraphingPanel extends JPanel {
+	
+	private static final String ERR_LOW_RES = "You're currently rendering the graph at low resolution.\n" +
+											"For exporting the graph, it is advised that you set a higher quality " + 
+											"resolution before continuing. Proceed?";
 	
 	private GraphingEngine graphingEngine;
 	
@@ -125,6 +131,15 @@ public class GraphingPanel extends JPanel {
 	 * to the chosen file.
 	 */
 	public void export() {
+		
+		// If the user hasn't chosen a very high resolution...
+		if(graphingEngine.getResolution() > SetResolutionDialog.RES_HIGH) {
+			int n = JOptionPane.showConfirmDialog(this, ERR_LOW_RES);
+			if(n != JOptionPane.YES_OPTION) {
+				return;
+			}
+		}
+		
 		BufferedImage bufferedImage = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2d = bufferedImage.createGraphics();
 		paintAll(g2d);

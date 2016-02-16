@@ -22,6 +22,7 @@ import com.f454.gui.mainwindow.MainWindow;
 public class SetResolutionDialog extends JDialog {
 	
 	public static final String TITLE = "Settings";
+	public static final double RES_HIGH = 0.01, RES_LOW = 1.25;
 	
 	private JSpinner resolutionSpinner;
 	private JButton ok;
@@ -87,7 +88,7 @@ public class SetResolutionDialog extends JDialog {
 		setHighQualResolution.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				resolutionSpinner.setValue(0.01);
+				resolutionSpinner.setValue(RES_HIGH);
 			}
 			
 		});
@@ -95,7 +96,7 @@ public class SetResolutionDialog extends JDialog {
 		setPerformanceResolution.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				resolutionSpinner.setValue(1.25);
+				resolutionSpinner.setValue(RES_LOW);
 			}
 			
 		});
