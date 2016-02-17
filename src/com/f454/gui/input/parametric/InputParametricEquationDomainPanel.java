@@ -15,7 +15,7 @@ public class InputParametricEquationDomainPanel extends JPanel {
 		super();
 		
 		tMax = new JSpinner(
-			new SpinnerNumberModel(25, 1, 1000, 1)		
+			new SpinnerNumberModel(25, 1, 1000, 1)
 		);
 		
 		// increase the length of the spinner

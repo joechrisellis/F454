@@ -25,9 +25,8 @@ import com.f454.gui.setting.SetResolutionDialog;
 
 public class GraphingPanel extends JPanel {
 	
-	private static final String ERR_LOW_RES = "You're currently rendering the graph at low resolution.\n" +
-											"For exporting the graph, it is advised that you set a higher quality " + 
-											"resolution before continuing. Proceed?";
+	private static final String ERR_LOW_RES = "It may be desirable to set a higher resolution before continuing.\n" +
+											  "Are you sure you want to proceed?";
 	
 	private GraphingEngine graphingEngine;
 	
