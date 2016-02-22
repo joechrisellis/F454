@@ -161,13 +161,13 @@ public class DataSet extends BasicMathematicalObject {
 	 * @return The standard deviation.
 	 */
 	private static double deviation(double[] n) {
-        double mean = mean(n);
-        double v = 0;
-        for(double i : n) {
-            v += (mean - i) * (mean - i);
-        }
-        
-        return Math.sqrt(v / n.length);
+		double mean = mean(n);
+		double v = 0;
+		for(double i : n) {
+			v += (mean - i) * (mean - i);
+		}
+		
+		return Math.sqrt(v / n.length);
 	}
 	
 	/**

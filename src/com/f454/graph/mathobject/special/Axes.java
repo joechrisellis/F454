@@ -16,7 +16,7 @@ import com.f454.graph.mathobject.MathematicalObject;
 import com.f454.gui.setting.SetScalingDialog;
 
 /**
- * The special mathematical object for the axes.
+ * The special mathematical object for the axes. Admittedly a bit messy in here...
  * @author Joe Ellis
  *
  */
@@ -39,6 +39,7 @@ public class Axes extends MathematicalObject {
 	protected JCheckBoxMenuItem showGridMenu;
 	protected JCheckBoxMenuItem showXNumberingMenu, showYNumberingMenu;
 	protected JCheckBoxMenuItem showPiMenu;
+	protected JCheckBoxMenuItem stickyAxesMenu;
 	
 	public Axes(ScalingManager sm) {
 		super("Axes", null, Color.BLACK, sm);
@@ -56,12 +57,15 @@ public class Axes extends MathematicalObject {
 		numberingMenu.add(showYNumberingMenu);
 		
 		showPiMenu = new JCheckBoxMenuItem("Show Axes in terms of Pi");
+		stickyAxesMenu = new JCheckBoxMenuItem("Sticky Axes");
 		
 		menu = new JPopupMenu();
 		menu.add(raiseScalingDialog);
 		menu.add(showGridMenu);
 		menu.add(numberingMenu);
 		menu.add(showPiMenu);
+		menu.add(stickyAxesMenu);
+
 	}
 
 	public void render(Graphics2D g) {
@@ -96,8 +100,26 @@ public class Axes extends MathematicalObject {
 		// draw the actual axes themselves.
 		g.setColor(color);
 		double[] xy = sm.getTranslatedXandY(width / 2, height / 2);
-		g.drawLine((int) (xy[0]), 0, (int) (xy[0]), height);
-		g.drawLine(0, (int) (xy[1]), width, (int) (xy[1]));
+		
+		int x = (int) (xy[0]), y = (int) (xy[1]);
+		if(stickyAxesMenu.isSelected()) {
+			
+			if(xy[0] < 0) {
+				x = 0;
+			} else if(xy[0] > sm.getWidth()) {
+				x = sm.getWidth() - 1;
+			}
+			
+			if(xy[1] < 0) {
+				y = 0;
+			} else if(xy[1] > sm.getHeight()) {
+				y = sm.getHeight() - 1;
+			}
+			
+		}
+				
+		g.drawLine(x, 0, x, height);
+		g.drawLine(0, y, width, y);
 	}
 	
 	private void renderGrid(Graphics2D g) {
@@ -132,7 +154,19 @@ public class Axes extends MathematicalObject {
 			double[] xy = sm.getFinalisedXandY(k, 0);
 			
 			String label = String.format("%.2f", k);
-			g.drawString(label, (int) (xy[0]), (int) (xy[1]) + 12); // + 12 so that the numbers are under the axes
+			
+			int x_ = (int) (xy[0]), y = (int) (xy[1]) + 12; // +12 so under axes
+			if(stickyAxesMenu.isSelected()) {
+				
+				if(xy[1] < 0) {
+					y = 12;
+				} else if(xy[1] > sm.getHeight()) {
+					y = sm.getHeight() - 12;
+				}
+				
+			}
+
+			g.drawString(label, x_, y);
 		}
 				
 	}
@@ -149,7 +183,19 @@ public class Axes extends MathematicalObject {
 			double[] xy = sm.getFinalisedXandY(0, k);
 			
 			String label = String.format("%.2f", k);
-			g.drawString(label, (int) (xy[0]), (int) (xy[1]));
+			
+			int x = (int) (xy[0]), y_ = (int) (xy[1]) + 12; // +12 so under axes
+			if(stickyAxesMenu.isSelected()) {
+				
+				if(xy[0] < 0) {
+					x = 0;
+				} else if(xy[0] > sm.getWidth()) {
+					x = sm.getWidth() - 40; // so that it isn't rendered off-screen
+				}
+				
+			}
+			
+			g.drawString(label, x, y_);
 		}
 		
 	}
@@ -167,9 +213,19 @@ public class Axes extends MathematicalObject {
 			
 			String label = String.format("%.2f\u03C0", (x / Math.floor(sm.getxScale() / ScalingManager.GRIDLINE_CONSTANT_X)));
 			
-			// draw a line to mark where each pi is.
-			g.drawLine((int) (xy[0]), (int) (xy[1]) - 4, (int) (xy[0]), (int) (xy[1]) + 4);
-			g.drawString(label, (int) (xy[0]), (int) (xy[1]) - 5); // -5 so that the numbers are above the axes
+			int x_ = (int) (xy[0]), y = (int) (xy[1]);
+			if(stickyAxesMenu.isSelected()) {
+				
+				if(xy[1] < 0) {
+					y = 25;
+				} else if(xy[1] > sm.getHeight()) {
+					y = sm.getHeight() - 25;
+				}
+				
+			}
+
+			g.drawString(label, x_, y - 4);
+			g.drawLine(x_, y - 4, x_, y + 4);
 		}
 		
 	}

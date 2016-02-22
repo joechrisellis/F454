@@ -61,6 +61,7 @@ public class TipOfTheDayDialog extends JDialog {
 		"To find the equation of a straight line connecting two points, create a data set consisting of the points, then plot a line of best fit. Find the equation by hovering over it in the list of mathematical objects.",
 		"If you don't want to see labels for the points in a data set, you can make them invisible. Try right clicking the data set in the list of mathematical objects.",
 		"Pressing the reset button in the variable sliders menu resets all of the variable sliders back to their default value.",
+		"By enabling sticky axes, you ensure that the axes are visible at all times, no matter how far out you scroll. To enable stick axes, right click the axes in the list and select 'Sticky Axes'.",
 	};
 	
 	private int currentTip;
