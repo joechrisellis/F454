@@ -11,6 +11,7 @@ import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.BasicMathematicalObject;
 import com.f454.graph.mathobject.basic.Point;
+import com.f454.gui.mainwindow.MainWindow;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 

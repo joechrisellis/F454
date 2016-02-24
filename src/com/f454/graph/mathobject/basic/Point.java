@@ -1,5 +1,10 @@
 package com.f454.graph.mathobject.basic;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import com.f454.graph.ScalingManager;
+
 public class Point {
 	
 	public double x, y;
@@ -19,6 +24,17 @@ public class Point {
 		this.x = x;
 		this.y = y;
 		this.outOfRange = outOfRange;
+	}
+	
+	public static void renderPoint(Graphics2D g, ScalingManager sm, Point p, int r, boolean labels, Color color) {
+		g.setColor(color);
+		double[] xy = sm.getFinalisedXandY(p.x, p.y);
+		
+		g.fillOval((int) (xy[0] - r / 2), (int) (xy[1] - r / 2), r, r);
+
+		if(labels) {
+			g.drawString(String.format("(%.2f, %.2f)", p.x, p.y), (int) (xy[0] + 3), (int) (xy[1] - 3));
+		}
 	}
 	
 }

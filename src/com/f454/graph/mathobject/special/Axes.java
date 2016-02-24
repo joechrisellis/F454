@@ -37,9 +37,9 @@ public class Axes extends MathematicalObject {
 	
 	protected JMenuItem raiseScalingDialog;
 	protected JCheckBoxMenuItem showGridMenu;
+	protected JCheckBoxMenuItem stickyAxesMenu;
 	protected JCheckBoxMenuItem showXNumberingMenu, showYNumberingMenu;
 	protected JCheckBoxMenuItem showPiMenu;
-	protected JCheckBoxMenuItem stickyAxesMenu;
 	
 	public Axes(ScalingManager sm) {
 		super("Axes", null, Color.BLACK, sm);
@@ -48,23 +48,22 @@ public class Axes extends MathematicalObject {
 		raiseScalingDialog = new JMenuItem("Show Scaling Settings");
 		raiseScalingDialog.addActionListener(showScalingListener);
 		
+		stickyAxesMenu = new JCheckBoxMenuItem("Sticky Axes");
 		showGridMenu = new JCheckBoxMenuItem("Show Gridlines", true);
 		
 		JMenu numberingMenu = new JMenu("Axes Numbering");
 		showXNumberingMenu = new JCheckBoxMenuItem("Show numbering on x-axis", true);
 		showYNumberingMenu = new JCheckBoxMenuItem("Show numbering on y-axis", true);
+		showPiMenu = new JCheckBoxMenuItem("Show Axes in terms of Pi");
 		numberingMenu.add(showXNumberingMenu);
 		numberingMenu.add(showYNumberingMenu);
-		
-		showPiMenu = new JCheckBoxMenuItem("Show Axes in terms of Pi");
-		stickyAxesMenu = new JCheckBoxMenuItem("Sticky Axes");
+		numberingMenu.add(showPiMenu);
 		
 		menu = new JPopupMenu();
 		menu.add(raiseScalingDialog);
 		menu.add(showGridMenu);
-		menu.add(numberingMenu);
-		menu.add(showPiMenu);
 		menu.add(stickyAxesMenu);
+		menu.add(numberingMenu);
 
 	}
 

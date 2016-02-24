@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.f454.graph.mathobject.MathematicalObject;
+import com.f454.graph.mathobject.basic.constructed.ConstructedMathematicalObject;
 import com.f454.graph.mathobject.special.Axes;
 import com.f454.graph.mathobject.special.Key;
 import com.f454.gui.mainwindow.MainWindow;
 import com.f454.gui.mainwindow.panel.GraphingPanel;
 import com.f454.gui.setting.SetResolutionDialog;
-import com.f454.gui.setting.variableslider.VariableSliderWindow;
-import com.fathzer.soft.javaluator.StaticVariableSet;
 
 /**
  * The engine powering the rendering of mathematical objects.

@@ -68,14 +68,7 @@ public class DataSet extends BasicMathematicalObject {
 		ListIterator<Point> itr = points.listIterator();
 		while(itr.hasNext()) {
 			Point p = itr.next();
-			double[] xy = sm.getFinalisedXandY(p.x, p.y);
-			
-			g.fillOval((int) (xy[0] - r / 2), (int) (xy[1] - r / 2), r, r);
-			
-			if(showLabels.isSelected()) {
-				g.drawString(String.format("(%.2f, %.2f)", p.x, p.y), (int) (xy[0] + 3), (int) (xy[1] - 3));
-			}
-			
+			Point.renderPoint(g, sm, p, r, showLabels.isSelected(), color);
 		}
 	}
 	
