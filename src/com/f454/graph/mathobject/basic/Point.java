@@ -3,9 +3,12 @@ package com.f454.graph.mathobject.basic;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
 
 public class Point {
+	
+	public static final int RADIUS_NORMAL = 7, RADIUS_BOLD = (int) (RADIUS_NORMAL * 1.5);
 	
 	public double x, y;
 	
@@ -26,8 +29,19 @@ public class Point {
 		this.outOfRange = outOfRange;
 	}
 	
+	/**
+	 * Renders a point.
+	 * @param g The Graphics2D object to use for rendering.
+	 * @param sm The ScalingManager object to use for correct positioning.
+	 * @param p The point to render.
+	 * @param r The radius of the point.
+	 * @param labels Whether or not labels should be displayed.
+	 * @param color The color of the point.
+	 */
 	public static void renderPoint(Graphics2D g, ScalingManager sm, Point p, int r, boolean labels, Color color) {
 		g.setColor(color);
+		g.setFont(GraphingEngine.FONT);
+		
 		double[] xy = sm.getFinalisedXandY(p.x, p.y);
 		
 		g.fillOval((int) (xy[0] - r / 2), (int) (xy[1] - r / 2), r, r);

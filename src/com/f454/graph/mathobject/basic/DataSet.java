@@ -26,7 +26,6 @@ public class DataSet extends BasicMathematicalObject {
 	
 	// Used in conjunction with String.format().
 	private static final String TOOLTIP = "%d points";
-	private static final Font FONT = new Font(null, Font.PLAIN, 10);
 	
 	// Errors that might be raised.
 	public static final String ERR_INSUFFICIENT_POINTS = "At least two points need to be present in a "
@@ -35,7 +34,6 @@ public class DataSet extends BasicMathematicalObject {
 	
 	// The arraylist of all of the points.
 	private ArrayList<Point> points;
-	private static final int RADIUS_NORMAL = 7, RADIUS_BOLD = (int) (RADIUS_NORMAL * 1.5);
 	
 	protected JMenuItem plotLineOfBestFit;
 	protected JCheckBoxMenuItem showLabels;
@@ -61,9 +59,8 @@ public class DataSet extends BasicMathematicalObject {
 	
 	public void render(Graphics2D g) {
 		g.setColor(color);
-		g.setFont(FONT);
 		
-		int r = hovered ? RADIUS_BOLD : RADIUS_NORMAL;
+		int r = hovered ? Point.RADIUS_BOLD : Point.RADIUS_NORMAL;
 		
 		ListIterator<Point> itr = points.listIterator();
 		while(itr.hasNext()) {

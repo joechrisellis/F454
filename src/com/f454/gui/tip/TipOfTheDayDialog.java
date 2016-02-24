@@ -62,6 +62,7 @@ public class TipOfTheDayDialog extends JDialog {
 		"If you don't want to see labels for the points in a data set, you can make them invisible. Try right clicking the data set in the list of mathematical objects.",
 		"Pressing the reset button in the variable sliders menu resets all of the variable sliders back to their default value.",
 		"By enabling sticky axes, you ensure that the axes are visible at all times, no matter how far out you scroll. To enable stick axes, right click the axes in the list and select 'Sticky Axes'.",
+		"If you want to see where a function intersects y-axis, right click it in the list and tick 'Show y-intercept'.",
 	};
 	
 	private int currentTip;

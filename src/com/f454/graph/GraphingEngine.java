@@ -1,11 +1,11 @@
 package com.f454.graph;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
 import com.f454.graph.mathobject.MathematicalObject;
-import com.f454.graph.mathobject.basic.constructed.ConstructedMathematicalObject;
 import com.f454.graph.mathobject.special.Axes;
 import com.f454.graph.mathobject.special.Key;
 import com.f454.gui.mainwindow.MainWindow;
@@ -18,6 +18,8 @@ import com.f454.gui.setting.SetResolutionDialog;
  *
  */
 public class GraphingEngine {
+	
+	public static final Font FONT = new Font(null, Font.BOLD, 10);
 	
 	// The graphingPanel object is a reference to the container so we can do
 	// things like get the width and height of it, etc.
@@ -51,6 +53,8 @@ public class GraphingEngine {
 	 * @param g The Graphics2D object used for rendering.
 	 */
 	public void render(Graphics2D g) {
+		
+		g.setFont(FONT);
 		
 		// iterate through all of the mathematical objects...
 		ListIterator<MathematicalObject> itr = mathObjects.listIterator();
