@@ -88,6 +88,10 @@ public class SimpleFunction extends ConstructedMathematicalObject {
 				continue;
 			}
 			
+			if(Double.isNaN(e)) {
+				continue;
+			}
+			
 			// if outside of the user defined range...
 			boolean outOfRange = hasRange && (e < rangeLBound || e > rangeUBound);
 			

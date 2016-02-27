@@ -77,6 +77,8 @@ public class VariableSliderWindow extends JFrame {
 		
 		reset.setToolTipText("Reset the variable sliders back to their default positions.");
 		
+		add(new JLabel("Use the variables below in your expressions, e.g. y = sin(x - a)", JLabel.CENTER),
+			BorderLayout.NORTH);
 		add(sliderPanel);
 		add(reset, BorderLayout.SOUTH);
 		

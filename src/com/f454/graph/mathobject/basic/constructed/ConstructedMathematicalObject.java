@@ -6,12 +6,12 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 import com.f454.graph.GraphingEngine;
 import com.f454.graph.ScalingManager;
 import com.f454.graph.mathobject.basic.BasicMathematicalObject;
 import com.f454.graph.mathobject.basic.Point;
-import com.f454.gui.mainwindow.MainWindow;
 import com.fathzer.soft.javaluator.DoubleEvaluator;
 import com.fathzer.soft.javaluator.StaticVariableSet;
 
@@ -43,7 +43,15 @@ public abstract class ConstructedMathematicalObject extends BasicMathematicalObj
 		g.setStroke(new BasicStroke(hovered ? BasicMathematicalObject.BOLD_WIDTH : BasicMathematicalObject.NORMAL_WIDTH));
 		
 		ListIterator<Point> itr = points.listIterator();
-		Point prev = itr.next();
+		
+		// try and get the previous point.
+		Point prev;
+		try {
+			prev = itr.next();
+		} catch(NoSuchElementException e) {
+			// if there isn't one
+			return;
+		}
 		
 		// Iterate through all of the points given by the list iterator. 
 		while(itr.hasNext()) {
