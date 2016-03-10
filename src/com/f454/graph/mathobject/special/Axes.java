@@ -24,7 +24,7 @@ public class Axes extends MathematicalObject {
 	
 	// The number of labels to place either side of the origin for both the 
 	// x and y-axes.
-	public static final int NUMBERS = 500;
+	public static final int NUMBERS = 100;
 	private static final Font FONT = new Font(null, Font.PLAIN, 10);
 	
 	public static final ActionListener showScalingListener = new ActionListener() {
