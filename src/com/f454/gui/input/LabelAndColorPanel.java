@@ -52,7 +52,7 @@ public class LabelAndColorPanel extends JPanel {
 		add(new JLabel("Label: "));
 		add(label);
 		
-		add(new JLabel("Color: "));
+		add(new JLabel("Colour: "));
 		add(changeColor);
 		
 	}
