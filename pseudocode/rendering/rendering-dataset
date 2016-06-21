@@ -1,4 +1,0 @@
-Method Render(Graphics2D g)
-	g.SetColor(Color)
-	For Point in PointsList:
-		Point.Render(g) # passing g as an argument
