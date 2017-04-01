@@ -5,3 +5,8 @@ This repository contains the source code for the software graphing calculator th
 science course. Its functionality includes the plotting of functions, circles, data sets and parametric equations.
 
 User documentation can be found in the doc directory.
+
+Screenshot
+==========
+
+![alt tag](http://i.imgur.com/DwUUASa.png)
